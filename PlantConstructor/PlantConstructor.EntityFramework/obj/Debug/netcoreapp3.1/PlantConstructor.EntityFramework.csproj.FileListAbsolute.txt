@@ -1,0 +1,9 @@
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.deps.json
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.dll
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.pdb
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.csprojAssemblyReference.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.csproj.CoreCompileInputs.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.AssemblyInfoInputs.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.AssemblyInfo.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.dll
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.pdb
