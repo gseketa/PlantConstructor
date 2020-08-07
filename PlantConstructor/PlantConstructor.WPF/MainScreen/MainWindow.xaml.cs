@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PlantConstructor.WPF
+namespace PlantConstructor.WPF.MainScreen
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +23,8 @@ namespace PlantConstructor.WPF
     {
         public MainWindow()
         {
+            //ApplicationThemeHelper.ApplicationThemeName = Theme.Office2019DarkGrayName;
+            
             InitializeComponent();
         }
     }

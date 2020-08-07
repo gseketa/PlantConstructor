@@ -1,4 +1,3 @@
-C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF_MarkupCompile.cache
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF_MarkupCompile.lref
@@ -134,7 +133,6 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Private.ServiceModel.dll
-C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\MainWindow.baml
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.g.resources
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.csproj.CoreCompileInputs.cache
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.AssemblyInfoInputs.cache
@@ -143,3 +141,5 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.pdb
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.genruntimeconfig.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\MainScreen\MainWindow.g.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\MainScreen\MainWindow.baml
