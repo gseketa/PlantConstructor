@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using PlantConstructor.WPF.Services;
-using PlantConstructor.WPF.Model;
+using PlantConstructor.Domain.Services;
+using PlantConstructor.Domain.Model;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using DevExpress.Xpo;
+using Microsoft.EntityFrameworkCore;
 
 namespace PlantConstructor.EntityFramework
 {
-    class GenericDataService<T> : IDataService<T> where T : DomainObject
+    public class GenericDataService<T> : IDataService<T> where T : DomainObject
     {
         private readonly PlantConstructorDbContextFactory _contextFactory;
 

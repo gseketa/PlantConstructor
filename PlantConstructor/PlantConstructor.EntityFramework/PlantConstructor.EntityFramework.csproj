@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PlantConstructor.WPF\PlantConstructor.WPF.csproj" />
+    <ProjectReference Include="..\PlantConstructor.Domain\PlantConstructor.Domain.csproj" />
   </ItemGroup>
 
 </Project>

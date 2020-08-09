@@ -12,4 +12,9 @@
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.All" Version="20.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PlantConstructor.Domain\PlantConstructor.Domain.csproj" />
+    <ProjectReference Include="..\PlantConstructor.EntityFramework\PlantConstructor.EntityFramework.csproj" />
+  </ItemGroup>
+
 </Project>

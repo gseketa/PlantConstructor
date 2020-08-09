@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PlantConstructor.WPF.Model;
-using PlantConstructor.WPF.Model.BranchModel;
-using PlantConstructor.WPF.Model.PartModel;
-using PlantConstructor.WPF.Model.PipeModel;
-using PlantConstructor.WPF.Model.SiteModel;
-using PlantConstructor.WPF.Model.ZoneModel;
+using PlantConstructor.Domain.Model;
+using PlantConstructor.Domain.Model.BranchModel;
+using PlantConstructor.Domain.Model.PartModel;
+using PlantConstructor.Domain.Model.PipeModel;
+using PlantConstructor.Domain.Model.SiteModel;
+using PlantConstructor.Domain.Model.ZoneModel;
 using System;
 using System.Collections.Generic;
 using System.Text;

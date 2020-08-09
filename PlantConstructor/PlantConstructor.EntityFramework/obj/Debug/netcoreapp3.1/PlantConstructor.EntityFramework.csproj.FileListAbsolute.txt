@@ -6,11 +6,10 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.AssemblyInfo.cs
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.pdb
-C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.WPF.exe
-C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.WPF.dll
-C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.WPF.pdb
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.csproj.CopyComplete
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.runtimeconfig.json
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.runtimeconfig.dev.json
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.csproj.CoreCompileInputs.cache
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\obj\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.genruntimeconfig.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.Domain.dll
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.EntityFramework\bin\Debug\netcoreapp3.1\PlantConstructor.Domain.pdb

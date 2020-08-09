@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantConstructor.EntityFramework", "PlantConstructor.EntityFramework\PlantConstructor.EntityFramework.csproj", "{5A72A7FF-B050-4DAD-939E-4C9ED3C22F82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantConstructor.WPF", "PlantConstructor.WPF\PlantConstructor.WPF.csproj", "{78F2604D-C3A5-48AF-9B4E-A3A88C47DC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantConstructor.WPF", "PlantConstructor.WPF\PlantConstructor.WPF.csproj", "{78F2604D-C3A5-48AF-9B4E-A3A88C47DC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantConstructor.Domain", "PlantConstructor.Domain\PlantConstructor.Domain.csproj", "{873E195F-0003-4199-882E-44760AA1E462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{78F2604D-C3A5-48AF-9B4E-A3A88C47DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F2604D-C3A5-48AF-9B4E-A3A88C47DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F2604D-C3A5-48AF-9B4E-A3A88C47DC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{873E195F-0003-4199-882E-44760AA1E462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{873E195F-0003-4199-882E-44760AA1E462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{873E195F-0003-4199-882E-44760AA1E462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873E195F-0003-4199-882E-44760AA1E462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
