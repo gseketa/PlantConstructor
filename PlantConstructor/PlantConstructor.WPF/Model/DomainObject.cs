@@ -4,9 +4,9 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model
 {
-    public class Project :DomainObject
+    public class DomainObject
     {
-        public string Name { get; set; }
 
+        public int Id { get; set; }
     }
 }

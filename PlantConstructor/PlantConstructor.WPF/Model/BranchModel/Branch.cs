@@ -5,9 +5,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.BranchModel
 {
-    public class Branch
+    public class Branch : DomainObject
     {
-        public int BranchID { get; set; }
         public string BranchName { get; set; }
         public Zone ZoneFK { get; set; }
     }

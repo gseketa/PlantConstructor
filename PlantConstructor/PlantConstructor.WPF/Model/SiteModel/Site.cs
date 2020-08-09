@@ -5,9 +5,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.SiteModel
 {
-    public class Site
+    public class Site : DomainObject
     {
-        public int SiteID { get; set; }
         public string SiteName { get; set; }
         public Project ProjectFK { get; set; }
 

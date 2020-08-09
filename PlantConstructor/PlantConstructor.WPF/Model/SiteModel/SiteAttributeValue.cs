@@ -4,9 +4,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.SiteModel
 {
-    public class SiteAttributeValue
+    public class SiteAttributeValue : DomainObject
     {
-        public int SiteAttributeValueID { get; set; }
         public Site SiteFK { get; set; }
         public SiteAttribute SiteAttributeFK { get; set; }
         public string AttributeValue { get; set; }

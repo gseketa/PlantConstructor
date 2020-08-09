@@ -4,9 +4,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.PipeModel
 {
-    public class PipeAttributeValue
+    public class PipeAttributeValue : DomainObject
     {
-        public int PipeAttributeValueID { get; set; }
         public Pipe PipeFK { get; set; }
         public PipeAttribute SiteAttributeFK { get; set; }
         public string AttributeValue { get; set; }

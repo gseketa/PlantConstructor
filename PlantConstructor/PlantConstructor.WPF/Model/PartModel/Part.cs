@@ -5,9 +5,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.PartModel
 {
-    public class Part
+    public class Part : DomainObject
     {
-        public int PartID { get; set; }
         public string PartName { get; set; }
         public Pipe PipeFK { get; set; }
 

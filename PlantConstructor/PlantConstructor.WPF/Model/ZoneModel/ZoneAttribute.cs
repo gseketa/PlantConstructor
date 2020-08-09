@@ -4,9 +4,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.ZoneModel
 {
-    public class ZoneAttribute
+    public class ZoneAttribute : DomainObject
     {
-        public int ZoneAttributeID { get; set; }
         public string ZoneAttributeName { get; set; }
         public Project ProjectFK { get; set; }
     }

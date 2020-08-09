@@ -4,9 +4,9 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.BranchModel
 {
-    public class BranchAttributeValue
-    {
-        public int BranchAttributeValueID { get; set; }
+    public class BranchAttributeValue : DomainObject
+    { 
+    
         public Branch BranchFK { get; set; }
         public BranchAttribute BranchAttributeFK { get; set; }
         public string AttributeValue { get; set; }

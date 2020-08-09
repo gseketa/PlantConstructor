@@ -4,9 +4,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.PartModel
 {
-    public class PartAttribute
+    public class PartAttribute : DomainObject
     {
-        public int PartAttributeID { get; set; }
         public string PartAttributeName { get; set; }
         public Project ProjectFK { get; set; }
     }

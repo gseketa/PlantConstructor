@@ -5,9 +5,8 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.ZoneModel
 {
-    public class Zone
+    public class Zone : DomainObject
     {
-        public int ZoneID { get; set; }
         public string ZoneName { get; set; }
         public Site SiteFK { get; set; }
 
