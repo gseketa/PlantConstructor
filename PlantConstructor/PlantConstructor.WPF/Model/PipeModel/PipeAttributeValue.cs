@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.PipeModel
 {
-    class PipeAttributeValue
+    public class PipeAttributeValue
     {
         public int PipeAttributeValueID { get; set; }
         public Pipe PipeFK { get; set; }

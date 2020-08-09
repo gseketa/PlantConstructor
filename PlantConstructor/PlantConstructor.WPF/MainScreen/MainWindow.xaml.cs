@@ -22,9 +22,7 @@ namespace PlantConstructor.WPF.MainScreen
     public partial class MainWindow : ThemedWindow
     {
         public MainWindow()
-        {
-            //ApplicationThemeHelper.ApplicationThemeName = Theme.Office2019DarkGrayName;
-            
+        {            
             InitializeComponent();
         }
     }

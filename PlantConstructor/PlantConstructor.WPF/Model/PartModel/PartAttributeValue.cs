@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantConstructor.WPF.Model.PartModel
 {
-    class PartAttributeValue
+    public class PartAttributeValue
     {
         public int PartAttributeValueID { get; set; }
         public Part PartFK { get; set; }
