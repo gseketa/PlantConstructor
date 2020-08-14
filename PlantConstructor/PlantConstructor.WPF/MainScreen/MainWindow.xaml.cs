@@ -28,13 +28,20 @@ namespace PlantConstructor.WPF.MainScreen
         public MainWindow()
         {            
             InitializeComponent();
+        }
 
-            IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
-            projectService.Create(new Project
-            {
-                Name = "Test2"
-            });
+    }
 
+    public class ProjectDetailsTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate ProjectDetailsTemplate { get; set; }
+        public DataTemplate EmptyDetailsTemplate { get; set; }
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            if (item is Project)
+                return ProjectDetailsTemplate;
+            return EmptyDetailsTemplate;
         }
     }
 }

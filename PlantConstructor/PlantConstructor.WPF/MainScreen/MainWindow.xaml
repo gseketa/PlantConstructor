@@ -1,13 +1,78 @@
 ﻿<dx:ThemedWindow x:Class="PlantConstructor.WPF.MainScreen.MainWindow"
+        x:Name="root"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+        xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600">
+    <dx:ThemedWindow.DataContext>
+        <local:MainWindowViewModel/>
+    </dx:ThemedWindow.DataContext>
+    <dx:ThemedWindow.Resources>                     
+        <DataTemplate x:Key="projectDetailsTemplate" >
+            <Grid VerticalAlignment="Center" >
+                <dxlc:LayoutGroup Orientation="Vertical" Margin="10">
+                    <dxlc:LayoutItem Label="Project Name" AddColonToLabel="True">
+                        <dxe:TextEdit EditValue="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Project Group" AddColonToLabel="True">
+                        <dxe:TextEdit EditValue="{Binding ProjectGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <Button>
+                        Delete Project
+                    </Button>
+                    <Button>
+                        Edit Data
+                    </Button>
+                    <Button Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}" CommandParameter="{Binding DataContext.SelectedItem, ElementName=root}" Content="Save" /> 
+                </dxlc:LayoutGroup>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="emptyDetailsTemplate">
+            <Grid VerticalAlignment="Stretch">
+                <TextBlock Text="Select a project to see details."
+                           FontSize="16"
+                           Opacity="0.62"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap" />
+            </Grid>
+        </DataTemplate>
+        <local:ProjectDetailsTemplateSelector x:Key="projectDetailsTemplateSelector"
+                                           ProjectDetailsTemplate="{StaticResource projectDetailsTemplate}"
+                                           EmptyDetailsTemplate="{StaticResource emptyDetailsTemplate}" />   
+    </dx:ThemedWindow.Resources>
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="1" Background="LightGray" BorderBrush="Blue">
+            + Add Project
+        </Button>
+        <dxa:AccordionControl   x:Name="accordion"
+                                ExpandMode="SingleOrNone"
+                                SelectedItem="{Binding SelectedItem}"
+                                SelectionUnit="SubItem"
+                                ItemsSource="{Binding ProjectDepartments}" 
+                                ChildrenPath="Projects"
+                                ShowSearchControl="True"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                VerticalAlignment="Stretch"
+                                Background="LightGray">
+        </dxa:AccordionControl>
+        <ContentPresenter     Grid.Column="1"
+                              Content="{Binding SelectedItem}"
+                              ContentTemplateSelector="{StaticResource projectDetailsTemplateSelector}" />
     </Grid>
 </dx:ThemedWindow>
