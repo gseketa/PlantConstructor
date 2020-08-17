@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace PlantConstructor.WPF.MainScreen
@@ -60,7 +61,7 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-            private async void LoadProjectsFromDatabase()
+        private async void LoadProjectsFromDatabase()
         {
             IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var allProjects = await projectService.GetAll();
@@ -70,10 +71,16 @@ namespace PlantConstructor.WPF.MainScreen
             OnPropertyRaised("ProjectDepartments");            
         }
 
-        public void SaveProjectToDB (object obj)
+        public async void SaveProjectToDB (object parameter)
         {
-            Project _tempProjectVariable = (Project)obj;
-            MessageBox.Show(_tempProjectVariable.Name);
+            var values = (object[])parameter;
+            string newProjectName=(string)values[0];
+            string newProjectGroup = (string)values[1];
+
+            IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
+            var updatedProject = await projectService.Update(selectedItem.Id, new Project {Name=newProjectName, ProjectGroup=newProjectGroup });
+
+            LoadProjectsFromDatabase();
         }
         
 

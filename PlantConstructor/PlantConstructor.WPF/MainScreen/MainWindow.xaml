@@ -9,20 +9,22 @@
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
+        xmlns:localHelper="clr-namespace:PlantConstructor.WPF.Helper"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
     <dx:ThemedWindow.DataContext>
         <local:MainWindowViewModel/>
     </dx:ThemedWindow.DataContext>
-    <dx:ThemedWindow.Resources>                     
+    <dx:ThemedWindow.Resources>
+        <localHelper:EditProjectValuesConverter x:Key="myEditProjectValuesConverter" />
         <DataTemplate x:Key="projectDetailsTemplate" >
             <Grid VerticalAlignment="Center" >
                 <dxlc:LayoutGroup Orientation="Vertical" Margin="10">
                     <dxlc:LayoutItem Label="Project Name" AddColonToLabel="True">
-                        <dxe:TextEdit EditValue="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:TextEdit Name="txtEditProjectName" EditValue="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Project Group" AddColonToLabel="True">
-                        <dxe:TextEdit EditValue="{Binding ProjectGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:TextEdit Name="txtEditProjectGroup" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <Button>
                         Delete Project
@@ -30,7 +32,14 @@
                     <Button>
                         Edit Data
                     </Button>
-                    <Button Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}" CommandParameter="{Binding DataContext.SelectedItem, ElementName=root}" Content="Save" /> 
+                    <Button Content="Save" Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}">
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource myEditProjectValuesConverter}">
+                                <Binding Path="EditValue" ElementName="txtEditProjectName" />
+                                <Binding Path="EditValue" ElementName="txtEditProjectGroup" />
+                            </MultiBinding>
+                        </Button.CommandParameter>
+                    </Button> 
                 </dxlc:LayoutGroup>
             </Grid>
         </DataTemplate>
