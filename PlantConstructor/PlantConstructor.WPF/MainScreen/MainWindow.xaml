@@ -26,9 +26,7 @@
                     <dxlc:LayoutItem Label="Project Group" AddColonToLabel="True">
                         <dxe:TextEdit Name="txtEditProjectGroup" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
-                    <Button>
-                        Delete Project
-                    </Button>
+                    <Button Content="Delete Project" Command="{Binding DataContext.DeleteProjectButtonCommand, ElementName=root}"/>
                     <Button>
                         Edit Data
                     </Button>
@@ -66,9 +64,7 @@
             <RowDefinition Height="10*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="1" Background="LightGray" BorderBrush="Blue">
-            + Add Project
-        </Button>
+        <Button Grid.Column="0" Grid.Row="1" Background="LightGray" BorderBrush="Blue" Content="+ Add Project" Command="{Binding AddProjectButtonCommand}"/>
         <dxa:AccordionControl   x:Name="accordion"
                                 ExpandMode="SingleOrNone"
                                 SelectedItem="{Binding SelectedItem}"
