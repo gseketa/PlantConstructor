@@ -83,12 +83,17 @@ namespace PlantConstructor.WPF.MainScreen
 
         private async void LoadProjectsFromDatabaseAsync()
         {
+            await LoadProjectsFromDatabaseWorkerAsync();
+        }
+
+        private async Task LoadProjectsFromDatabaseWorkerAsync ()
+        {
             IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var allProjects = await projectService.GetAll();
             var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
 
             ProjectDepartments = new ObservableCollection<ProjectDepartment>(projectDepartments.ToArray());
-            OnPropertyRaised("ProjectDepartments");            
+            OnPropertyRaised("ProjectDepartments");
         }
 
         public async void SaveProjectToDBAsync (object parameter)
@@ -100,7 +105,7 @@ namespace PlantConstructor.WPF.MainScreen
             IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var updatedProject = await projectService.Update(SelectedItem.Id, new Project {Name=newProjectName, ProjectGroup=newProjectGroup });
 
-            LoadProjectsFromDatabaseAsync();
+            await LoadProjectsFromDatabaseWorkerAsync();
         }
 
         public async void AddNewProjectToDBAsync (object parameter)
@@ -108,10 +113,7 @@ namespace PlantConstructor.WPF.MainScreen
             IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var createdProject = await projectService.Create(new Project { Name = "NewProject", ProjectGroup = "New Project Group" });
 
-            var allProjects = await projectService.GetAll();
-            var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
-            ProjectDepartments = new ObservableCollection<ProjectDepartment>(projectDepartments.ToArray());
-            OnPropertyRaised("ProjectDepartments");
+            await LoadProjectsFromDatabaseWorkerAsync();
 
             SelectedItem = createdProject;
         }
@@ -122,7 +124,7 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
                 var createdProject = await projectService.Delete(SelectedItem.Id);
-                LoadProjectsFromDatabaseAsync();
+                await LoadProjectsFromDatabaseWorkerAsync();
             }
 
         }
