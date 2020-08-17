@@ -32,16 +32,4 @@ namespace PlantConstructor.WPF.MainScreen
 
     }
 
-    public class ProjectDetailsTemplateSelector : DataTemplateSelector
-    {
-        public DataTemplate ProjectDetailsTemplate { get; set; }
-        public DataTemplate EmptyDetailsTemplate { get; set; }
-
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
-        {
-            if (item is Project)
-                return ProjectDetailsTemplate;
-            return EmptyDetailsTemplate;
-        }
-    }
 }

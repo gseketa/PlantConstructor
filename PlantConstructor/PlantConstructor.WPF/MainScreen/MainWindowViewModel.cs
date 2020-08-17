@@ -20,6 +20,7 @@ namespace PlantConstructor.WPF.MainScreen
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<ProjectDepartment> ProjectDepartments { get; set; }
+        IDataService<Project> projectService;
 
         private Project selectedItem;
         public Project SelectedItem {
@@ -63,9 +64,13 @@ namespace PlantConstructor.WPF.MainScreen
             set { deleteProjectButtonCommand = value; }
         }
 
+        
+
 
         public MainWindowViewModel()
         {
+            projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
+
             LoadProjectsFromDatabaseAsync();
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
@@ -88,7 +93,6 @@ namespace PlantConstructor.WPF.MainScreen
 
         private async Task LoadProjectsFromDatabaseWorkerAsync ()
         {
-            IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var allProjects = await projectService.GetAll();
             var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
 
@@ -102,7 +106,6 @@ namespace PlantConstructor.WPF.MainScreen
             string newProjectName=(string)values[0];
             string newProjectGroup = (string)values[1];
 
-            IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var updatedProject = await projectService.Update(SelectedItem.Id, new Project {Name=newProjectName, ProjectGroup=newProjectGroup });
 
             await LoadProjectsFromDatabaseWorkerAsync();
@@ -110,7 +113,6 @@ namespace PlantConstructor.WPF.MainScreen
 
         public async void AddNewProjectToDBAsync (object parameter)
         {
-            IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             var createdProject = await projectService.Create(new Project { Name = "NewProject", ProjectGroup = "New Project Group" });
 
             await LoadProjectsFromDatabaseWorkerAsync();
@@ -122,7 +124,6 @@ namespace PlantConstructor.WPF.MainScreen
         {
             if (MessageBox.Show("Do you want to Delete the selected Project?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                IDataService<Project> projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
                 var createdProject = await projectService.Delete(SelectedItem.Id);
                 await LoadProjectsFromDatabaseWorkerAsync();
             }
