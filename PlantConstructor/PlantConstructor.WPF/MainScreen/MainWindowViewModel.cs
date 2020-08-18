@@ -3,6 +3,7 @@ using DevExpress.XtraPrinting.Native;
 using PlantConstructor.Domain.Model;
 using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
+using PlantConstructor.WPF.EditDataScreen;
 using PlantConstructor.WPF.Helper;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,13 @@ namespace PlantConstructor.WPF.MainScreen
             set { deleteProjectButtonCommand = value; }
         }
 
-        
+        private ICommand editDataButtonCommand;
+
+        public ICommand EditDataButtonCommand
+        {
+            get { return editDataButtonCommand; }
+            set { editDataButtonCommand = value; }
+        }
 
 
         public MainWindowViewModel()
@@ -79,6 +86,7 @@ namespace PlantConstructor.WPF.MainScreen
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
+            EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -151,12 +159,14 @@ namespace PlantConstructor.WPF.MainScreen
             if (MessageBox.Show("Do you want to Delete the selected Project?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 await projectService.Delete(SelectedItem.Id);
-                
-                //var allBranchAttributes = await branchAttributeService.GetAll();
-                //allBranchAttributes.ToList().RemoveAll(x => x.ProjectId == SelectedItem.Id);
-                
                 await LoadProjectsFromDatabaseWorkerAsync();
             }
+        }
+
+        public void OpenEditDataWindow(object parameter)
+        {
+            EditDataWindow objEditDataWindow = new EditDataWindow();
+            objEditDataWindow.ShowDialog();
         }
 
     }

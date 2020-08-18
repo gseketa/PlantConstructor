@@ -11,7 +11,7 @@
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
         xmlns:localHelper="clr-namespace:PlantConstructor.WPF.Helper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="Plant Constructor" Height="450" Width="600">
     <dx:ThemedWindow.DataContext>
         <local:MainWindowViewModel/>
     </dx:ThemedWindow.DataContext>
@@ -27,9 +27,7 @@
                         <dxe:TextEdit Name="txtEditProjectGroup" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <Button Content="Delete Project" Command="{Binding DataContext.DeleteProjectButtonCommand, ElementName=root}"/>
-                    <Button>
-                        Edit Data
-                    </Button>
+                    <Button Content="Edit Data" Command="{Binding DataContext.EditDataButtonCommand, ElementName=root}"/>
                     <Button Content="Save" Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}">
                         <Button.CommandParameter>
                             <MultiBinding Converter="{StaticResource myEditProjectValuesConverter}">

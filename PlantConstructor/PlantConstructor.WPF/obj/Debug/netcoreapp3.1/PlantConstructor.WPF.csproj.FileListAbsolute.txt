@@ -169,3 +169,5 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\PlantConstructor.Domain.pdb
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\PlantConstructor.EntityFramework.pdb
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\EditDataScreen\EditDataWindow.g.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\EditDataScreen\EditDataWindow.baml

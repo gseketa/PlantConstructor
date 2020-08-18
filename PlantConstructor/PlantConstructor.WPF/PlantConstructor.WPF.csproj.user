@@ -7,6 +7,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="EditDataScreen\EditDataWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EditDataScreen\EditDataWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainScreen\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
