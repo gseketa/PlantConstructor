@@ -7,6 +7,7 @@ namespace PlantConstructor.Domain.Model.PartModel
     public class PartAttribute : DomainObject
     {
         public string PartAttributeName { get; set; }
-        public Project ProjectFK { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

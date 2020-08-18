@@ -8,7 +8,8 @@ namespace PlantConstructor.Domain.Model.PartModel
     public class Part : DomainObject
     {
         public string PartName { get; set; }
-        public Pipe PipeFK { get; set; }
+        public int PipeId { get; set; }
+        public Pipe Pipe { get; set; }
 
     }
 }

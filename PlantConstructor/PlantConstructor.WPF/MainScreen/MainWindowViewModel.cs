@@ -1,6 +1,7 @@
 ﻿using DevExpress.Xpf.Editors.Helpers;
 using DevExpress.XtraPrinting.Native;
 using PlantConstructor.Domain.Model;
+using PlantConstructor.Domain.Model.BranchModel;
 using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
 using PlantConstructor.WPF.Helper;
@@ -21,6 +22,7 @@ namespace PlantConstructor.WPF.MainScreen
     {
         public ObservableCollection<ProjectDepartment> ProjectDepartments { get; set; }
         IDataService<Project> projectService;
+        IDataService<BranchAttribute> branchAttributeService;
 
         private Project selectedItem;
         public Project SelectedItem {
@@ -70,6 +72,7 @@ namespace PlantConstructor.WPF.MainScreen
         public MainWindowViewModel()
         {
             projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
+            branchAttributeService = new GenericDataService<BranchAttribute>(new PlantConstructorDbContextFactory());
 
             LoadProjectsFromDatabaseAsync();
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
@@ -118,16 +121,28 @@ namespace PlantConstructor.WPF.MainScreen
             await LoadProjectsFromDatabaseWorkerAsync();
 
             SelectedItem = createdProject;
+            await FillAttributesTablesAsync();
+        }
+
+        public async Task FillAttributesTablesAsync ()
+        {
+            for (int i = 0; i < ProjectAttributes.BranchAttributeNames.Length; i++)
+            {
+                await branchAttributeService.Create(new BranchAttribute { BranchAttributeName = ProjectAttributes.BranchAttributeNames[i], ProjectId=SelectedItem.Id});
+            }
         }
         
         public async void DeleteProjectFromDBAsync (object parameter)
         {
             if (MessageBox.Show("Do you want to Delete the selected Project?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                var createdProject = await projectService.Delete(SelectedItem.Id);
+                await projectService.Delete(SelectedItem.Id);
+                
+                var allBranchAttributes = await branchAttributeService.GetAll();
+                allBranchAttributes.ToList().RemoveAll(x => x.ProjectId == SelectedItem.Id);
+                
                 await LoadProjectsFromDatabaseWorkerAsync();
             }
-
         }
 
     }

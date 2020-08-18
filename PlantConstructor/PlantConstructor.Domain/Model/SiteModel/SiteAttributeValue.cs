@@ -6,8 +6,10 @@ namespace PlantConstructor.Domain.Model.SiteModel
 {
     public class SiteAttributeValue : DomainObject
     {
-        public Site SiteFK { get; set; }
-        public SiteAttribute SiteAttributeFK { get; set; }
+        public int SiteId { get; set; }
+        public Site Site { get; set; }
+        public int SiteAttributeId { get; set; }
+        public SiteAttribute SiteAttribute { get; set; }
         public string AttributeValue { get; set; }
     }
 }

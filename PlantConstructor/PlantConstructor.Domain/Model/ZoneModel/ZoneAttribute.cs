@@ -7,6 +7,7 @@ namespace PlantConstructor.Domain.Model.ZoneModel
     public class ZoneAttribute : DomainObject
     {
         public string ZoneAttributeName { get; set; }
-        public Project ProjectFK { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

@@ -8,7 +8,8 @@ namespace PlantConstructor.Domain.Model.SiteModel
     public class Site : DomainObject
     {
         public string SiteName { get; set; }
-        public Project ProjectFK { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
 
 
     }

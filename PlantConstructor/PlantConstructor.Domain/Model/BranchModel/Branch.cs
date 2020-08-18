@@ -8,6 +8,7 @@ namespace PlantConstructor.Domain.Model.BranchModel
     public class Branch : DomainObject
     {
         public string BranchName { get; set; }
-        public Zone ZoneFK { get; set; }
+        public int ZoneId { get; set; }
+        public Zone Zone { get; set; }
     }
 }

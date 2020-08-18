@@ -7,6 +7,7 @@ namespace PlantConstructor.Domain.Model.BranchModel
     public class BranchAttribute : DomainObject
     {
         public string BranchAttributeName { get; set; }
-        public Project ProjectFK { get; set; }
+        public int ProjectId { get; set; }
+        public Project Project { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace PlantConstructor.Domain.Model.PipeModel
     {
 
         public string PipeName { get; set; }
-        public Branch BranchFK { get; set; }
+        public int BranchId { get; set; }
+        public Branch Branch { get; set; }
     }
 }
