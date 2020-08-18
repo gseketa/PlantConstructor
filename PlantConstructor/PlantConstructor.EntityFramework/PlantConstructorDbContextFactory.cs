@@ -11,7 +11,7 @@ namespace PlantConstructor.EntityFramework
         public PlantConstructorDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<PlantConstructorDbContext>();
-            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=PlantConstructorDB; trusted_Connection=True");
+            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=PlantConstructorDB2; trusted_Connection=True");
 
             return new PlantConstructorDbContext(options.Options);
         }

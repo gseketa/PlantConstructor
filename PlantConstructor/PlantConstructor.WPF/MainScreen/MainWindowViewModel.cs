@@ -1,7 +1,6 @@
 ﻿using DevExpress.Xpf.Editors.Helpers;
 using DevExpress.XtraPrinting.Native;
 using PlantConstructor.Domain.Model;
-using PlantConstructor.Domain.Model.BranchModel;
 using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
 using PlantConstructor.WPF.Helper;
@@ -22,7 +21,8 @@ namespace PlantConstructor.WPF.MainScreen
     {
         public ObservableCollection<ProjectDepartment> ProjectDepartments { get; set; }
         IDataService<Project> projectService;
-        IDataService<BranchAttribute> branchAttributeService;
+        IDataService<ProjectAttribute> projectAttributeService;
+        IDataService<AttributeG> attributeGService;
 
         private Project selectedItem;
         public Project SelectedItem {
@@ -72,7 +72,8 @@ namespace PlantConstructor.WPF.MainScreen
         public MainWindowViewModel()
         {
             projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
-            branchAttributeService = new GenericDataService<BranchAttribute>(new PlantConstructorDbContextFactory());
+            projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
+            attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
 
             LoadProjectsFromDatabaseAsync();
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
@@ -126,9 +127,22 @@ namespace PlantConstructor.WPF.MainScreen
 
         public async Task FillAttributesTablesAsync ()
         {
+            var allAttributes = await attributeGService.GetAll();
+            for (int i = 0; i < ProjectAttributes.SiteAttributeNames.Length; i++)
+            {
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId=SelectedItem.Id, AttributeGId=allAttributes.FirstOrDefault(x=>x.Name==ProjectAttributes.SiteAttributeNames[i] && x.Type=="Site").Id});
+            }
+            for (int i = 0; i < ProjectAttributes.ZoneAttributeNames.Length; i++)
+            {
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.ZoneAttributeNames[i] && x.Type == "Zone").Id });
+            }
+            for (int i = 0; i < ProjectAttributes.PipeAttributeNames.Length; i++)
+            {
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.PipeAttributeNames[i] && x.Type == "Pipe").Id });
+            }
             for (int i = 0; i < ProjectAttributes.BranchAttributeNames.Length; i++)
             {
-                await branchAttributeService.Create(new BranchAttribute { BranchAttributeName = ProjectAttributes.BranchAttributeNames[i], ProjectId=SelectedItem.Id});
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.BranchAttributeNames[i] && x.Type == "Branch").Id });
             }
         }
         
@@ -138,8 +152,8 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 await projectService.Delete(SelectedItem.Id);
                 
-                var allBranchAttributes = await branchAttributeService.GetAll();
-                allBranchAttributes.ToList().RemoveAll(x => x.ProjectId == SelectedItem.Id);
+                //var allBranchAttributes = await branchAttributeService.GetAll();
+                //allBranchAttributes.ToList().RemoveAll(x => x.ProjectId == SelectedItem.Id);
                 
                 await LoadProjectsFromDatabaseWorkerAsync();
             }

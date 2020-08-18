@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PlantConstructor.Domain.Model.ZoneModel
+namespace PlantConstructor.Domain.Model
 {
-    public class ZoneAttribute : DomainObject
+    public class Element : DomainObject
     {
-        public string ZoneAttributeName { get; set; }
         public int ProjectId { get; set; }
         public Project Project { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
     }
 }
