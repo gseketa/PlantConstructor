@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="20.1.4" />
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.All" Version="20.1.4" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 
   <ItemGroup>

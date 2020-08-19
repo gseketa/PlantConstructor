@@ -14,6 +14,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
+    <PkgMicrosoft_Xaml_Behaviors_Wpf Condition=" '$(PkgMicrosoft_Xaml_Behaviors_Wpf)' == '' ">C:\Users\goran.seketa\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.19</PkgMicrosoft_Xaml_Behaviors_Wpf>
     <PkgDevExpress_WindowsDesktop_Wpf_Core Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Core)' == '' ">C:\Users\goran.seketa\.nuget\packages\devexpress.windowsdesktop.wpf.core\20.1.4</PkgDevExpress_WindowsDesktop_Wpf_Core>
     <PkgDevExpress_WindowsDesktop_Wpf_TreeMap Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_TreeMap)' == '' ">C:\Users\goran.seketa\.nuget\packages\devexpress.windowsdesktop.wpf.treemap\20.1.4</PkgDevExpress_WindowsDesktop_Wpf_TreeMap>
     <PkgDevExpress_WindowsDesktop_Wpf_Ribbon Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Ribbon)' == '' ">C:\Users\goran.seketa\.nuget\packages\devexpress.windowsdesktop.wpf.ribbon\20.1.4</PkgDevExpress_WindowsDesktop_Wpf_Ribbon>
