@@ -38,6 +38,20 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
+        private IEnumerable<string> officeNavigationItems;
+        public IEnumerable<string> OfficeNavigationItems
+        {
+            get
+            {
+                return officeNavigationItems;
+            }
+            set
+            {
+                officeNavigationItems = value;
+                OnPropertyRaised("OfficeNavigationItems");
+            }
+        }
+
         private ICommand saveProjectButtonCommand;
         public ICommand SaveProjectButtonCommand
         {
@@ -87,6 +101,8 @@ namespace PlantConstructor.WPF.MainScreen
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
             EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
+
+            OfficeNavigationItems = new string[] { "Project", "Data" };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -165,7 +181,7 @@ namespace PlantConstructor.WPF.MainScreen
 
         public void OpenEditDataWindow(object parameter)
         {
-            EditDataWindow objEditDataWindow = new EditDataWindow(SelectedItem);
+            EditDataWindow objEditDataWindow = new EditDataWindow();
             Mouse.OverrideCursor = Cursors.Wait; 
             objEditDataWindow.ShowDialog();    
         }

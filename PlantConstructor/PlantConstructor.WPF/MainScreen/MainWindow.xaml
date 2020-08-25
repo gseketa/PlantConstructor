@@ -8,6 +8,7 @@
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
         xmlns:localHelper="clr-namespace:PlantConstructor.WPF.Helper"
         mc:Ignorable="d"
@@ -18,8 +19,8 @@
     <dx:ThemedWindow.Resources>
         <localHelper:EditProjectValuesConverter x:Key="myEditProjectValuesConverter" />
         <DataTemplate x:Key="projectDetailsTemplate" >
-            <Grid VerticalAlignment="Center" >
-                <dxlc:LayoutGroup Orientation="Vertical" Margin="10">
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup VerticalAlignment="Center" Orientation="Vertical">
                     <dxlc:LayoutItem Label="Project Name" AddColonToLabel="True">
                         <dxe:TextEdit Name="txtEditProjectName" EditValue="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
@@ -35,9 +36,17 @@
                                 <Binding Path="EditValue" ElementName="txtEditProjectGroup" />
                             </MultiBinding>
                         </Button.CommandParameter>
-                    </Button> 
+                    </Button>
                 </dxlc:LayoutGroup>
-            </Grid>
+                <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                    <dxlc:LayoutItem>
+                        <dxnav:OfficeNavigationBar x:Name="officeNavBar"
+                                                   ItemsSource="{Binding DataContext.OfficeNavigationItems, ElementName=root}"
+                                                   AllowItemDragDrop="False"
+                                                   CustomizationButtonVisibility="Hidden"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
         </DataTemplate>
         <DataTemplate x:Key="emptyDetailsTemplate">
             <Grid VerticalAlignment="Stretch">
@@ -55,15 +64,13 @@
     </dx:ThemedWindow.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="1" Background="LightGray" BorderBrush="Blue" Content="+ Add Project" Command="{Binding AddProjectButtonCommand}"/>
-        <dxa:AccordionControl   x:Name="accordion"
+        <Grid Grid.Column="0">
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <dxa:AccordionControl   x:Name="accordion"
                                 ExpandMode="SingleOrNone"
                                 SelectedItem="{Binding SelectedItem}"
                                 SelectionUnit="SubItem"
@@ -73,9 +80,21 @@
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 VerticalAlignment="Stretch"
                                 Background="LightGray">
-        </dxa:AccordionControl>
-        <ContentPresenter     Grid.Column="1"
+                    </dxa:AccordionControl>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                    <Button  Background="LightGray" BorderBrush="Blue" Content="+ Add Project" Command="{Binding AddProjectButtonCommand}" Height="30"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10,10,10,0">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <ContentPresenter     
                               Content="{Binding SelectedItem}"
                               ContentTemplateSelector="{StaticResource projectDetailsTemplateSelector}" />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </Grid>
     </Grid>
 </dx:ThemedWindow>

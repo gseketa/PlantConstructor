@@ -9,7 +9,6 @@ namespace PlantConstructor.WPF.EditDataScreen
 {
     public class EditDataViewModel
     {
-        private Project project;
 
         private ICommand loadedWindowCommand;
         public ICommand LoadedWindowCommand
@@ -23,9 +22,9 @@ namespace PlantConstructor.WPF.EditDataScreen
                 loadedWindowCommand = value;
             }
         }
-        public EditDataViewModel(Project selectedProject)
+        public EditDataViewModel()
         {
-            project = selectedProject;
+            
             LoadedWindowCommand = new RelayCommand(DisplayDefaultCursor);
         }
 
