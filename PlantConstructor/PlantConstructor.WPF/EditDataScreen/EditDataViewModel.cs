@@ -1,4 +1,4 @@
-﻿using DevExpress.DataProcessing.InMemoryDataProcessor;
+﻿using PlantConstructor.Domain.Model;
 using PlantConstructor.WPF.Helper;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,15 @@ namespace PlantConstructor.WPF.EditDataScreen
 {
     public class EditDataViewModel
     {
+
+        private Project selectedProject;
+
+        public Project SelectedProject
+        {
+            get { return selectedProject; }
+            set { selectedProject = value; }
+        }
+
 
         private ICommand loadedWindowCommand;
         public ICommand LoadedWindowCommand
@@ -24,7 +33,6 @@ namespace PlantConstructor.WPF.EditDataScreen
         }
         public EditDataViewModel()
         {
-            
             LoadedWindowCommand = new RelayCommand(DisplayDefaultCursor);
         }
 

@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:PlantConstructor.WPF.EditDataScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"      
         Title="Edit Data" Height="450" Width="800">
-    <dx:ThemedWindow.DataContext>
-        <local:EditDataViewModel/>
-    </dx:ThemedWindow.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
