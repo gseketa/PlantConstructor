@@ -1,6 +1,7 @@
 ﻿using DevExpress.Spreadsheet;
 using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Diagram.Native;
+using DevExpress.Xpf.PivotGrid.Printing.TypedStyles;
 using PlantConstructor.Domain.Model;
 using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
@@ -105,6 +106,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             allProjectAttributes = await projectAttributeService.GetAll();
             allAttributesG = await attributeGService.GetAll();
             allElements = await elementService.GetAll();
+            allAttributeValues = await attributeValueService.GetAll();
 
             SetHeader(LoadAttributeHeaders("Site"), workbook.Worksheets[0]);
             SetHeader(LoadAttributeHeaders("Zone"), workbook.Worksheets[1]);
@@ -112,9 +114,11 @@ namespace PlantConstructor.WPF.EditDataScreen
             SetHeader(LoadAttributeHeaders("Branch"), workbook.Worksheets[3]);
 
             LoadAttributeValues("Site", workbook.Worksheets[0]);
-            LoadAttributeValues("Zone", workbook.Worksheets[0]);
-            LoadAttributeValues("Pipe", workbook.Worksheets[0]);
-            LoadAttributeValues("Branch", workbook.Worksheets[0]);
+            LoadAttributeValues("Zone", workbook.Worksheets[1]);
+            LoadAttributeValues("Pipe", workbook.Worksheets[2]);
+            LoadAttributeValues("Branch", workbook.Worksheets[3]);
+
+            //LogText.Text = "Data loaded from DB";
         }
 
         private IEnumerable<string> LoadAttributeHeaders(string _type)
@@ -184,6 +188,52 @@ namespace PlantConstructor.WPF.EditDataScreen
 
             }
 
+        }
+
+        private async void SaveToDB_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            await DeleteAllElementsForTheProject();
+
+            await SaveNewDataToDB("Site", workbook.Worksheets[0]);
+            await SaveNewDataToDB("Zone", workbook.Worksheets[1]);
+            await SaveNewDataToDB("Pipe", workbook.Worksheets[2]);
+            await SaveNewDataToDB("Branch", workbook.Worksheets[3]);
+
+            //LogText.Text = "Data saved to DB";
+        }
+
+        private async Task DeleteAllElementsForTheProject()
+        {
+            allElements = await elementService.GetAll();
+            var allProjectElements= allElements.Where(x => x.ProjectId == SelectedProject.Id).Select(x => x.Id);
+            foreach (int ElementId in allProjectElements)
+            {
+                await elementService.Delete(ElementId);
+            }
+        }
+
+        private async Task SaveNewDataToDB(string _type, Worksheet sheet)
+        {
+            for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
+            {
+                Element newElement = await elementService.Create(new Element {ProjectId=SelectedProject.Id, Type=_type});
+                for (int columnCount=0; sheet.Cells[0, columnCount].Value.ToString()!=""; columnCount++)
+                {
+                 int newAttributeId = allAttributesG.
+                         Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.Type == _type).
+                         Select(x => x.Id).FirstOrDefault();
+                 await attributeValueService.Create(new AttributeValue 
+                    {AttributeGId=newAttributeId, ElementId=newElement.Id, Value= sheet.Cells[rowCount, columnCount].Value.ToString() });
+                }
+            }
+        }
+
+        private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+        }
+
+        private void ImportData_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
         }
     }
 }

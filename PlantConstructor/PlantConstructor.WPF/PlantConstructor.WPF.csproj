@@ -18,8 +18,4 @@
     <ProjectReference Include="..\PlantConstructor.EntityFramework\PlantConstructor.EntityFramework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="LocalModel\" />
-  </ItemGroup>
-
 </Project>

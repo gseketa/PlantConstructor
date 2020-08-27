@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
         xmlns:local="clr-namespace:PlantConstructor.WPF.EditDataScreen"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"      
         Title="Edit Data" Height="450" Width="800">
@@ -22,6 +24,32 @@
                                   ShowStatusBar="True"
                                   Grid.Row="0" 
                                   >
+            <dxsps:SpreadsheetControl.RibbonActions>
+                <!--Remove the Info group on the File tab-->
+                <dxb:RemoveAction ElementName="{x:Static dxsps:DefaultBarItemNames.RibbonGroup_File_Info}"/>
+                <!--Remove the New item on the File tab, in the Common group.-->
+                <dxb:RemoveAction ElementName="{x:Static dxsps:DefaultBarItemNames.RibbonItem_File_Common_New}"/>
+                <!--Remove the Open item on the File tab, in the Common group.-->
+                <dxb:RemoveAction ElementName="{x:Static dxsps:DefaultBarItemNames.RibbonItem_File_Common_Open}"/>
+                <!--Remove the Save item on the File tab, in the Common group.-->
+                <dxb:RemoveAction ElementName="{x:Static dxsps:DefaultBarItemNames.RibbonItem_File_Common_Save}"/>
+                <!--Create a new E3D tab.-->
+                <!--Create the Info group on the Example tab.-->
+                <!--The group contains a single button displaying information about this example.-->
+                <dxb:InsertAction Index="8" ContainerName="{x:Static dxsps:DefaultBarItemNames.RibbonPage_File}">
+                    <dxr:RibbonPageGroup Caption="Action">
+                        <dxb:BarButtonItem Content="Create Code"
+                                LargeGlyph="{dx:DXImage 'Images/Actions/Insert_32x32.png'}" 
+                                ItemClick="CreateCode_ItemClick" />
+                        <dxb:BarButtonItem Content="Save to DB"
+                                LargeGlyph="{dx:DXImage 'Images/Data/Database_32x32.png'}" 
+                                ItemClick="SaveToDB_ItemClick"/>
+                        <dxb:BarButtonItem Content="Import Data"
+                                LargeGlyph="{dx:DXImage 'Images/XAF/Action_ModelDifferences_Import_32x32.png'}" 
+                                ItemClick="ImportData_ItemClick" />
+                    </dxr:RibbonPageGroup>
+                </dxb:InsertAction>
+            </dxsps:SpreadsheetControl.RibbonActions>
         </dxsps:SpreadsheetControl>
         <ScrollViewer Grid.Row="1">
             <TextBlock x:Name="LogText">Editor Started</TextBlock>
