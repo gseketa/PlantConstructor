@@ -20,7 +20,7 @@
                                   CommandBarStyle="Ribbon" 
                                   ShowFormulaBar="True" 
                                   ShowStatusBar="True"
-                                  Grid.Row="0"                                
+                                  Grid.Row="0" 
                                   >
         </dxsps:SpreadsheetControl>
         <ScrollViewer Grid.Row="1">

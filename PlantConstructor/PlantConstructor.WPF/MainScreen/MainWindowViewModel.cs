@@ -182,8 +182,7 @@ namespace PlantConstructor.WPF.MainScreen
         public void OpenEditDataWindow(object parameter)
         {
             EditDataWindow objEditDataWindow = new EditDataWindow();
-            objEditDataWindow.DataContext = new EditDataViewModel();
-            ((EditDataViewModel)objEditDataWindow.DataContext).SelectedProject = SelectedItem;
+            objEditDataWindow.SelectedProject = SelectedItem;
             Mouse.OverrideCursor = Cursors.Wait; 
             objEditDataWindow.ShowDialog();    
         }
