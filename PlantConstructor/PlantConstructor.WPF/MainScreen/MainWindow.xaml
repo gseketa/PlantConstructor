@@ -38,14 +38,14 @@
                         </Button.CommandParameter>
                     </Button>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                <!--<dxlc:LayoutGroup VerticalAlignment="Bottom">
                     <dxlc:LayoutItem>
                         <dxnav:OfficeNavigationBar x:Name="officeNavBar"
                                                    ItemsSource="{Binding DataContext.OfficeNavigationItems, ElementName=root}"
                                                    AllowItemDragDrop="False"
                                                    CustomizationButtonVisibility="Hidden"/>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
             </dxlc:LayoutGroup>
         </DataTemplate>
         <DataTemplate x:Key="emptyDetailsTemplate">

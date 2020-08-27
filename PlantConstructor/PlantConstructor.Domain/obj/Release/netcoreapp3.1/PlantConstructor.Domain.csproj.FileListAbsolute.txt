@@ -1,0 +1,9 @@
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\bin\Release\netcoreapp3.1\PlantConstructor.Domain.deps.json
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\bin\Release\netcoreapp3.1\PlantConstructor.Domain.dll
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\bin\Release\netcoreapp3.1\PlantConstructor.Domain.pdb
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.csprojAssemblyReference.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.csproj.CoreCompileInputs.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.AssemblyInfoInputs.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.AssemblyInfo.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.dll
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.Domain\obj\Release\netcoreapp3.1\PlantConstructor.Domain.pdb
