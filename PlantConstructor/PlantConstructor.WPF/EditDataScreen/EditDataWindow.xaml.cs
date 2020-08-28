@@ -46,7 +46,6 @@ namespace PlantConstructor.WPF.EditDataScreen
         List<string> pipeHeaderAttributes;
         List<string> branchHeaderAttributes;
 
-
         private IWorkbook workbook;
 
         private Project selectedProject;
@@ -257,8 +256,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                 string filename = theDialog.FileName;
                 Mouse.OverrideCursor = Cursors.Wait;
                 LogText.Text = "Import started... ";
-                string[] allFileLines = await ReadDataFromFile(filename);
-                await InterpretData(new Progress<string>(status => LogText.Text = status), allFileLines);
+                string[] allFileLines = await ReadDataFromFile(filename);              
+                WriteDataInSpreadsheet(await InterpretData(new Progress<string>(status => LogText.Text = status), allFileLines));
                 Mouse.OverrideCursor = null;
                 LogText.Text = "Import finished... ";
             }
@@ -270,7 +269,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             return filelines;
         }
 
-        private async Task InterpretData(IProgress<string> progress, string[] filelines)
+        private async Task<ListOfSpreadsheetElements> InterpretData(IProgress<string> progress, string[] filelines)
         {
             string currentType = "";
             string previousPartOwner = "";
@@ -297,7 +296,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (partRowCount = 1; workbook.Worksheets[4].Cells[partRowCount, 0].Value.ToString() != ""; partRowCount++) { }
             partRowCount--;
 
-
+            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { } };
 
             //read line by line
             for (int a = 0; a < filelines.Length; a++)
@@ -403,10 +402,11 @@ namespace PlantConstructor.WPF.EditDataScreen
                                     if (listItemIndex >= 0)
                                     {
                                         //write the attribute value to the appropriate row and column
-                                        this.Dispatcher.Invoke(() =>
-                                        {
-                                            workbook.Worksheets[0].Rows[siteRowCount][listItemIndex].Value = attributeValue;
-                                        });
+                                        //this.Dispatcher.Invoke(() =>
+                                        //{
+                                        //workbook.Worksheets[0].Rows[siteRowCount][listItemIndex].Value = attributeValue;
+                                        //});
+                                        dataStorage.SiteElements.Add(new SpreadsheetElement { Row = siteRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
 
                                 }
@@ -422,6 +422,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //{
                                         //    workbook.Worksheets[1].Rows[zoneRowCount][listItemIndex].Value = attributeValue;
                                         //});
+                                        dataStorage.ZoneElements.Add(new SpreadsheetElement { Row = zoneRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
 
                                 }
@@ -437,6 +438,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //{
                                         //    workbook.Worksheets[2].Rows[pipeRowCount][listItemIndex].Value = attributeValue;
                                         //});
+                                        dataStorage.PipeElements.Add(new SpreadsheetElement { Row = pipeRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
 
                                 }
@@ -451,6 +453,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //{
                                         //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                         //});
+                                        dataStorage.BranchElements.Add(new SpreadsheetElement { Row = branchRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
 
                                 }
@@ -498,7 +501,35 @@ namespace PlantConstructor.WPF.EditDataScreen
 
                 });
             }
+            return dataStorage;
+        }
+        public void WriteDataInSpreadsheet(ListOfSpreadsheetElements dataStorage)
+        {
 
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (SpreadsheetElement element in dataStorage.SiteElements)
+                {
+                    //this.Dispatcher.BeginInvoke(new Action(()=>workbook.Worksheets[0].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[0].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.ZoneElements)
+                {
+                    //this.Dispatcher.BeginInvoke(new Action(() => workbook.Worksheets[1].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[1].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.PipeElements)
+                {
+                    //this.Dispatcher.BeginInvoke(new Action(() => workbook.Worksheets[2].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[2].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.BranchElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value;
+                }
+            }
+            ));
         }
     }
 }
