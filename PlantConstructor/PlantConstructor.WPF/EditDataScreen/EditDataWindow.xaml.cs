@@ -4,6 +4,7 @@ using DevExpress.Spreadsheet;
 using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Diagram.Native;
 using DevExpress.Xpf.PivotGrid.Printing.TypedStyles;
+using DevExpress.Xpf.Spreadsheet;
 using Microsoft.Win32;
 using PlantConstructor.Domain.Model;
 using PlantConstructor.Domain.Services;
@@ -15,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +26,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PlantConstructor.WPF.EditDataScreen
 {
@@ -88,29 +91,39 @@ namespace PlantConstructor.WPF.EditDataScreen
             CreateWorkbook();
             await LoadDataFromDatabase();
             
+            LogText.Text = "Data loaded from DB";
             Mouse.OverrideCursor = null;
         }
 
         private void CreateWorkbook()
         {
-            workbook = this.spreadsheet.Document;
+            spreadsheet.BeginUpdate();
+            try
+            {
+                workbook = this.spreadsheet.Document;
 
-            //protect workbook
-            if (!workbook.IsProtected)
-                workbook.Protect("4321", true, false);
+                //protect workbook
+                if (!workbook.IsProtected)
+                    workbook.Protect("4321", true, false);
 
-            workbook.Worksheets[0].Name = "Site";
-            workbook.Worksheets.Add().Name = "Zone";
-            workbook.Worksheets.Add().Name = "Pipe";
-            workbook.Worksheets.Add().Name = "Branch";
-            workbook.Worksheets.Add().Name = "Part";
+                workbook.Worksheets[0].Name = "Site";
+                workbook.Worksheets.Add().Name = "Zone";
+                workbook.Worksheets.Add().Name = "Pipe";
+                workbook.Worksheets.Add().Name = "Branch";
+                workbook.Worksheets.Add().Name = "Part";
 
-            //set Site as active worksheet
-            workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
+                //set Site as active worksheet
+                workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
+            }
+            finally
+            {
+                spreadsheet.EndUpdate();
+            }
         }
 
         private async Task LoadDataFromDatabase()
         {
+            
             allProjectAttributes = await projectAttributeService.GetAll();
             allAttributesG = await attributeGService.GetAll();
             allElements = await elementService.GetAll();
@@ -130,8 +143,6 @@ namespace PlantConstructor.WPF.EditDataScreen
             LoadAttributeValues("Zone", workbook.Worksheets[1]);
             LoadAttributeValues("Pipe", workbook.Worksheets[2]);
             LoadAttributeValues("Branch", workbook.Worksheets[3]);
-
-            LogText.Text = "Data loaded from DB";
         }
 
         private IEnumerable<string> LoadAttributeHeaders(string _type)
@@ -150,24 +161,32 @@ namespace PlantConstructor.WPF.EditDataScreen
         private void SetHeader(IEnumerable<string> attributes, Worksheet sheet)
         {
             int columnCounter = 0;
-            foreach (string attName in attributes)
+            spreadsheet.BeginUpdate();
+            try
             {
-                sheet.Rows[0][columnCounter].Value = attName;
-                sheet.Rows[0][columnCounter].FillColor = System.Drawing.Color.Tomato;
-                columnCounter++;
+                foreach (string attName in attributes)
+                {
+                    sheet.Rows[0][columnCounter].Value = attName;
+                    sheet.Rows[0][columnCounter].FillColor = System.Drawing.Color.Tomato;
+                    columnCounter++;
+                }
+
+                sheet.Rows[0].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                sheet.Rows[0].Font.FontStyle = SpreadsheetFontStyle.Bold;
+
+                //Protect the header row from editing
+                if (!sheet.IsProtected)
+                {
+                    sheet.Range["$A:$XFD"].Protection.Locked = false; // Unlock the entire document  
+                    sheet.Rows[0].Protection.Locked = true; // Lock the specified range  
+                    sheet.Protect("4321", WorksheetProtectionPermissions.Default
+                        | WorksheetProtectionPermissions.DeleteRows
+                        | WorksheetProtectionPermissions.Sort);
+                }
             }
-
-            sheet.Rows[0].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
-            sheet.Rows[0].Font.FontStyle = SpreadsheetFontStyle.Bold;
-
-            //Protect the header row from editing
-            if (!sheet.IsProtected)
+            finally
             {
-                sheet.Range["$A:$XFD"].Protection.Locked = false; // Unlock the entire document  
-                sheet.Rows[0].Protection.Locked = true; // Lock the specified range  
-                sheet.Protect("4321", WorksheetProtectionPermissions.Default
-                    | WorksheetProtectionPermissions.DeleteRows
-                    | WorksheetProtectionPermissions.Sort);
+                spreadsheet.EndUpdate();
             }
         }
 
@@ -183,21 +202,29 @@ namespace PlantConstructor.WPF.EditDataScreen
                         join allV in allAttributeValues on allA.Id equals allV.AttributeGId
                         where allA.Type == _type
                         select new { allA.Name, allV.ElementId, allV.Value };
-
-                foreach (int elementID in allTypeElements)
+                
+                spreadsheet.BeginUpdate();
+                try
                 {
-                    for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
+                    foreach (int elementID in allTypeElements)
                     {
-                        var attributeValue = allTypeAttributeValues.
-                            Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.ElementId == elementID).
-                            Select(x => x.Value).FirstOrDefault();
-                        if (attributeValue != default)
+                        for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                         {
-                            sheet.Rows[rowCount][columnCount].Value = attributeValue;
+                            var attributeValue = allTypeAttributeValues.
+                                Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.ElementId == elementID).
+                                Select(x => x.Value).FirstOrDefault();
+                            if (attributeValue != default)
+                            {
+                                sheet.Rows[rowCount][columnCount].Value = attributeValue;
+                            }
+                            else sheet.Rows[rowCount][columnCount].Value = "";
                         }
-                        else sheet.Rows[rowCount][columnCount].Value = "";
+                        rowCount++;
                     }
-                    rowCount++;
+                }
+                finally
+                {
+                    spreadsheet.EndUpdate();
                 }
 
             }
@@ -206,6 +233,7 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private async void SaveToDB_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
         {
+            Mouse.OverrideCursor = Cursors.Wait;
             await DeleteAllElementsForTheProject();
 
             await SaveNewDataToDB("Site", workbook.Worksheets[0]);
@@ -214,6 +242,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             await SaveNewDataToDB("Branch", workbook.Worksheets[3]);
 
             LogText.Text = "Data saved to DB";
+            Mouse.OverrideCursor = null;
         }
 
         private async Task DeleteAllElementsForTheProject()
@@ -508,8 +537,11 @@ namespace PlantConstructor.WPF.EditDataScreen
         public void WriteDataInSpreadsheet(ListOfSpreadsheetElements dataStorage)
         {
 
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            //this.Dispatcher.BeginInvoke(new Action(() =>
             //await Task.Run(()=>
+            //{
+            spreadsheet.BeginUpdate();
+            try
             {
                 foreach (SpreadsheetElement element in dataStorage.SiteElements)
                 {
@@ -532,7 +564,12 @@ namespace PlantConstructor.WPF.EditDataScreen
                     workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value;
                 }
             }
-            ));
+            finally
+            {
+                spreadsheet.EndUpdate();
+            }
+            //}
+            //));
         }
     }
 }
