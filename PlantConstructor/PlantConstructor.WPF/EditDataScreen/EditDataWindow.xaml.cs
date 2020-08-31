@@ -1,4 +1,6 @@
-﻿using DevExpress.Spreadsheet;
+﻿using DevExpress.CodeParser.Diagnostics;
+using DevExpress.DataProcessing.InMemoryDataProcessor.GraphGenerator;
+using DevExpress.Spreadsheet;
 using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Diagram.Native;
 using DevExpress.Xpf.PivotGrid.Printing.TypedStyles;
@@ -256,7 +258,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                 string filename = theDialog.FileName;
                 Mouse.OverrideCursor = Cursors.Wait;
                 LogText.Text = "Import started... ";
-                string[] allFileLines = await ReadDataFromFile(filename);              
+                string[] allFileLines = await ReadDataFromFile(filename);
                 WriteDataInSpreadsheet(await InterpretData(new Progress<string>(status => LogText.Text = status), allFileLines));
                 Mouse.OverrideCursor = null;
                 LogText.Text = "Import finished... ";
@@ -507,6 +509,7 @@ namespace PlantConstructor.WPF.EditDataScreen
         {
 
             this.Dispatcher.BeginInvoke(new Action(() =>
+            //await Task.Run(()=>
             {
                 foreach (SpreadsheetElement element in dataStorage.SiteElements)
                 {
