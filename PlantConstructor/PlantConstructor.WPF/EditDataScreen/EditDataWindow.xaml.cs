@@ -208,33 +208,37 @@ namespace PlantConstructor.WPF.EditDataScreen
                         from allA in allAttributesG
                         join allV in allAttributeValues on allA.Id equals allV.AttributeGId
                         where allA.Type == _type
-                        select new { allA.Name, allV.ElementId, allV.Value };
+                        select new TypeAttributeValue {Name=allA.Name, ElementId=allV.ElementId, Value=allV.Value };
                 
+                var listOfAttributeValues = allTypeAttributeValues.ToList();
+
                 spreadsheet.BeginUpdate();
                 try
                 {
                     foreach (int elementID in allTypeElements)
                     {
+                        List<TypeAttributeValue> listOfElementAttributeValues = new List<TypeAttributeValue> { };
+                        foreach (TypeAttributeValue temp in listOfAttributeValues)
+                        {
+                            if (temp.ElementId == elementID) listOfElementAttributeValues.Add(temp);
+                        }
                         for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                         {
-                            var attributeValue = allTypeAttributeValues.
-                                Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.ElementId == elementID).
-                                Select(x => x.Value).FirstOrDefault();
-                            if (attributeValue != default)
+                            foreach (TypeAttributeValue temp in listOfElementAttributeValues)
                             {
-                                sheet.Rows[rowCount][columnCount].Value = attributeValue;
+                                if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) 
+                                     sheet.Rows[rowCount][columnCount].Value = temp.Value;
                             }
-                            else sheet.Rows[rowCount][columnCount].Value = "";
                         }
                         rowCount++;
                     }
-                }
-                finally
-                {
-                    spreadsheet.EndUpdate();
-                }
-
             }
+                finally
+            {
+                spreadsheet.EndUpdate();
+            }
+
+        }
 
         }
 
@@ -265,14 +269,26 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private async Task SaveNewDataToDB(string _type, Worksheet sheet)
         {
+            List<AttributeG> allTypeAttributesG = new List<AttributeG> { };
+            foreach (AttributeG temp in allAttributesG)
+            {
+                if (temp.Type == _type) allTypeAttributesG.Add(temp);
+            }
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
                 Element newElement = await elementService.Create(new Element { ProjectId = SelectedProject.Id, Type = _type });
                 for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                 {
-                    int newAttributeId = allAttributesG.
-                            Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.Type == _type).
-                            Select(x => x.Id).FirstOrDefault();
+                    int newAttributeId = 0;
+                    foreach (AttributeG temp in allTypeAttributesG)
+                    {
+                        if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) newAttributeId = temp.Id;
+                    }
+
+                    //int newAttributeId = allAttributesG.
+                    //        Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.Type == _type).
+                    //        Select(x => x.Id).FirstOrDefault();
+
                     await attributeValueService.Create(new AttributeValue
                     { AttributeGId = newAttributeId, ElementId = newElement.Id, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
@@ -311,8 +327,6 @@ namespace PlantConstructor.WPF.EditDataScreen
         private async Task<ListOfSpreadsheetElements> InterpretData(IProgress<string> progress, string[] filelines)
         {
             string currentType = "";
-            string previousPartOwner = "";
-            string currentPartOwner = "";
 
             //find out the last empty rows index in each sheet; pointing at the last filled row
             int siteRowCount;
