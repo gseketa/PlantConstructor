@@ -1,4 +1,5 @@
-﻿using DevExpress.CodeParser.Diagnostics;
+﻿using DevExpress.CodeParser;
+using DevExpress.CodeParser.Diagnostics;
 using DevExpress.DataProcessing.InMemoryDataProcessor.GraphGenerator;
 using DevExpress.Spreadsheet;
 using DevExpress.Xpf.Core;
@@ -50,7 +51,7 @@ namespace PlantConstructor.WPF.EditDataScreen
         List<string> zoneHeaderAttributes;
         List<string> pipeHeaderAttributes;
         List<string> branchHeaderAttributes;
-        List<string> partHeaderAttributes;
+        List<string> pipePartHeaderAttributes;
 
         private IWorkbook workbook;
 
@@ -111,7 +112,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                 workbook.Worksheets.Add().Name = "Zone";
                 workbook.Worksheets.Add().Name = "Pipe";
                 workbook.Worksheets.Add().Name = "Branch";
-                workbook.Worksheets.Add().Name = "Part";
+                workbook.Worksheets.Add().Name = "PipePart";
 
                 //set Site as active worksheet
                 workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
@@ -134,19 +135,19 @@ namespace PlantConstructor.WPF.EditDataScreen
             zoneHeaderAttributes = LoadAttributeHeaders("Zone").ToList();
             pipeHeaderAttributes = LoadAttributeHeaders("Pipe").ToList();
             branchHeaderAttributes = LoadAttributeHeaders("Branch").ToList();
-            partHeaderAttributes = LoadAttributeHeaders("Part").ToList();
+            pipePartHeaderAttributes = LoadAttributeHeaders("PipePart").ToList();
 
             SetHeader(siteHeaderAttributes, workbook.Worksheets[0]);
             SetHeader(zoneHeaderAttributes, workbook.Worksheets[1]);
             SetHeader(pipeHeaderAttributes, workbook.Worksheets[2]);
             SetHeader(branchHeaderAttributes, workbook.Worksheets[3]);
-            SetHeader(partHeaderAttributes, workbook.Worksheets[4]);
+            SetHeader(pipePartHeaderAttributes, workbook.Worksheets[4]);
 
             LoadAttributeValues("Site", workbook.Worksheets[0]);
             LoadAttributeValues("Zone", workbook.Worksheets[1]);
             LoadAttributeValues("Pipe", workbook.Worksheets[2]);
             LoadAttributeValues("Branch", workbook.Worksheets[3]);
-            LoadAttributeValues("Part", workbook.Worksheets[4]);
+            LoadAttributeValues("PipePart", workbook.Worksheets[4]);
         }
 
         private IEnumerable<string> LoadAttributeHeaders(string _type)
@@ -246,6 +247,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             await SaveNewDataToDB("Zone", workbook.Worksheets[1]);
             await SaveNewDataToDB("Pipe", workbook.Worksheets[2]);
             await SaveNewDataToDB("Branch", workbook.Worksheets[3]);
+            await SaveNewDataToDB("PipePart", workbook.Worksheets[4]);
 
             LogText.Text = "Data saved to DB";
             Mouse.OverrideCursor = null;
@@ -329,11 +331,11 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (branchRowCount = 1; workbook.Worksheets[3].Cells[branchRowCount, 0].Value.ToString() != ""; branchRowCount++) { }
             branchRowCount--;
 
-            int partRowCount;
-            for (partRowCount = 1; workbook.Worksheets[4].Cells[partRowCount, 0].Value.ToString() != ""; partRowCount++) { }
-            partRowCount--;
+            int pipePartRowCount;
+            for (pipePartRowCount = 1; workbook.Worksheets[4].Cells[pipePartRowCount, 0].Value.ToString() != ""; pipePartRowCount++) { }
+            pipePartRowCount--;
 
-            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { }, PartElements = new List<SpreadsheetElement> { } };
+            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { }, PipePartElements = new List<SpreadsheetElement> { } };
 
             //read line by line
             for (int a = 0; a < filelines.Length; a++)
@@ -368,24 +370,14 @@ namespace PlantConstructor.WPF.EditDataScreen
                             //LogText.Text += Environment.NewLine + currentType;
 
                             //move the pointer to the next free line in appropriate sheet
-                            switch (currentType)
-                            {
-                                case "SITE":
-                                    siteRowCount++;
-                                    break;
-                                case "ZONE":
-                                    zoneRowCount++;
-                                    break;
-                                case "PIPE":
-                                    pipeRowCount++;
-                                    break;
-                                case "BRAN":
-                                    branchRowCount++;
-                                    break;
-                                default:
-                                    partRowCount++;
-                                    break;
-                            }
+                            if (currentType == "SITE") siteRowCount++;
+                            else if (currentType == "ZONE") zoneRowCount++;
+                            else if (currentType == "PIPE") pipeRowCount++;
+                            else if (currentType == "BRAN") branchRowCount++;
+                            else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                            || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                            || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU" 
+                            || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
 
                             //for Part, add new owner if needed
                             //if (currentType != "PIPE" && currentType != "SITE" && currentType != "ZONE" && currentType != "BRAN")
@@ -496,9 +488,12 @@ namespace PlantConstructor.WPF.EditDataScreen
                                     }
 
                                 }
-                                else
+                                else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                        || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                                        || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
+                                         || currentType == "TEE" || currentType == "CAP" || currentType == "INST")
                                 {
-                                    int listItemIndex = partHeaderAttributes.FindIndex(s => s == attributeName);
+                                    int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
                                     if (listItemIndex >= 0)
                                     {
                                         //write the attribute value to the appropriate row and column
@@ -506,7 +501,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //{
                                         //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                         //});
-                                        dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = listItemIndex, Value = attributeValue });
+                                        dataStorage.PipePartElements.Add(new SpreadsheetElement { Row = pipePartRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
                                     //if (attributeName == "SPRE") this.Dispatcher.Invoke(() =>
                                     //{
@@ -581,7 +576,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                     //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
                     workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value;
                 }
-                foreach (SpreadsheetElement element in dataStorage.PartElements)
+                foreach (SpreadsheetElement element in dataStorage.PipePartElements)
                 {
                     //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
                     workbook.Worksheets[4].Rows[element.Row][element.Column].Value = element.Value;

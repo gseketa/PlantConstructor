@@ -168,9 +168,9 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.BranchAttributeNames[i] && x.Type == "Branch").Id });
             }
-            for (int i = 0; i < ProjectAttributes.PartAttributeNames.Length; i++)
+            for (int i = 0; i < ProjectAttributes.PipePartAttributeNames.Length; i++)
             {
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.PartAttributeNames[i] && x.Type == "Part").Id });
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.PipePartAttributeNames[i] && x.Type == "PipePart").Id });
             }
         }
         
