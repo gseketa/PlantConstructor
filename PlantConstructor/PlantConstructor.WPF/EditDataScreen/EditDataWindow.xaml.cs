@@ -50,6 +50,7 @@ namespace PlantConstructor.WPF.EditDataScreen
         List<string> zoneHeaderAttributes;
         List<string> pipeHeaderAttributes;
         List<string> branchHeaderAttributes;
+        List<string> partHeaderAttributes;
 
         private IWorkbook workbook;
 
@@ -133,16 +134,19 @@ namespace PlantConstructor.WPF.EditDataScreen
             zoneHeaderAttributes = LoadAttributeHeaders("Zone").ToList();
             pipeHeaderAttributes = LoadAttributeHeaders("Pipe").ToList();
             branchHeaderAttributes = LoadAttributeHeaders("Branch").ToList();
+            partHeaderAttributes = LoadAttributeHeaders("Part").ToList();
 
             SetHeader(siteHeaderAttributes, workbook.Worksheets[0]);
             SetHeader(zoneHeaderAttributes, workbook.Worksheets[1]);
             SetHeader(pipeHeaderAttributes, workbook.Worksheets[2]);
             SetHeader(branchHeaderAttributes, workbook.Worksheets[3]);
+            SetHeader(partHeaderAttributes, workbook.Worksheets[4]);
 
             LoadAttributeValues("Site", workbook.Worksheets[0]);
             LoadAttributeValues("Zone", workbook.Worksheets[1]);
             LoadAttributeValues("Pipe", workbook.Worksheets[2]);
             LoadAttributeValues("Branch", workbook.Worksheets[3]);
+            LoadAttributeValues("Part", workbook.Worksheets[4]);
         }
 
         private IEnumerable<string> LoadAttributeHeaders(string _type)
@@ -181,6 +185,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                     sheet.Rows[0].Protection.Locked = true; // Lock the specified range  
                     sheet.Protect("4321", WorksheetProtectionPermissions.Default
                         | WorksheetProtectionPermissions.DeleteRows
+                        | WorksheetProtectionPermissions.FormatColumns
+                        | WorksheetProtectionPermissions.FormatRows
                         | WorksheetProtectionPermissions.Sort);
                 }
             }
@@ -327,7 +333,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (partRowCount = 1; workbook.Worksheets[4].Cells[partRowCount, 0].Value.ToString() != ""; partRowCount++) { }
             partRowCount--;
 
-            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { } };
+            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { }, PartElements = new List<SpreadsheetElement> { } };
 
             //read line by line
             for (int a = 0; a < filelines.Length; a++)
@@ -382,24 +388,26 @@ namespace PlantConstructor.WPF.EditDataScreen
                             }
 
                             //for Part, add new owner if needed
-                            if (currentType != "PIPE" && currentType != "SITE" && currentType != "ZONE" && currentType != "BRAN")
-                            {
-                                currentPartOwner = filelines[a + 4].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                            //if (currentType != "PIPE" && currentType != "SITE" && currentType != "ZONE" && currentType != "BRAN")
+                            //{
+                            //    currentPartOwner = filelines[a + 4].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[1];
 
-                                if (previousPartOwner != currentPartOwner)
-                                {
+                                //if (previousPartOwner != currentPartOwner)
+                                //{
 
-                                    //this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    //remove protection
-                                    //    pipeConstructor.ChangeProtectionAndColor(pipeConstructorRowCount, new List<string>() { "D" });
-                                    //    //add data
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["A"].Value = "NAME";
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["D"].Value = currentPlantConstructorOwner;
-                                    //});
-                                    previousPartOwner = currentPartOwner;
-                                    partRowCount++;
-                                }
+                                //    //this.Dispatcher.Invoke(() =>
+                                //    //{
+                                //    //    //remove protection
+                                //    //    pipeConstructor.ChangeProtectionAndColor(pipeConstructorRowCount, new List<string>() { "D" });
+                                //    //    //add data
+                                //    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["A"].Value = "NAME";
+                                //    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["D"].Value = currentPlantConstructorOwner;
+                                //    //});
+                                //    dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = 0, Value = "NAME" });
+                                //    dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = , Value = "NAME" });
+                                //    previousPartOwner = currentPartOwner;
+                                //    partRowCount++;
+                                //}
                                 ////remove protection for the next row where the new element will be added
                                 //this.Dispatcher.Invoke(() =>
                                 //{
@@ -407,7 +415,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 //});
                                 ////add type
                                 ////TODO...
-                            }
+                            //}
 
                         }
                         else
@@ -490,6 +498,16 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 }
                                 else
                                 {
+                                    int listItemIndex = partHeaderAttributes.FindIndex(s => s == attributeName);
+                                    if (listItemIndex >= 0)
+                                    {
+                                        //write the attribute value to the appropriate row and column
+                                        //this.Dispatcher.Invoke(() =>
+                                        //{
+                                        //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                        //});
+                                        dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = listItemIndex, Value = attributeValue });
+                                    }
                                     //if (attributeName == "SPRE") this.Dispatcher.Invoke(() =>
                                     //{
                                     //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["C"].Value = attributeValue;
@@ -562,6 +580,11 @@ namespace PlantConstructor.WPF.EditDataScreen
                 {
                     //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
                     workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.PartElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[4].Rows[element.Row][element.Column].Value = element.Value;
                 }
             }
             finally

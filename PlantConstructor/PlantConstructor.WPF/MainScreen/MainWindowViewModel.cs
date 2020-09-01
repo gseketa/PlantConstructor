@@ -168,6 +168,10 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.BranchAttributeNames[i] && x.Type == "Branch").Id });
             }
+            for (int i = 0; i < ProjectAttributes.PartAttributeNames.Length; i++)
+            {
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = allAttributes.FirstOrDefault(x => x.Name == ProjectAttributes.PartAttributeNames[i] && x.Type == "Part").Id });
+            }
         }
         
         public async void DeleteProjectFromDBAsync (object parameter)

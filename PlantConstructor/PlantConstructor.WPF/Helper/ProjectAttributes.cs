@@ -11,5 +11,6 @@ namespace PlantConstructor.WPF.Helper
         public static string[] ZoneAttributeNames = new string[] { "OWNER", "NAME", "TYPE", "LOCK" };
         public static string[] PipeAttributeNames = new string[] { "OWNER", "NAME", "TYPE", "LOCK" };
         public static string[] BranchAttributeNames = new string[] { "OWNER", "NAME", "TYPE", "LOCK"};
+        public static string[] PartAttributeNames = new string[] { "OWNER", "NAME", "TYPE", "LOCK" };
     }
 }
