@@ -269,7 +269,10 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private async Task SaveNewDataToDB(string _type, Worksheet sheet)
         {
-            List<AttributeG> allTypeAttributesG = new List<AttributeG> { };
+            List<AttributeG> allTypeAttributesG = new List<AttributeG>();
+            //List<Element> allElements = new List<Element>();
+            List<AttributeValue> allAttributeValues = new List<AttributeValue>();
+
             foreach (AttributeG temp in allAttributesG)
             {
                 if (temp.Type == _type) allTypeAttributesG.Add(temp);
@@ -277,6 +280,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
                 Element newElement = await elementService.Create(new Element { ProjectId = SelectedProject.Id, Type = _type });
+                //allElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type });
                 for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                 {
                     int newAttributeId = 0;
@@ -284,15 +288,18 @@ namespace PlantConstructor.WPF.EditDataScreen
                     {
                         if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) newAttributeId = temp.Id;
                     }
-
+                    allAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElement.Id, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
+                    
                     //int newAttributeId = allAttributesG.
                     //        Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.Type == _type).
                     //        Select(x => x.Id).FirstOrDefault();
 
-                    await attributeValueService.Create(new AttributeValue
-                    { AttributeGId = newAttributeId, ElementId = newElement.Id, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
+                    //await attributeValueService.Create(new AttributeValue
+                    //{ AttributeGId = newAttributeId, ElementId = newElement.Id, 
+                    //Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
             }
+            await attributeValueService.CreateMultiple(allAttributeValues);
         }
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)

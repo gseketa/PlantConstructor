@@ -6,6 +6,7 @@ using PlantConstructor.Domain.Services;
 using PlantConstructor.Domain.Model;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace PlantConstructor.EntityFramework
 {
@@ -25,6 +26,18 @@ namespace PlantConstructor.EntityFramework
                 await context.SaveChangesAsync();
 
                 return createdResult.Entity;
+            }
+        }
+
+        public async Task CreateMultiple(IEnumerable<T> entity)
+        {
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                foreach (T ent in entity)
+                {
+                   await context.Set<T>().AddAsync(ent);                   
+                }
+                await context.SaveChangesAsync();
             }
         }
 
