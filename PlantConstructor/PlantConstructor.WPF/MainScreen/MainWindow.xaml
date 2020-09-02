@@ -38,22 +38,52 @@
                         <dxb:BarButtonItem Content="Delete Project" Glyph="{dx:DXImage 'Images/Edit/Delete_16x16.png'}" Command="{Binding DataContext.DeleteProjectButtonCommand, ElementName=root}"/>
                     </dxb:ToolBarControl>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup VerticalAlignment="Center"  Orientation="Vertical">
+                <dxlc:LayoutGroup VerticalAlignment="Center" Orientation="Vertical">
                     <dxlc:LayoutItem Label="Project Name" AddColonToLabel="True">
-                        <dxe:TextEdit Name="txtEditProjectName" EditValue="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:TextEdit Name="txtEditProjectName"  Width="200" EditValue="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Project Group" AddColonToLabel="True">
-                        <dxe:TextEdit Name="txtEditProjectGroup" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxe:TextEdit Name="txtEditProjectGroup" Width="200" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit Width="200" ItemsSource="{Binding DataContext.ProjectAttributeGroupesComboBox, ElementName=root}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <dxlc:LayoutItem VerticalAlignment="Top">
+                                    <Label Content="All Available Attributes"
+                                            HorizontalAlignment="Center"
+                                            Margin="10,10,10,10"
+                                            VerticalAlignment="Center"
+                                            Background="Beige"
+                                            Padding="5"
+                                            FontSize="30"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                                    <dxe:ListBoxEdit Height="250"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="+ Add Attribute" />
+                                </dxlc:LayoutItem>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <dxlc:LayoutItem VerticalAlignment="Top">
+                                    <Label  Height="30"
+                                            Content="Project Attributes"
+                                            HorizontalAlignment="Center"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                                    <dxe:ListBoxEdit Height="250"/>
+                                </dxlc:LayoutItem>
+                            </Grid>
+                        </Grid>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                <!--<dxlc:LayoutGroup VerticalAlignment="Bottom">
-                    <dxlc:LayoutItem>
-                        <dxnav:OfficeNavigationBar x:Name="officeNavBar"
-                                                   ItemsSource="{Binding DataContext.OfficeNavigationItems, ElementName=root}"
-                                                   AllowItemDragDrop="False"
-                                                   CustomizationButtonVisibility="Hidden"/>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>-->
             </dxlc:LayoutGroup>
         </DataTemplate>
         <DataTemplate x:Key="emptyDetailsTemplate">

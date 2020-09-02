@@ -25,6 +25,18 @@ namespace PlantConstructor.WPF.MainScreen
         IDataService<ProjectAttribute> projectAttributeService;
         IDataService<AttributeG> attributeGService;
 
+        private List<string> projectAttributeGroupesComboBox;
+
+        public List<string> ProjectAttributeGroupesComboBox
+        {
+            get { return projectAttributeGroupesComboBox; }
+            set { 
+                projectAttributeGroupesComboBox = value;
+                OnPropertyRaised("ProjectAttributeGroupesComboBox");
+            }
+        }
+
+
         private Project selectedItem;
         public Project SelectedItem {
             get
@@ -35,20 +47,6 @@ namespace PlantConstructor.WPF.MainScreen
             { 
               selectedItem = value;
               OnPropertyRaised("SelectedItem");
-            }
-        }
-
-        private IEnumerable<string> officeNavigationItems;
-        public IEnumerable<string> OfficeNavigationItems
-        {
-            get
-            {
-                return officeNavigationItems;
-            }
-            set
-            {
-                officeNavigationItems = value;
-                OnPropertyRaised("OfficeNavigationItems");
             }
         }
 
@@ -102,7 +100,7 @@ namespace PlantConstructor.WPF.MainScreen
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
             EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
 
-            OfficeNavigationItems = new string[] { "Project", "Data" };
+            ProjectAttributeGroupesComboBox = new List<string> { "Site", "Zone", "Pipe", "Branch", "PipePart" };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
