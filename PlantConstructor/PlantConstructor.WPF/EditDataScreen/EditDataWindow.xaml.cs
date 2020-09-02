@@ -289,14 +289,6 @@ namespace PlantConstructor.WPF.EditDataScreen
                         if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) newAttributeId = temp.Id;
                     }
                     allAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElement.Id, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
-                    
-                    //int newAttributeId = allAttributesG.
-                    //        Where(x => x.Name == sheet.Cells[0, columnCount].Value.ToString() && x.Type == _type).
-                    //        Select(x => x.Id).FirstOrDefault();
-
-                    //await attributeValueService.Create(new AttributeValue
-                    //{ AttributeGId = newAttributeId, ElementId = newElement.Id, 
-                    //Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
             }
             await attributeValueService.CreateMultiple(allAttributeValues);

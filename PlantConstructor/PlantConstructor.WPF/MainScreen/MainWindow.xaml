@@ -7,6 +7,8 @@
         xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
@@ -20,23 +22,29 @@
         <localHelper:EditProjectValuesConverter x:Key="myEditProjectValuesConverter" />
         <DataTemplate x:Key="projectDetailsTemplate" >
             <dxlc:LayoutGroup Orientation="Vertical">
-                <dxlc:LayoutGroup VerticalAlignment="Center" Orientation="Vertical">
+                <dxlc:LayoutGroup VerticalAlignment="Top">
+                    <dxb:ToolBarControl Caption="Main Toolbar" AllowCustomizationMenu="False" BarItemHorizontalIndent="10" BarItemDisplayMode="ContentAndGlyph">
+                        <dxb:BarButtonItem Content="Save Changes" Glyph="{dx:DXImage 'Images/Save/Save_16x16.png'}" Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}">
+                            <dxb:BarButtonItem.CommandParameter>
+                                <MultiBinding Converter="{StaticResource myEditProjectValuesConverter}">
+                                    <Binding Path="EditValue" ElementName="txtEditProjectName" />
+                                    <Binding Path="EditValue" ElementName="txtEditProjectGroup" />
+                                </MultiBinding>
+                            </dxb:BarButtonItem.CommandParameter>
+                        </dxb:BarButtonItem>
+                        <dxb:BarItemLinkSeparator />
+                        <dxb:BarButtonItem Content="Edit Data" Glyph="{dx:DXImage 'Images/Edit/Edit_16x16.png'}" Command="{Binding DataContext.EditDataButtonCommand, ElementName=root}"/>
+                        <dxb:BarItemLinkSeparator />
+                        <dxb:BarButtonItem Content="Delete Project" Glyph="{dx:DXImage 'Images/Edit/Delete_16x16.png'}" Command="{Binding DataContext.DeleteProjectButtonCommand, ElementName=root}"/>
+                    </dxb:ToolBarControl>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup VerticalAlignment="Center"  Orientation="Vertical">
                     <dxlc:LayoutItem Label="Project Name" AddColonToLabel="True">
                         <dxe:TextEdit Name="txtEditProjectName" EditValue="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Project Group" AddColonToLabel="True">
                         <dxe:TextEdit Name="txtEditProjectGroup" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
-                    <Button Content="Delete Project" Command="{Binding DataContext.DeleteProjectButtonCommand, ElementName=root}"/>
-                    <Button Content="Edit Data" Command="{Binding DataContext.EditDataButtonCommand, ElementName=root}"/>
-                    <Button Content="Save" Command="{Binding DataContext.SaveProjectButtonCommand, ElementName=root}">
-                        <Button.CommandParameter>
-                            <MultiBinding Converter="{StaticResource myEditProjectValuesConverter}">
-                                <Binding Path="EditValue" ElementName="txtEditProjectName" />
-                                <Binding Path="EditValue" ElementName="txtEditProjectGroup" />
-                            </MultiBinding>
-                        </Button.CommandParameter>
-                    </Button>
                 </dxlc:LayoutGroup>
                 <!--<dxlc:LayoutGroup VerticalAlignment="Bottom">
                     <dxlc:LayoutItem>
