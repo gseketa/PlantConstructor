@@ -246,7 +246,37 @@ namespace PlantConstructor.WPF.MainScreen
             string newProjectName=(string)values[0];
             string newProjectGroup = (string)values[1];
 
-            var updatedProject = await projectService.Update(SelectedItem.Id, new Project {Name=newProjectName, ProjectGroup=newProjectGroup });
+            foreach (ProjectAttribute projAtt in allProjectAttributesFromDB)
+            {
+                await projectAttributeService.Delete(projAtt.Id);
+            }
+            foreach (string att in AllProjectAttributes.SiteAttributes)
+            {
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+            }
+            foreach (string att in AllProjectAttributes.ZoneAttributes)
+            {
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x.Id).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+            }
+            foreach (string att in AllProjectAttributes.PipeAttributes)
+            {
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x.Id).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+            }
+            foreach (string att in AllProjectAttributes.BranchAttributes)
+            {
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x.Id).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+            }
+            foreach (string att in AllProjectAttributes.PipePartAttributes)
+            {
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x.Id).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+            }
+
+            var updatedProject = await projectService.Update(SelectedItem.Id, new Project { Name = newProjectName, ProjectGroup = newProjectGroup });
 
             await LoadProjectsFromDatabaseWorkerAsync();
 
@@ -407,37 +437,48 @@ namespace PlantConstructor.WPF.MainScreen
                      where allP.ProjectId == SelectedItem.Id
                      where allA.Type == attributeGroup
                      select allA.Name)?.ToList();
-                
+           
 
-                    var temp_allAvailableAtt = allAttributesFromDB.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList().Except(temp_allProjAtt).ToList();
+                   var temp_allAvailableAtt = allAttributesFromDB.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList().Except(temp_allProjAtt).ToList();
 
-                    if (attributeGroup == "Site")
-                    {
-                        AllProjectAttributes.SiteAttributes = temp_allProjAtt;
-                        AllAvailableAttributes.SiteAttributes = temp_allAvailableAtt;
-                    }
-                    else if (attributeGroup == "Zone")
-                    {
-                        AllProjectAttributes.ZoneAttributes = temp_allProjAtt;
-                        AllAvailableAttributes.ZoneAttributes = temp_allAvailableAtt;
-                    }
-                    else if (attributeGroup == "Pipe")
-                    {
-                        AllProjectAttributes.PipeAttributes = temp_allProjAtt;
-                        AllAvailableAttributes.PipeAttributes = temp_allAvailableAtt;
-                    }
-                    else if (attributeGroup == "Branch")
-                    {
-                        AllProjectAttributes.BranchAttributes = temp_allProjAtt;
-                        AllAvailableAttributes.BranchAttributes = temp_allAvailableAtt;
-                    }
-                    else if (attributeGroup == "PipePart")
-                    {
-                        AllProjectAttributes.PipePartAttributes = temp_allProjAtt;
-                        AllAvailableAttributes.PipePartAttributes = temp_allAvailableAtt;
-                    }
 
-                    AllAvailableAttributesForDisplay = temp_allAvailableAtt;
+                AllProjectAttributes.SiteAttributes = (from allA in allAttributesFromDB
+                                                               join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+                                                               where allP.ProjectId == SelectedItem.Id
+                                                               where allA.Type == "Site"
+                                                               select allA.Name)?.ToList();
+                AllAvailableAttributes.SiteAttributes = allAttributesFromDB.Where(x => x.Type == "Site").Select(x => x.Name).ToList().Except(AllProjectAttributes.SiteAttributes).ToList();
+
+                AllProjectAttributes.ZoneAttributes = (from allA in allAttributesFromDB
+                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+                                                       where allP.ProjectId == SelectedItem.Id
+                                                       where allA.Type == "Zone"
+                                                       select allA.Name)?.ToList();
+                AllAvailableAttributes.ZoneAttributes = allAttributesFromDB.Where(x => x.Type == "Zone").Select(x => x.Name).ToList().Except(AllProjectAttributes.ZoneAttributes).ToList();
+
+                AllProjectAttributes.PipeAttributes = (from allA in allAttributesFromDB
+                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+                                                       where allP.ProjectId == SelectedItem.Id
+                                                       where allA.Type == "Pipe"
+                                                       select allA.Name)?.ToList();
+                AllAvailableAttributes.PipeAttributes = allAttributesFromDB.Where(x => x.Type == "Pipe").Select(x => x.Name).ToList().Except(AllProjectAttributes.PipeAttributes).ToList();
+
+                AllProjectAttributes.BranchAttributes = (from allA in allAttributesFromDB
+                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+                                                       where allP.ProjectId == SelectedItem.Id
+                                                       where allA.Type == "Branch"
+                                                       select allA.Name)?.ToList();
+                AllAvailableAttributes.BranchAttributes = allAttributesFromDB.Where(x => x.Type == "Branch").Select(x => x.Name).ToList().Except(AllProjectAttributes.BranchAttributes).ToList();
+
+                AllProjectAttributes.PipePartAttributes = (from allA in allAttributesFromDB
+                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+                                                       where allP.ProjectId == SelectedItem.Id
+                                                       where allA.Type == "PipePart"
+                                                       select allA.Name)?.ToList();
+                AllAvailableAttributes.PipePartAttributes = allAttributesFromDB.Where(x => x.Type == "PipePart").Select(x => x.Name).ToList().Except(AllProjectAttributes.PipePartAttributes).ToList();
+
+
+                AllAvailableAttributesForDisplay = temp_allAvailableAtt;
                     AllProjectAttributesForDisplay = temp_allProjAtt;
                 
             }
