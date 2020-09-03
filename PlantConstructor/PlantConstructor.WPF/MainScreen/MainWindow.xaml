@@ -64,7 +64,8 @@
                             <Grid Grid.Column="0" Grid.Row="1">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
                                     <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
-                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                             SelectedItem="{Binding DataContext.SelectedAttributeFromAvailable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -77,7 +78,8 @@
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="2">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                    <Button Height="30" Background="LightGray" Content="&gt;&gt;&gt;" />
+                                    <Button Height="30" Background="LightGray" Content="&gt;&gt;&gt;" 
+                                            Command="{Binding DataContext.AllAvailableAttributesButtonCommand, ElementName=root}"/>
                                 </dxlc:LayoutItem>
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="0">
@@ -88,7 +90,8 @@
                             <Grid Grid.Column="1" Grid.Row="1">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
                                     <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
-                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                             SelectedItem="{Binding DataContext.SelectedAttributeFromProject,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -101,7 +104,8 @@
                             </Grid>
                             <Grid Grid.Column="1" Grid.Row="2">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                    <Button Height="30" Background="LightGray" Content="&lt;&lt;&lt;" />
+                                    <Button Height="30" Background="LightGray" Content="&lt;&lt;&lt;"
+                                            Command="{Binding DataContext.AllProjectAttributesButtonCommand, ElementName=root}"/>
                                 </dxlc:LayoutItem>
                             </Grid>
                             <Grid Grid.Column="1" Grid.Row="0">

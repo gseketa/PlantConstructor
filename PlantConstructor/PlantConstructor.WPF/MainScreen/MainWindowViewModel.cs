@@ -99,6 +99,30 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
+        private string selectedAttributeFromAvailable;
+
+        public string SelectedAttributeFromAvailable
+        {
+            get { return selectedAttributeFromAvailable; }
+            set { 
+                selectedAttributeFromAvailable = value;
+                OnPropertyRaised("SelectedAttributeFromAvailable");
+            }
+        }
+
+        private string selectedAttributeFromProject;
+
+        public string SelectedAttributeFromProject
+        {
+            get { return selectedAttributeFromProject; }
+            set {
+                selectedAttributeFromProject = value;
+                OnPropertyRaised("SelectedAttributeFromProject");
+            }
+        }
+
+
+
 
 
         private Project selectedItem;
@@ -128,6 +152,7 @@ namespace PlantConstructor.WPF.MainScreen
                 saveProjectButtonCommand = value;
             }
         }
+        
 
         private ICommand addProjectButtonCommand;
 
@@ -153,6 +178,24 @@ namespace PlantConstructor.WPF.MainScreen
             set { editDataButtonCommand = value; }
         }
 
+        private ICommand allProjectAttributesButtonCommand;
+
+        public ICommand AllProjectAttributesButtonCommand
+        {
+            get { return allProjectAttributesButtonCommand; }
+            set { allProjectAttributesButtonCommand = value; }
+        }
+
+        private ICommand allAvailableAttributesButtonCommand;
+
+        public ICommand AllAvailableAttributesButtonCommand
+        {
+            get { return allAvailableAttributesButtonCommand; }
+            set { allAvailableAttributesButtonCommand = value; }
+        }
+
+
+
 
         public MainWindowViewModel()
         {
@@ -165,6 +208,9 @@ namespace PlantConstructor.WPF.MainScreen
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
             EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
+
+            AllAvailableAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToRight);
+            AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
 
             ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch", "PipePart"};
             
@@ -205,6 +251,124 @@ namespace PlantConstructor.WPF.MainScreen
             await LoadProjectsFromDatabaseWorkerAsync();
 
             SelectedItem = updatedProject;
+        }
+
+        public void MoveAttributeFromLeftToRight (object parameter)
+        {
+            string attribute = SelectedAttributeFromAvailable;
+            if (attribute != null)
+            {
+                if (SelectedAttributeGroup == "Site")
+                {
+                    AllAvailableAttributes.SiteAttributes.RemoveAt(AllAvailableAttributes.SiteAttributes.IndexOf(attribute));
+                    AllProjectAttributes.SiteAttributes.Add(attribute);
+                    SelectedAttributeFromAvailable = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.SiteAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.SiteAttributes;
+                    SelectedAttributeGroup = "Site";
+                }
+                else if (SelectedAttributeGroup == "Zone")
+                {
+                    AllAvailableAttributes.ZoneAttributes.RemoveAt(AllAvailableAttributes.ZoneAttributes.IndexOf(attribute));
+                    AllProjectAttributes.ZoneAttributes.Add(attribute);
+                    SelectedAttributeFromAvailable = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.ZoneAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.ZoneAttributes;
+                }
+                else if (SelectedAttributeGroup == "Pipe")
+                {
+                    AllAvailableAttributes.PipeAttributes.RemoveAt(AllAvailableAttributes.PipeAttributes.IndexOf(attribute));
+                    AllProjectAttributes.PipeAttributes.Add(attribute);
+                    SelectedAttributeFromAvailable = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipeAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.PipeAttributes;
+                }
+                else if (SelectedAttributeGroup == "Branch")
+                {
+                    AllAvailableAttributes.BranchAttributes.RemoveAt(AllAvailableAttributes.BranchAttributes.IndexOf(attribute));
+                    AllProjectAttributes.BranchAttributes.Add(attribute);
+                    SelectedAttributeFromAvailable = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.BranchAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.BranchAttributes;
+                }
+                else if (SelectedAttributeGroup == "PipePart")
+                {
+                    AllAvailableAttributes.PipePartAttributes.RemoveAt(AllAvailableAttributes.PipePartAttributes.IndexOf(attribute));
+                    AllProjectAttributes.PipePartAttributes.Add(attribute);
+                    SelectedAttributeFromAvailable = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipePartAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.PipePartAttributes;
+                }
+            }
+        }
+
+        public void MoveAttributeFromRightToLeft(object parameter)
+        {
+            string attribute = SelectedAttributeFromProject;
+            if (attribute != null)
+            {
+                if (SelectedAttributeGroup == "Site")
+                {
+                    AllProjectAttributes.SiteAttributes.RemoveAt(AllProjectAttributes.SiteAttributes.IndexOf(attribute));
+                    AllAvailableAttributes.SiteAttributes.Add(attribute);
+                    SelectedAttributeFromProject = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.SiteAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.SiteAttributes;
+                }
+                else if (SelectedAttributeGroup == "Zone")
+                {
+                    AllProjectAttributes.ZoneAttributes.RemoveAt(AllProjectAttributes.ZoneAttributes.IndexOf(attribute));
+                    AllAvailableAttributes.ZoneAttributes.Add(attribute);
+                    SelectedAttributeFromProject = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.ZoneAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.ZoneAttributes;
+                }
+                else if (SelectedAttributeGroup == "Pipe")
+                {
+                    AllProjectAttributes.PipeAttributes.RemoveAt(AllProjectAttributes.PipeAttributes.IndexOf(attribute));
+                    AllAvailableAttributes.PipeAttributes.Add(attribute);
+                    SelectedAttributeFromProject = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipeAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.PipeAttributes;
+                }
+                else if (SelectedAttributeGroup == "Branch")
+                {
+                    AllProjectAttributes.BranchAttributes.RemoveAt(AllProjectAttributes.BranchAttributes.IndexOf(attribute));
+                    AllAvailableAttributes.BranchAttributes.Add(attribute);
+                    SelectedAttributeFromProject = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.BranchAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.BranchAttributes;
+                }
+                else if (SelectedAttributeGroup == "PipePart")
+                {
+                    AllAvailableAttributes.PipePartAttributes.RemoveAt(AllProjectAttributes.PipePartAttributes.IndexOf(attribute));
+                    AllProjectAttributes.PipePartAttributes.Add(attribute);
+                    SelectedAttributeFromProject = null;
+                    AllAvailableAttributesForDisplay = null;
+                    AllProjectAttributesForDisplay = null;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipePartAttributes;
+                    AllProjectAttributesForDisplay = AllProjectAttributes.PipePartAttributes;
+                }
+
+            }
         }
 
         public async void AddNewProjectToDBAsync (object parameter)
@@ -276,8 +440,6 @@ namespace PlantConstructor.WPF.MainScreen
                     AllAvailableAttributesForDisplay = temp_allAvailableAtt;
                     AllProjectAttributesForDisplay = temp_allProjAtt;
                 
-
-
             }
         }
 
