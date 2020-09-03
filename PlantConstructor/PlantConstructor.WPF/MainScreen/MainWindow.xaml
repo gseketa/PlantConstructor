@@ -46,7 +46,7 @@
                         <dxe:TextEdit Name="txtEditProjectGroup" Width="200" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
-                        <dxe:ComboBoxEdit Width="200" ItemsSource="{Binding DataContext.ProjectAttributeGroupesComboBox, ElementName=root}"/>
+                        <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding DataContext.ProjectAttributeGroupesComboBox, ElementName=root}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <Grid>
@@ -54,31 +54,26 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <dxlc:LayoutItem VerticalAlignment="Top">
-                                    <Label Content="All Available Attributes"
-                                            HorizontalAlignment="Center"
-                                            Margin="10,10,10,10"
-                                            VerticalAlignment="Center"
-                                            Background="Beige"
-                                            Padding="5"
-                                            FontSize="30"/>
-                                </dxlc:LayoutItem>
+                            <Grid Grid.Column="0" Height="250">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <dxe:ListBoxEdit Height="250"/>
+                                    <dxe:ListBoxEdit/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="+ Add Attribute" />
+                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&gt;&gt;&gt;" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Top">
+                                    <Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Available Attributes" />
                                 </dxlc:LayoutItem>
                             </Grid>
-                            <Grid Grid.Column="1">
-                                <dxlc:LayoutItem VerticalAlignment="Top">
-                                    <Label  Height="30"
-                                            Content="Project Attributes"
-                                            HorizontalAlignment="Center"/>
-                                </dxlc:LayoutItem>
+                            <Grid Grid.Column="1" Height="250">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <dxe:ListBoxEdit Height="250"/>
+                                    <dxe:ListBoxEdit/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&lt;&lt;&lt;" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem VerticalAlignment="Top">
+                                    <Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Project Attributes" />
                                 </dxlc:LayoutItem>
                             </Grid>
                         </Grid>
@@ -122,6 +117,9 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem VerticalAlignment="Bottom">
                     <Button  Background="LightGray" BorderBrush="Blue" Content="+ Add Project" Command="{Binding AddProjectButtonCommand}" Height="30"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                    <Button  Background="LightGray" BorderBrush="Blue" Content="Settings" Height="30"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </Grid>
