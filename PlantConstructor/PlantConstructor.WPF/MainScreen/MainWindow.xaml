@@ -46,7 +46,8 @@
                         <dxe:TextEdit Name="txtEditProjectGroup" Width="200" EditValue="{Binding ProjectGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
-                        <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding DataContext.ProjectAttributeGroupesComboBox, ElementName=root}"/>
+                        <ComboBox Width="100" ItemsSource="{Binding DataContext.ProjectAttributeGroupesComboBox, ElementName=root}"
+                                  SelectedItem="{Binding DataContext.SelectedAttributeGroup,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <Grid>
@@ -56,7 +57,15 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" Height="250">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <dxe:ListBoxEdit/>
+                                    <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
                                     <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&gt;&gt;&gt;" />
@@ -67,7 +76,15 @@
                             </Grid>
                             <Grid Grid.Column="1" Height="250">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <dxe:ListBoxEdit/>
+                                    <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
                                     <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&lt;&lt;&lt;" />
