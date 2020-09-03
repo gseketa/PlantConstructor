@@ -14,7 +14,8 @@
         xmlns:local="clr-namespace:PlantConstructor.WPF.MainScreen"
         xmlns:localHelper="clr-namespace:PlantConstructor.WPF.Helper"
         mc:Ignorable="d"
-        Title="Plant Constructor" Height="450" Width="600">
+        Title="Plant Constructor" Height="450" Width="600"
+        ResizeMode="CanMinimize">
     <dx:ThemedWindow.DataContext>
         <local:MainWindowViewModel/>
     </dx:ThemedWindow.DataContext>
@@ -55,9 +56,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Height="250">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0" Grid.Row="1">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }">
+                                    <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
+                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -67,16 +74,21 @@
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </dxlc:LayoutItem>
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="2">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&gt;&gt;&gt;" />
+                                    <Button Height="30" Background="LightGray" Content="&gt;&gt;&gt;" />
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem VerticalAlignment="Top">
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="0">
+                            <dxlc:LayoutItem VerticalAlignment="Top">
                                     <Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Available Attributes" />
                                 </dxlc:LayoutItem>
                             </Grid>
-                            <Grid Grid.Column="1" Height="250">
+                            <Grid Grid.Column="1" Grid.Row="1">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
-                                    <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }">
+                                    <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
+                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -86,10 +98,14 @@
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </dxlc:LayoutItem>
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="2">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                    <Button Height="30" Background="LightGray" BorderBrush="Blue" Content="&lt;&lt;&lt;" />
+                                    <Button Height="30" Background="LightGray" Content="&lt;&lt;&lt;" />
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem VerticalAlignment="Top">
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="0">
+                            <dxlc:LayoutItem VerticalAlignment="Top">
                                     <Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Project Attributes" />
                                 </dxlc:LayoutItem>
                             </Grid>
