@@ -106,7 +106,7 @@ namespace PlantConstructor.WPF.EditDataScreen
 
                 //protect workbook
                 if (!workbook.IsProtected)
-                    workbook.Protect("4321", true, false);
+                    workbook.Protect("48800609", true, false);
 
                 workbook.Worksheets[0].Name = "Site";
                 workbook.Worksheets.Add().Name = "Zone";

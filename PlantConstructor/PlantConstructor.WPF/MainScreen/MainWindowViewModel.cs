@@ -5,6 +5,7 @@ using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
 using PlantConstructor.WPF.EditDataScreen;
 using PlantConstructor.WPF.Helper;
+using PlantConstructor.WPF.SettingsScreen;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -136,10 +137,22 @@ namespace PlantConstructor.WPF.MainScreen
             { 
               selectedItem = value;
               OnPropertyRaised("SelectedItem");
-              ResetLocalAttributeStorage();
-              LoadAttributesForTheProjectFromDB();
+              if (selectedItem != null)
+                {
+                    ResetLocalAttributeStorage();
+                    LoadAttributesForTheProjectFromDB();
+                }
             }
         }
+
+        private ICommand openSettingsWindowCommand;
+
+        public ICommand OpenSettingsWindowCommand
+        {
+            get { return openSettingsWindowCommand; }
+            set { openSettingsWindowCommand = value; }
+        }
+
 
         private ICommand saveProjectButtonCommand;
         public ICommand SaveProjectButtonCommand
@@ -209,6 +222,7 @@ namespace PlantConstructor.WPF.MainScreen
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
             EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
+            OpenSettingsWindowCommand = new RelayCommand(OpenSettingsWindow);
 
             AllAvailableAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToRight);
             AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
@@ -536,6 +550,15 @@ namespace PlantConstructor.WPF.MainScreen
             ResetAttributeGroupComboBoxSelection();
             
             Mouse.OverrideCursor = null;
+        }
+
+        public void OpenSettingsWindow(object parameter)
+        {
+            SelectedItem = null;
+            SettingsWindow objSettingsWindow = new SettingsWindow();
+            objSettingsWindow.DataContext = new SettingsViewModel();
+            objSettingsWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            objSettingsWindow.ShowDialog();
         }
 
         public void OpenEditDataWindow(object parameter)

@@ -168,7 +168,7 @@
                     <Button  Background="LightGray" BorderBrush="Blue" Content="+ Add Project" Command="{Binding AddProjectButtonCommand}" Height="30"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem VerticalAlignment="Bottom">
-                    <Button  Background="LightGray" BorderBrush="Blue" Content="Settings" Height="30"/>
+                    <Button  Background="LightGray" BorderBrush="Blue" Content="Settings" Command="{Binding OpenSettingsWindowCommand}" Height="30"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </Grid>

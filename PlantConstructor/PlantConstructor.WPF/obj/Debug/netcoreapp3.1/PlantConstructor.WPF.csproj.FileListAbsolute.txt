@@ -172,3 +172,5 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\EditDataScreen\EditDataWindow.baml
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\Microsoft.Xaml.Behaviors.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.csproj.CoreCompileInputs.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\SettingsScreen\SettingsWindow.g.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\SettingsScreen\SettingsWindow.baml
