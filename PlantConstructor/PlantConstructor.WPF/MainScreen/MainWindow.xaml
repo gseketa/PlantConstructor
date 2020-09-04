@@ -66,7 +66,7 @@
                                     <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
                                              ScrollViewer.VerticalScrollBarVisibility="Visible"
                                              SelectedItem="{Binding DataContext.SelectedAttributeFromAvailable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}"
-                                             SelectionMode="Multiple">
+                                             SelectionMode="Extended">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -98,7 +98,7 @@
                                     <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
                                              ScrollViewer.VerticalScrollBarVisibility="Visible"
                                              SelectedItem="{Binding DataContext.SelectedAttributeFromProject,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}"
-                                             SelectionMode="Multiple">
+                                             SelectionMode="Extended">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
