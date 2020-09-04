@@ -476,16 +476,6 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 List<string> temp_allProjAtt = new List<string>();
 
-               //     temp_allProjAtt =
-               //     (from allA in allAttributesFromDB
-               //      join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-               //      where allP.ProjectId == SelectedItem.Id
-               //      where allA.Type == attributeGroup
-               //      select allA.Name)?.ToList();
-           
-
-               //var temp_allAvailableAtt = allAttributesFromDB.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList().Except(temp_allProjAtt).ToList();
-
 
                 AllProjectAttributes.SiteAttributes = (from allA in allAttributesFromDB
                                                                join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
@@ -537,7 +527,14 @@ namespace PlantConstructor.WPF.MainScreen
 
         private void ResetAttributeGroupComboBoxSelection ()
         {
-            SelectedAttributeGroup = "Site";
+            if (SelectedAttributeGroup == null)
+            {
+                SelectedAttributeGroup = "Site";
+            }
+            else
+            {
+                DisplayProjectAttributes(SelectedAttributeGroup);
+            }
         }
 
         private async void LoadAttributesForTheProjectFromDB()
