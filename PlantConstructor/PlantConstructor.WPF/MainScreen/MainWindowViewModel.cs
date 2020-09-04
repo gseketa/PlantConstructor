@@ -61,9 +61,9 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private List<string> allAvailableAttributesForDisplay;
+        private List<ListBoxAttributes> allAvailableAttributesForDisplay;
 
-        public List<string> AllAvailableAttributesForDisplay
+        public List<ListBoxAttributes> AllAvailableAttributesForDisplay
         {
             get { return allAvailableAttributesForDisplay; }
             set
@@ -73,9 +73,9 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private List<string> allProjectAttributesForDisplay;
+        private List<ListBoxAttributes> allProjectAttributesForDisplay;
 
-        public List<string> AllProjectAttributesForDisplay
+        public List<ListBoxAttributes> AllProjectAttributesForDisplay
         {
             get { return allProjectAttributesForDisplay; }
             set
@@ -84,8 +84,7 @@ namespace PlantConstructor.WPF.MainScreen
                 OnPropertyRaised("AllProjectAttributesForDisplay");
             }
         }
-
-
+      
 
         private string selectedAttributeGroup;
 
@@ -99,24 +98,26 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private string selectedAttributeFromAvailable;
+        private List<ListBoxAttributes> selectedAttributeFromAvailable;
 
-        public string SelectedAttributeFromAvailable
+        public ListBoxAttributes SelectedAttributeFromAvailable
         {
-            get { return selectedAttributeFromAvailable; }
-            set { 
-                selectedAttributeFromAvailable = value;
+            get { return null; }
+            set {
+                //var selectedItems = AllAvailableAttributesForDisplay.Where(x => x.IsSelected).Count();
+                selectedAttributeFromAvailable = AllAvailableAttributesForDisplay.Where(x => x.IsSelected).ToList();
                 OnPropertyRaised("SelectedAttributeFromAvailable");
             }
         }
 
-        private string selectedAttributeFromProject;
+        private List<ListBoxAttributes> selectedAttributeFromProject;
 
-        public string SelectedAttributeFromProject
+        public ListBoxAttributes SelectedAttributeFromProject
         {
-            get { return selectedAttributeFromProject; }
+            get { return null; }
             set {
-                selectedAttributeFromProject = value;
+                //var selectedItems = AllProjectAttributesForDisplay.Where(x => x.IsSelected).Count();
+                selectedAttributeFromProject = AllProjectAttributesForDisplay.Where(x => x.IsSelected).ToList();
                 OnPropertyRaised("SelectedAttributeFromProject");
             }
         }
@@ -285,117 +286,147 @@ namespace PlantConstructor.WPF.MainScreen
 
         public void MoveAttributeFromLeftToRight (object parameter)
         {
-            string attribute = SelectedAttributeFromAvailable;
-            if (attribute != null)
+            var listAtt = selectedAttributeFromAvailable;
+            if (listAtt != null)
             {
                 if (SelectedAttributeGroup == "Site")
                 {
-                    AllAvailableAttributes.SiteAttributes.RemoveAt(AllAvailableAttributes.SiteAttributes.IndexOf(attribute));
-                    AllProjectAttributes.SiteAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.SiteAttributes.RemoveAt(AllAvailableAttributes.SiteAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.SiteAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.SiteAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.SiteAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Site");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Site");
                     SelectedAttributeGroup = "Site";
                 }
                 else if (SelectedAttributeGroup == "Zone")
                 {
-                    AllAvailableAttributes.ZoneAttributes.RemoveAt(AllAvailableAttributes.ZoneAttributes.IndexOf(attribute));
-                    AllProjectAttributes.ZoneAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.ZoneAttributes.RemoveAt(AllAvailableAttributes.ZoneAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.ZoneAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.ZoneAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.ZoneAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Zone");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Zone");
                 }
                 else if (SelectedAttributeGroup == "Pipe")
                 {
-                    AllAvailableAttributes.PipeAttributes.RemoveAt(AllAvailableAttributes.PipeAttributes.IndexOf(attribute));
-                    AllProjectAttributes.PipeAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.PipeAttributes.RemoveAt(AllAvailableAttributes.PipeAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.PipeAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipeAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.PipeAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Pipe");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Pipe");
                 }
                 else if (SelectedAttributeGroup == "Branch")
                 {
-                    AllAvailableAttributes.BranchAttributes.RemoveAt(AllAvailableAttributes.BranchAttributes.IndexOf(attribute));
-                    AllProjectAttributes.BranchAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.BranchAttributes.RemoveAt(AllAvailableAttributes.BranchAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.BranchAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.BranchAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.BranchAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Branch");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Branch");
                 }
                 else if (SelectedAttributeGroup == "PipePart")
                 {
-                    AllAvailableAttributes.PipePartAttributes.RemoveAt(AllAvailableAttributes.PipePartAttributes.IndexOf(attribute));
-                    AllProjectAttributes.PipePartAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.PipePartAttributes.RemoveAt(AllAvailableAttributes.PipePartAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.PipePartAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipePartAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.PipePartAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("PipePart");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("PipePart");
                 }
             }
         }
 
         public void MoveAttributeFromRightToLeft(object parameter)
         {
-            string attribute = SelectedAttributeFromProject;
-            if (attribute != null)
+            var listAtt = selectedAttributeFromProject;
+            if (listAtt != null)
             {
                 if (SelectedAttributeGroup == "Site")
                 {
-                    AllProjectAttributes.SiteAttributes.RemoveAt(AllProjectAttributes.SiteAttributes.IndexOf(attribute));
-                    AllAvailableAttributes.SiteAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllProjectAttributes.SiteAttributes.RemoveAt(AllProjectAttributes.SiteAttributes.IndexOf(attribute.Item));
+                        AllAvailableAttributes.SiteAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.SiteAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.SiteAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Site");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Site");
                 }
                 else if (SelectedAttributeGroup == "Zone")
                 {
-                    AllProjectAttributes.ZoneAttributes.RemoveAt(AllProjectAttributes.ZoneAttributes.IndexOf(attribute));
-                    AllAvailableAttributes.ZoneAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllProjectAttributes.ZoneAttributes.RemoveAt(AllProjectAttributes.ZoneAttributes.IndexOf(attribute.Item));
+                        AllAvailableAttributes.ZoneAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.ZoneAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.ZoneAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Zone");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Zone");
                 }
                 else if (SelectedAttributeGroup == "Pipe")
                 {
-                    AllProjectAttributes.PipeAttributes.RemoveAt(AllProjectAttributes.PipeAttributes.IndexOf(attribute));
-                    AllAvailableAttributes.PipeAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllProjectAttributes.PipeAttributes.RemoveAt(AllProjectAttributes.PipeAttributes.IndexOf(attribute.Item));
+                        AllAvailableAttributes.PipeAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipeAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.PipeAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Pipe");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Pipe");
                 }
                 else if (SelectedAttributeGroup == "Branch")
                 {
-                    AllProjectAttributes.BranchAttributes.RemoveAt(AllProjectAttributes.BranchAttributes.IndexOf(attribute));
-                    AllAvailableAttributes.BranchAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllProjectAttributes.BranchAttributes.RemoveAt(AllProjectAttributes.BranchAttributes.IndexOf(attribute.Item));
+                        AllAvailableAttributes.BranchAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.BranchAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.BranchAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Branch");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Branch");
                 }
                 else if (SelectedAttributeGroup == "PipePart")
                 {
-                    AllAvailableAttributes.PipePartAttributes.RemoveAt(AllProjectAttributes.PipePartAttributes.IndexOf(attribute));
-                    AllProjectAttributes.PipePartAttributes.Add(attribute);
+                    foreach (ListBoxAttributes attribute in listAtt)
+                    {
+                        AllAvailableAttributes.PipePartAttributes.RemoveAt(AllProjectAttributes.PipePartAttributes.IndexOf(attribute.Item));
+                        AllProjectAttributes.PipePartAttributes.Add(attribute.Item);
+                    }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
                     AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.PipePartAttributes;
-                    AllProjectAttributesForDisplay = AllProjectAttributes.PipePartAttributes;
+                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("PipePart");
+                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("PipePart");
                 }
 
             }
@@ -424,22 +455,22 @@ namespace PlantConstructor.WPF.MainScreen
         {
            if (AllAvailableAttributes.GetListsOfAttributes(attributeGroup) != null)
             {
-                AllAvailableAttributesForDisplay = AllAvailableAttributes.GetListsOfAttributes(attributeGroup);
-                AllProjectAttributesForDisplay = AllProjectAttributes.GetListsOfAttributes(attributeGroup);
+                AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox(attributeGroup);
+                AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox(attributeGroup);
             }
            else
             {
                 List<string> temp_allProjAtt = new List<string>();
 
-                    temp_allProjAtt =
-                    (from allA in allAttributesFromDB
-                     join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                     where allP.ProjectId == SelectedItem.Id
-                     where allA.Type == attributeGroup
-                     select allA.Name)?.ToList();
+               //     temp_allProjAtt =
+               //     (from allA in allAttributesFromDB
+               //      join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
+               //      where allP.ProjectId == SelectedItem.Id
+               //      where allA.Type == attributeGroup
+               //      select allA.Name)?.ToList();
            
 
-                   var temp_allAvailableAtt = allAttributesFromDB.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList().Except(temp_allProjAtt).ToList();
+               //var temp_allAvailableAtt = allAttributesFromDB.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList().Except(temp_allProjAtt).ToList();
 
 
                 AllProjectAttributes.SiteAttributes = (from allA in allAttributesFromDB
@@ -478,8 +509,8 @@ namespace PlantConstructor.WPF.MainScreen
                 AllAvailableAttributes.PipePartAttributes = allAttributesFromDB.Where(x => x.Type == "PipePart").Select(x => x.Name).ToList().Except(AllProjectAttributes.PipePartAttributes).ToList();
 
 
-                AllAvailableAttributesForDisplay = temp_allAvailableAtt;
-                    AllProjectAttributesForDisplay = temp_allProjAtt;
+                AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox(attributeGroup);
+                AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox(attributeGroup);
                 
             }
         }

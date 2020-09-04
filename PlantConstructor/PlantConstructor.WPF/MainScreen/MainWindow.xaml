@@ -65,14 +65,20 @@
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
                                     <ListBox ItemsSource="{Binding DataContext.AllAvailableAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
                                              ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                             SelectedItem="{Binding DataContext.SelectedAttributeFromAvailable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}">
+                                             SelectedItem="{Binding DataContext.SelectedAttributeFromAvailable,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}"
+                                             SelectionMode="Multiple">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <TextBlock Text="{Binding}" />
+                                                    <TextBlock Text="{Binding Item}" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListBoxItem}">
+                                                <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}" />
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
                                     </ListBox>
                                 </dxlc:LayoutItem>
                             </Grid>
@@ -91,7 +97,8 @@
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
                                     <ListBox ItemsSource="{Binding DataContext.AllProjectAttributesForDisplay,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root }"
                                              ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                             SelectedItem="{Binding DataContext.SelectedAttributeFromProject,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}">
+                                             SelectedItem="{Binding DataContext.SelectedAttributeFromProject,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=root}"
+                                             SelectionMode="Multiple">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
@@ -99,6 +106,11 @@
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListBoxItem}">
+                                                <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}" />
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
                                     </ListBox>
                                 </dxlc:LayoutItem>
                             </Grid>

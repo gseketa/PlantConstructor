@@ -32,5 +32,45 @@ namespace PlantConstructor.WPF.Helper
             }
         }
 
+        public List<ListBoxAttributes> GetAttForListbox(string type)
+        {
+            List <ListBoxAttributes> returnList = new List<ListBoxAttributes>();
+            switch (type)
+            {
+                case "Site":
+                    foreach (string tempString in SiteAttributes)
+                    {
+                        returnList.Add(new ListBoxAttributes { Item = tempString });
+                    }
+                    return returnList;
+                case "Zone":
+                    foreach (string tempString in ZoneAttributes)
+                    {
+                        returnList.Add(new ListBoxAttributes { Item = tempString });
+                    }
+                    return returnList;
+                case "Pipe":
+                    foreach (string tempString in PipeAttributes)
+                    {
+                        returnList.Add(new ListBoxAttributes { Item = tempString });
+                    }
+                    return returnList;
+                case "Branch":
+                    foreach (string tempString in BranchAttributes)
+                    {
+                        returnList.Add(new ListBoxAttributes { Item = tempString });
+                    }
+                    return returnList;
+                case "PipePart":
+                    foreach (string tempString in PipePartAttributes)
+                    {
+                        returnList.Add(new ListBoxAttributes { Item = tempString });
+                    }
+                    return returnList;
+                default:
+                    return null;
+            }
+        }
+
     }
 }
