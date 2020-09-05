@@ -172,3 +172,5 @@ C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstruct
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Release\netcoreapp3.1\PlantConstructor.WPF.dll
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Release\netcoreapp3.1\PlantConstructor.WPF.pdb
 C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Release\netcoreapp3.1\PlantConstructor.WPF.genruntimeconfig.cache
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Release\netcoreapp3.1\SettingsScreen\SettingsWindow.g.cs
+C:\Users\goran.seketa\Documents\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Release\netcoreapp3.1\SettingsScreen\SettingsWindow.baml
