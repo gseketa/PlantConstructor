@@ -35,7 +35,7 @@ namespace PlantConstructor.EntityFramework
             {
                 foreach (T ent in entity)
                 {
-                   await context.Set<T>().AddAsync(ent);                   
+                    await context.Set<T>().AddAsync(ent);
                 }
                 await context.SaveChangesAsync();
             }
