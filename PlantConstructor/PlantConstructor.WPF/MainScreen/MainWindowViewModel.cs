@@ -213,11 +213,14 @@ namespace PlantConstructor.WPF.MainScreen
 
         public MainWindowViewModel()
         {
+            
+
             projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
             projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
             attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
-
+            
             LoadProjectsFromDatabaseAsync();
+                                   
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
             AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
@@ -228,6 +231,7 @@ namespace PlantConstructor.WPF.MainScreen
             AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
 
             ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch", "PipePart"};
+
             
 
         }
@@ -243,11 +247,22 @@ namespace PlantConstructor.WPF.MainScreen
 
         private async void LoadProjectsFromDatabaseAsync()
         {
-            await LoadProjectsFromDatabaseWorkerAsync();
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+                await LoadProjectsFromDatabaseWorkerAsync();
+                Mouse.OverrideCursor = Cursors.Wait;
+            }
+            catch
+            {
+                MessageBox.Show("Could not establish connection to the database", "Connection Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                System.Windows.Application.Current.Shutdown();
+            }
         }
 
         private async Task LoadProjectsFromDatabaseWorkerAsync ()
         {
+            
             var allProjects = await projectService.GetAll();
             var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
 
