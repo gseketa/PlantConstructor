@@ -188,7 +188,11 @@ namespace PlantConstructor.WPF.EditDataScreen
                         | WorksheetProtectionPermissions.DeleteRows
                         | WorksheetProtectionPermissions.FormatColumns
                         | WorksheetProtectionPermissions.FormatRows
-                        | WorksheetProtectionPermissions.Sort);
+                        | WorksheetProtectionPermissions.Sort
+                        | WorksheetProtectionPermissions.AutoFilters
+                        | WorksheetProtectionPermissions.PivotTables
+                        | WorksheetProtectionPermissions.FormatCells
+                        | WorksheetProtectionPermissions.InsertRows);
                 }
             }
             finally

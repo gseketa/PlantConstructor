@@ -7,7 +7,7 @@
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:local="clr-namespace:PlantConstructor.WPF.SettingsScreen"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="500" Width="300">
+        Title="Settings" Height="500" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <ComboBox Width="100" 

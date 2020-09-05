@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>powerplanicon_Q8C_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,10 @@
   <ItemGroup>
     <ProjectReference Include="..\PlantConstructor.Domain\PlantConstructor.Domain.csproj" />
     <ProjectReference Include="..\PlantConstructor.EntityFramework\PlantConstructor.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Icon\" />
   </ItemGroup>
 
 </Project>
