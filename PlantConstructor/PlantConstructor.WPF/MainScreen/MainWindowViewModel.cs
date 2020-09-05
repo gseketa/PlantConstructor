@@ -251,7 +251,7 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 Mouse.OverrideCursor = Cursors.Wait;
                 await LoadProjectsFromDatabaseWorkerAsync();
-                Mouse.OverrideCursor = Cursors.Wait;
+                Mouse.OverrideCursor = null;
             }
             catch
             {
