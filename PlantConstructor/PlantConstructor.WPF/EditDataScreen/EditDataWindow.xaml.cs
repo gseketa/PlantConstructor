@@ -289,7 +289,7 @@ namespace PlantConstructor.WPF.EditDataScreen
 
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
-                var newElementId = listAllElementsTypeAndProject.Where(x => x.RowIndex == rowCount).Select(x => x.Id);
+                var newElementId = listAllElementsTypeAndProject.Where(x => x.RowIndex == rowCount).Select(x => x.Id).FirstOrDefault();
                 for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                 {
                     int newAttributeId = 0;
@@ -300,7 +300,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                     listAllAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElementId, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
             }
-            await attributeValueService.CreateMultiple(allAttributeValues);
+            await attributeValueService.CreateMultiple(listAllAttributeValues);
         }
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
