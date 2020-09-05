@@ -272,11 +272,17 @@ namespace PlantConstructor.WPF.EditDataScreen
             List<AttributeG> allTypeAttributesG = new List<AttributeG>();
             //List<Element> allElements = new List<Element>();
             List<AttributeValue> allAttributeValues = new List<AttributeValue>();
+            List<Element> allElements = new List<Element>();
 
             foreach (AttributeG temp in allAttributesG)
             {
                 if (temp.Type == _type) allTypeAttributesG.Add(temp);
             }
+            for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
+            {
+                allElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type, RowIndex=rowCount});
+            }
+
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
                 Element newElement = await elementService.Create(new Element { ProjectId = SelectedProject.Id, Type = _type });
