@@ -188,7 +188,11 @@ namespace PlantConstructor.WPF.EditDataScreen
                         | WorksheetProtectionPermissions.DeleteRows
                         | WorksheetProtectionPermissions.FormatColumns
                         | WorksheetProtectionPermissions.FormatRows
-                        | WorksheetProtectionPermissions.Sort);
+                        | WorksheetProtectionPermissions.Sort
+                        | WorksheetProtectionPermissions.AutoFilters
+                        | WorksheetProtectionPermissions.PivotTables
+                        | WorksheetProtectionPermissions.FormatCells
+                        | WorksheetProtectionPermissions.InsertRows);
                 }
             }
             finally
@@ -269,29 +273,38 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private async Task SaveNewDataToDB(string _type, Worksheet sheet)
         {
-            List<AttributeG> allTypeAttributesG = new List<AttributeG>();
-            //List<Element> allElements = new List<Element>();
-            List<AttributeValue> allAttributeValues = new List<AttributeValue>();
+            List<AttributeG> listAllTypeAttributesG = new List<AttributeG>();
+            List<AttributeValue> listAllAttributeValues = new List<AttributeValue>();
+            List<Element> listAllElements = new List<Element>();
+            List<Element> listAllElementsTypeAndProject = new List<Element>();
 
             foreach (AttributeG temp in allAttributesG)
             {
-                if (temp.Type == _type) allTypeAttributesG.Add(temp);
+                if (temp.Type == _type) listAllTypeAttributesG.Add(temp);
             }
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
-                Element newElement = await elementService.Create(new Element { ProjectId = SelectedProject.Id, Type = _type });
-                //allElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type });
+                listAllElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type, RowIndex=rowCount});
+            }
+            await elementService.CreateMultiple(listAllElements);
+            allElements = await elementService.GetAll();
+            listAllElementsTypeAndProject = allElements.
+                Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x).ToList();
+
+            for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
+            {
+                var newElementId = listAllElementsTypeAndProject.Where(x => x.RowIndex == rowCount).Select(x => x.Id).FirstOrDefault();
                 for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                 {
                     int newAttributeId = 0;
-                    foreach (AttributeG temp in allTypeAttributesG)
+                    foreach (AttributeG temp in listAllTypeAttributesG)
                     {
                         if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) newAttributeId = temp.Id;
                     }
-                    allAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElement.Id, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
+                    listAllAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElementId, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
             }
-            await attributeValueService.CreateMultiple(allAttributeValues);
+            await attributeValueService.CreateMultiple(listAllAttributeValues);
         }
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)

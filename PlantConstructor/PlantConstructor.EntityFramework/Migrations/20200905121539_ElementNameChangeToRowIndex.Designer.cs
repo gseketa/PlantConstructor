@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantConstructor.EntityFramework;
 
 namespace PlantConstructor.EntityFramework.Migrations
 {
     [DbContext(typeof(PlantConstructorDbContext))]
-    partial class PlantConstructorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200905121539_ElementNameChangeToRowIndex")]
+    partial class ElementNameChangeToRowIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
