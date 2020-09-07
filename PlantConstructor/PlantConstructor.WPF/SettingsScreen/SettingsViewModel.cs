@@ -131,9 +131,17 @@ namespace PlantConstructor.WPF.SettingsScreen
         {
             if (!SettingsAllAttributes.Contains(NewAttributeName))
             {
-                await attributeGService.Create(new AttributeG { Name=NewAttributeName, Type=SettingsSelectedAttributeGroup});
-                allAttributesFromDB = await attributeGService.GetAll();
-                SettingsDisplayProjectAttributes();
+                if (!string.IsNullOrWhiteSpace(NewAttributeName))
+                {
+                    await attributeGService.Create(new AttributeG { Name = NewAttributeName, Type = SettingsSelectedAttributeGroup });
+                    allAttributesFromDB = await attributeGService.GetAll();
+                    SettingsDisplayProjectAttributes();
+                    NewAttributeName = "";
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid attribute name. Attribute not added!");
+                }
 
             }
             else
