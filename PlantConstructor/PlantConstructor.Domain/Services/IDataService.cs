@@ -13,6 +13,7 @@ namespace PlantConstructor.Domain.Services
         Task CreateMultiple(IEnumerable<T> entity);
         Task<T> Update(int id, T entity);
         Task<bool> Delete(int id);
+        Task DeleteBulk(List<T> listOfEntities);
 
     }
 }

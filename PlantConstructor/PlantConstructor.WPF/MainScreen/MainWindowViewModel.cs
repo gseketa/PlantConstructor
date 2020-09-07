@@ -276,6 +276,8 @@ namespace PlantConstructor.WPF.MainScreen
             string newProjectName=(string)values[0];
             string newProjectGroup = (string)values[1];
 
+            Mouse.OverrideCursor = Cursors.Wait;
+
             foreach (ProjectAttribute projAtt in allProjectAttributesFromDB.Where(x=>x.ProjectId==SelectedItem.Id))
             {
                 await projectAttributeService.Delete(projAtt.Id);
@@ -311,6 +313,8 @@ namespace PlantConstructor.WPF.MainScreen
             await LoadProjectsFromDatabaseWorkerAsync();
 
             SelectedItem = updatedProject;
+
+            Mouse.OverrideCursor = null;
         }
 
         public void MoveAttributeFromLeftToRight (object parameter)

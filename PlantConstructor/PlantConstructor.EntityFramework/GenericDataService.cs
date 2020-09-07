@@ -7,6 +7,7 @@ using PlantConstructor.Domain.Model;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using EFCore.BulkExtensions;
 
 namespace PlantConstructor.EntityFramework
 {
@@ -50,6 +51,14 @@ namespace PlantConstructor.EntityFramework
                 await context.SaveChangesAsync();
 
                 return true;
+            }
+        }
+
+        public async Task DeleteBulk (List<T> listOfEntities)
+        {
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                await context.BulkDeleteAsync<T>(listOfEntities);
             }
         }
 

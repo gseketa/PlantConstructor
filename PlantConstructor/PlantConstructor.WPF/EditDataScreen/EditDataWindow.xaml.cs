@@ -6,6 +6,8 @@ using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Diagram.Native;
 using DevExpress.Xpf.PivotGrid.Printing.TypedStyles;
 using DevExpress.Xpf.Spreadsheet;
+using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using PlantConstructor.Domain.Model;
 using PlantConstructor.Domain.Services;
@@ -37,15 +39,17 @@ namespace PlantConstructor.WPF.EditDataScreen
     public partial class EditDataWindow : ThemedWindow
     {
 
-        IDataService<ProjectAttribute> projectAttributeService;
-        IDataService<AttributeG> attributeGService;
-        IDataService<Element> elementService;
-        IDataService<AttributeValue> attributeValueService;
+        private PlantConstructorDbContextFactory _contextFactory;
+
+        //IDataService<ProjectAttribute> projectAttributeService;
+        //IDataService<AttributeG> attributeGService;
+        //IDataService<Element> elementService;
+        //IDataService<AttributeValue> attributeValueService;
 
         IEnumerable<ProjectAttribute> allProjectAttributes;
         IEnumerable<AttributeG> allAttributesG;
-        IEnumerable<Element> allElements;
-        IEnumerable<AttributeValue> allAttributeValues;
+        //IEnumerable<Element> allElements;
+        //IEnumerable<AttributeValue> allAttributeValues;
 
         List<string> siteHeaderAttributes;
         List<string> zoneHeaderAttributes;
@@ -85,13 +89,16 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         public async void InitializeWorkEnvironment(object parameter)
         {
-            projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
-            attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
-            elementService = new GenericDataService<Element>(new PlantConstructorDbContextFactory());
-            attributeValueService = new GenericDataService<AttributeValue>(new PlantConstructorDbContextFactory());
+            //projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
+            //attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
+            //elementService = new GenericDataService<Element>(new PlantConstructorDbContextFactory());
+            //attributeValueService = new GenericDataService<AttributeValue>(new PlantConstructorDbContextFactory());
+
+            _contextFactory = new PlantConstructorDbContextFactory();
 
             CreateWorkbook();
-            await LoadDataFromDatabase();
+            
+            LoadDataFromDatabase();
             
             LogText.Text = "Data loaded from DB";
             Mouse.OverrideCursor = null;
@@ -123,13 +130,19 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
         }
 
-        private async Task LoadDataFromDatabase()
+        private void LoadDataFromDatabase()
         {
-            
-            allProjectAttributes = await projectAttributeService.GetAll();
-            allAttributesG = await attributeGService.GetAll();
-            allElements = await elementService.GetAll();
-            allAttributeValues = await attributeValueService.GetAll();
+
+            //allProjectAttributes = await projectAttributeService.GetAll();
+            //allAttributesG = await attributeGService.GetAll();
+            //allElements = await elementService.GetAll();
+            //allAttributeValues = await attributeValueService.GetAll();
+
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                allProjectAttributes = context.Set<ProjectAttribute>().FromSqlRaw($"SELECT * FROM ProjectAttributes WHERE ProjectId={SelectedProject.Id}").ToList();
+                allAttributesG = context.Set<AttributeG>().FromSqlRaw($"SELECT * FROM AttributesG").ToList();
+            }
 
             siteHeaderAttributes = LoadAttributeHeaders("Site").ToList();
             zoneHeaderAttributes = LoadAttributeHeaders("Zone").ToList();
@@ -205,16 +218,27 @@ namespace PlantConstructor.WPF.EditDataScreen
         {
 
             int rowCount = 1;
-            var allTypeElements = allElements.Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x.Id);
-            if (allAttributesG != null && allAttributeValues != null)
+            //var allTypeElements = allElements.Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x.Id);
+            List<AttributeValue> allElementTypeAttributeValues = new List<AttributeValue>();
+            int[] allTypeElements;
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
             {
-                var allTypeAttributeValues =
-                        from allA in allAttributesG
-                        join allV in allAttributeValues on allA.Id equals allV.AttributeGId
+                allTypeElements = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id} AND Type='{_type}'").Select(x => x.Id).ToArray();
+                var stringOfIds = string.Join(",", allTypeElements);
+                if (stringOfIds != "")
+                {
+                    allElementTypeAttributeValues = context.Set<AttributeValue>().FromSqlRaw($"SELECT * FROM AttributeValues WHERE ElementId IN ({stringOfIds})").ToList();
+                }
+                else allElementTypeAttributeValues = null;
+            }
+
+            if (allAttributesG != null && allElementTypeAttributeValues != null)
+            {
+                var listOfAttributeValues =
+                        (from allA in allAttributesG
+                        join allV in allElementTypeAttributeValues on allA.Id equals allV.AttributeGId
                         where allA.Type == _type
-                        select new TypeAttributeValue {Name=allA.Name, ElementId=allV.ElementId, Value=allV.Value };
-                
-                var listOfAttributeValues = allTypeAttributeValues.ToList();
+                        select new TypeAttributeValue {Name=allA.Name, ElementId=allV.ElementId, Value=allV.Value }).ToList();
 
                 spreadsheet.BeginUpdate();
                 try
@@ -226,6 +250,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                         {
                             if (temp.ElementId == elementID) listOfElementAttributeValues.Add(temp);
                         }
+
                         for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
                         {
                             foreach (TypeAttributeValue temp in listOfElementAttributeValues)
@@ -263,12 +288,17 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private async Task DeleteAllElementsForTheProject()
         {
-            allElements = await elementService.GetAll();
-            var allProjectElements = allElements.Where(x => x.ProjectId == SelectedProject.Id).Select(x => x.Id);
-            foreach (int ElementId in allProjectElements)
+            //allElements = await elementService.GetAll();
+            //var allProjectElements = allElements.Where(x => x.ProjectId == SelectedProject.Id).Select(x => x.Id);
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
             {
-                await elementService.Delete(ElementId);
+                List<Element> elementsToDelete = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id}").ToList();
+                await context.BulkDeleteAsync<Element>(elementsToDelete);
             }
+            //foreach (int ElementId in allProjectElements)
+            //{
+            //    await elementService.Delete(ElementId);
+            //}
         }
 
         private async Task SaveNewDataToDB(string _type, Worksheet sheet)
@@ -286,10 +316,17 @@ namespace PlantConstructor.WPF.EditDataScreen
             {
                 listAllElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type, RowIndex=rowCount});
             }
-            await elementService.CreateMultiple(listAllElements);
-            allElements = await elementService.GetAll();
-            listAllElementsTypeAndProject = allElements.
-                Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x).ToList();
+            //await elementService.CreateMultiple(listAllElements);
+            //allElements = await elementService.GetAll();
+            //listAllElementsTypeAndProject = allElements.
+            //    Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x).ToList();
+            
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                await context.BulkInsertAsync<Element>(listAllElements);
+                listAllElementsTypeAndProject = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id} AND Type='{_type}'").ToList();
+            }
+           
 
             for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
             {
@@ -304,7 +341,11 @@ namespace PlantConstructor.WPF.EditDataScreen
                     listAllAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElementId, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
                 }
             }
-            await attributeValueService.CreateMultiple(listAllAttributeValues);
+            //await attributeValueService.CreateMultiple(listAllAttributeValues);
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                await context.BulkInsertAsync<AttributeValue>(listAllAttributeValues);               
+            }
         }
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
