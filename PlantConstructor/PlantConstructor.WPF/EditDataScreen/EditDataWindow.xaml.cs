@@ -43,12 +43,10 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         //IDataService<ProjectAttribute> projectAttributeService;
         //IDataService<AttributeG> attributeGService;
-        //IDataService<Element> elementService;
         //IDataService<AttributeValue> attributeValueService;
 
         IEnumerable<ProjectAttribute> allProjectAttributes;
-        IEnumerable<AttributeG> allAttributesG;
-        //IEnumerable<Element> allElements;
+        //IEnumerable<AttributeG> allAttributesG;
         //IEnumerable<AttributeValue> allAttributeValues;
 
         List<string> siteHeaderAttributes;
@@ -87,11 +85,10 @@ namespace PlantConstructor.WPF.EditDataScreen
             LoadedWindowCommand = new RelayCommand(InitializeWorkEnvironment);
         }
 
-        public async void InitializeWorkEnvironment(object parameter)
+        public void InitializeWorkEnvironment(object parameter)
         {
             //projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
             //attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
-            //elementService = new GenericDataService<Element>(new PlantConstructorDbContextFactory());
             //attributeValueService = new GenericDataService<AttributeValue>(new PlantConstructorDbContextFactory());
 
             _contextFactory = new PlantConstructorDbContextFactory();
@@ -133,62 +130,97 @@ namespace PlantConstructor.WPF.EditDataScreen
         private void LoadDataFromDatabase()
         {
 
-            //allProjectAttributes = await projectAttributeService.GetAll();
-            //allAttributesG = await attributeGService.GetAll();
-            //allElements = await elementService.GetAll();
-            //allAttributeValues = await attributeValueService.GetAll();
-
             using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
             {
-                allProjectAttributes = context.Set<ProjectAttribute>().FromSqlRaw($"SELECT * FROM ProjectAttributes WHERE ProjectId={SelectedProject.Id}").ToList();
-                allAttributesG = context.Set<AttributeG>().FromSqlRaw($"SELECT * FROM AttributesG").ToList();
+                allProjectAttributes = context.Set<ProjectAttribute>().
+                    FromSqlRaw($"SELECT * FROM ProjectAttributes WHERE ProjectId={SelectedProject.Id}").
+                    Include(x=>x.AttributeG).
+                    ToList();
             }
 
-            siteHeaderAttributes = LoadAttributeHeaders("Site").ToList();
-            zoneHeaderAttributes = LoadAttributeHeaders("Zone").ToList();
-            pipeHeaderAttributes = LoadAttributeHeaders("Pipe").ToList();
-            branchHeaderAttributes = LoadAttributeHeaders("Branch").ToList();
-            pipePartHeaderAttributes = LoadAttributeHeaders("PipePart").ToList();
+            siteHeaderAttributes = new List<string>();
+            zoneHeaderAttributes = new List<string>();
+            pipeHeaderAttributes = new List<string>();
+            branchHeaderAttributes = new List<string>();
+            pipePartHeaderAttributes = new List<string>();
 
-            SetHeader(siteHeaderAttributes, workbook.Worksheets[0]);
-            SetHeader(zoneHeaderAttributes, workbook.Worksheets[1]);
-            SetHeader(pipeHeaderAttributes, workbook.Worksheets[2]);
-            SetHeader(branchHeaderAttributes, workbook.Worksheets[3]);
-            SetHeader(pipePartHeaderAttributes, workbook.Worksheets[4]);
-
-            LoadAttributeValues("Site", workbook.Worksheets[0]);
-            LoadAttributeValues("Zone", workbook.Worksheets[1]);
-            LoadAttributeValues("Pipe", workbook.Worksheets[2]);
-            LoadAttributeValues("Branch", workbook.Worksheets[3]);
-            LoadAttributeValues("PipePart", workbook.Worksheets[4]);
-        }
-
-        private IEnumerable<string> LoadAttributeHeaders(string _type)
-        {
-            IEnumerable<string> headerAttributes =
-                from allA in allAttributesG
-                join allP in allProjectAttributes on allA.Id equals allP.AttributeGId
-                where allP.ProjectId == SelectedProject.Id
-                where allA.Type == _type
-                select allA.Name;
-
-            return headerAttributes;
+            LoadTypeValues("Site", workbook.Worksheets[0]);
+            LoadTypeValues("Zone", workbook.Worksheets[1]);
+            LoadTypeValues("Pipe", workbook.Worksheets[2]);
+            LoadTypeValues("Branch", workbook.Worksheets[3]);
+            LoadTypeValues("PipePart", workbook.Worksheets[4]);
 
         }
 
-        private void SetHeader(IEnumerable<string> attributes, Worksheet sheet)
+        private void LoadTypeValues(string _type, Worksheet sheet)
         {
-            int columnCounter = 0;
+
+            List<ProjectAttribute> typeProjAtt = allProjectAttributes.Where(x => x.AttributeG.Type == _type).Select(x=>x).ToList();
+            int columnIndex = 0;
+
             spreadsheet.BeginUpdate();
             try
             {
-                foreach (string attName in attributes)
+                foreach (ProjectAttribute att in typeProjAtt)
                 {
-                    sheet.Rows[0][columnCounter].Value = attName;
-                    sheet.Rows[0][columnCounter].FillColor = System.Drawing.Color.Tomato;
-                    columnCounter++;
-                }
 
+                    sheet.Rows[0][columnIndex].Value = att.AttributeG.Name;
+                    sheet.Rows[0][columnIndex].FillColor = System.Drawing.Color.Tomato;
+                    
+                    AddHeaderValueToList(_type, att.AttributeG.Name);
+
+                    List<AttributeValue> attValueList = null;
+                    using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+                    {
+                        attValueList = context.Set<AttributeValue>().FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={att.Id}").ToList();
+                    }
+
+                    if (attValueList!=null)
+                    {
+                        foreach (AttributeValue attValue in attValueList)
+                        {
+                            sheet.Rows[attValue.Rowindex][columnIndex].Value = attValue.Value;
+                        }
+                    }
+
+                    columnIndex++;
+                }
+                
+                SetHeaderProtection(sheet);
+
+            }
+            finally
+            {
+                spreadsheet.EndUpdate();
+            }
+
+        }
+
+        private void AddHeaderValueToList(string _type, string value)
+        {
+            switch(_type)
+            {
+                case "Site":
+                    siteHeaderAttributes.Add(value);
+                    break;
+                case "Zone":
+                    zoneHeaderAttributes.Add(value);
+                    break;
+                case "Pipe":
+                    pipeHeaderAttributes.Add(value);
+                    break;
+                case "Branch":
+                    branchHeaderAttributes.Add(value);
+                    break;
+                case "PipePart":
+                    pipePartHeaderAttributes.Add(value);
+                    break;
+
+            }
+        }
+
+        private void SetHeaderProtection(Worksheet sheet)
+        {
                 sheet.Rows[0].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
                 sheet.Rows[0].Font.FontStyle = SpreadsheetFontStyle.Bold;
 
@@ -197,7 +229,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                 {
                     sheet.Range["$A:$XFD"].Protection.Locked = false; // Unlock the entire document  
                     sheet.Rows[0].Protection.Locked = true; // Lock the specified range  
-                    sheet.Protect("4321", WorksheetProtectionPermissions.Default
+                    sheet.Protect("48800609", WorksheetProtectionPermissions.Default
                         | WorksheetProtectionPermissions.DeleteRows
                         | WorksheetProtectionPermissions.FormatColumns
                         | WorksheetProtectionPermissions.FormatRows
@@ -208,145 +240,59 @@ namespace PlantConstructor.WPF.EditDataScreen
                         | WorksheetProtectionPermissions.InsertRows);
                 }
             }
-            finally
-            {
-                spreadsheet.EndUpdate();
-            }
-        }
 
-        private void LoadAttributeValues(string _type, Worksheet sheet)
-        {
-
-            int rowCount = 1;
-            //var allTypeElements = allElements.Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x.Id);
-            List<AttributeValue> allElementTypeAttributeValues = new List<AttributeValue>();
-            int[] allTypeElements;
-            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-            {
-                allTypeElements = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id} AND Type='{_type}'").Select(x => x.Id).ToArray();
-                var stringOfIds = string.Join(",", allTypeElements);
-                if (stringOfIds != "")
-                {
-                    allElementTypeAttributeValues = context.Set<AttributeValue>().FromSqlRaw($"SELECT * FROM AttributeValues WHERE ElementId IN ({stringOfIds})").ToList();
-                }
-                else allElementTypeAttributeValues = null;
-            }
-
-            if (allAttributesG != null && allElementTypeAttributeValues != null)
-            {
-                var listOfAttributeValues =
-                        (from allA in allAttributesG
-                        join allV in allElementTypeAttributeValues on allA.Id equals allV.AttributeGId
-                        where allA.Type == _type
-                        select new TypeAttributeValue {Name=allA.Name, ElementId=allV.ElementId, Value=allV.Value }).ToList();
-
-                spreadsheet.BeginUpdate();
-                try
-                {
-                    foreach (int elementID in allTypeElements)
-                    {
-                        List<TypeAttributeValue> listOfElementAttributeValues = new List<TypeAttributeValue> { };
-                        foreach (TypeAttributeValue temp in listOfAttributeValues)
-                        {
-                            if (temp.ElementId == elementID) listOfElementAttributeValues.Add(temp);
-                        }
-
-                        for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
-                        {
-                            foreach (TypeAttributeValue temp in listOfElementAttributeValues)
-                            {
-                                if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) 
-                                     sheet.Rows[rowCount][columnCount].Value = temp.Value;
-                            }
-                        }
-                        rowCount++;
-                    }
-            }
-                finally
-            {
-                spreadsheet.EndUpdate();
-            }
-
-        }
-
-        }
 
         private async void SaveToDB_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait;
-            await DeleteAllElementsForTheProject();
 
-            await SaveNewDataToDB("Site", workbook.Worksheets[0]);
-            await SaveNewDataToDB("Zone", workbook.Worksheets[1]);
-            await SaveNewDataToDB("Pipe", workbook.Worksheets[2]);
-            await SaveNewDataToDB("Branch", workbook.Worksheets[3]);
-            await SaveNewDataToDB("PipePart", workbook.Worksheets[4]);
+            await SaveTypeValues("Site", workbook.Worksheets[0]);
+            await SaveTypeValues("Zone", workbook.Worksheets[1]);
+            await SaveTypeValues("Pipe", workbook.Worksheets[2]);
+            await SaveTypeValues("Branch", workbook.Worksheets[3]);
+            await SaveTypeValues("PipePart", workbook.Worksheets[4]);
 
             LogText.Text = "Data saved to DB";
             Mouse.OverrideCursor = null;
         }
 
-        private async Task DeleteAllElementsForTheProject()
+
+        private async Task SaveTypeValues(string _type, Worksheet sheet)
         {
-            //allElements = await elementService.GetAll();
-            //var allProjectElements = allElements.Where(x => x.ProjectId == SelectedProject.Id).Select(x => x.Id);
-            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-            {
-                List<Element> elementsToDelete = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id}").ToList();
-                await context.BulkDeleteAsync<Element>(elementsToDelete);
-            }
-            //foreach (int ElementId in allProjectElements)
-            //{
-            //    await elementService.Delete(ElementId);
-            //}
-        }
+            CellRange usedRange = sheet.GetUsedRange();
 
-        private async Task SaveNewDataToDB(string _type, Worksheet sheet)
-        {
-            List<AttributeG> listAllTypeAttributesG = new List<AttributeG>();
-            List<AttributeValue> listAllAttributeValues = new List<AttributeValue>();
-            List<Element> listAllElements = new List<Element>();
-            List<Element> listAllElementsTypeAndProject = new List<Element>();
+            List<ProjectAttribute> typeProjAtt = allProjectAttributes.Where(x => x.AttributeG.Type == _type).Select(x => x).ToList();
+            int columnIndex = 0;
 
-            foreach (AttributeG temp in allAttributesG)
+            while (sheet.Cells[0, columnIndex].Value.ToString() != "")
             {
-                if (temp.Type == _type) listAllTypeAttributesG.Add(temp);
-            }
-            for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
-            {
-                listAllElements.Add(new Element { ProjectId = SelectedProject.Id, Type = _type, RowIndex=rowCount});
-            }
-            //await elementService.CreateMultiple(listAllElements);
-            //allElements = await elementService.GetAll();
-            //listAllElementsTypeAndProject = allElements.
-            //    Where(x => x.Type == _type && x.ProjectId == SelectedProject.Id).Select(x => x).ToList();
-            
-            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-            {
-                await context.BulkInsertAsync<Element>(listAllElements);
-                listAllElementsTypeAndProject = context.Set<Element>().FromSqlRaw($"SELECT * FROM Elements WHERE ProjectId={SelectedProject.Id} AND Type='{_type}'").ToList();
-            }
-           
-
-            for (int rowCount = 1; sheet.Cells[rowCount, 0].Value.ToString() != ""; rowCount++)
-            {
-                var newElementId = listAllElementsTypeAndProject.Where(x => x.RowIndex == rowCount).Select(x => x.Id).FirstOrDefault();
-                for (int columnCount = 0; sheet.Cells[0, columnCount].Value.ToString() != ""; columnCount++)
+                int temp_attValueId= typeProjAtt.Where(x => x.AttributeG.Name == sheet.Cells[0, columnIndex].Value.ToString()).Select(x => x.Id).FirstOrDefault();
+                using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
                 {
-                    int newAttributeId = 0;
-                    foreach (AttributeG temp in listAllTypeAttributesG)
-                    {
-                        if (temp.Name == sheet.Cells[0, columnCount].Value.ToString()) newAttributeId = temp.Id;
-                    }
-                    listAllAttributeValues.Add(new AttributeValue { AttributeGId = newAttributeId, ElementId = newElementId, Value = sheet.Cells[rowCount, columnCount].Value.ToString() });
+                    var toDelete = context.Set<AttributeValue>().
+                        FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={temp_attValueId}").ToList();
+                    await context.BulkDeleteAsync<AttributeValue>(toDelete);
                 }
-            }
-            //await attributeValueService.CreateMultiple(listAllAttributeValues);
-            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-            {
-                await context.BulkInsertAsync<AttributeValue>(listAllAttributeValues);               
+                
+                int rowIndex = 0;
+                List<AttributeValue> toInsert = null;
+                while (rowIndex<usedRange.RowCount)
+                {
+                    toInsert.Add(new AttributeValue {
+                        ProjectAttributeID=temp_attValueId, 
+                        Rowindex=rowIndex, 
+                        Value= sheet.Cells[rowIndex, columnIndex].Value.ToString() });
+                    rowIndex++;
+                }
+                using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+                {
+                    await context.BulkInsertAsync<AttributeValue>(toInsert);
+                }
+
+                columnIndex++;
             }
         }
+
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
         {
@@ -446,35 +392,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                             || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU" 
                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
 
-                            //for Part, add new owner if needed
-                            //if (currentType != "PIPE" && currentType != "SITE" && currentType != "ZONE" && currentType != "BRAN")
-                            //{
-                            //    currentPartOwner = filelines[a + 4].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[1];
-
-                                //if (previousPartOwner != currentPartOwner)
-                                //{
-
-                                //    //this.Dispatcher.Invoke(() =>
-                                //    //{
-                                //    //    //remove protection
-                                //    //    pipeConstructor.ChangeProtectionAndColor(pipeConstructorRowCount, new List<string>() { "D" });
-                                //    //    //add data
-                                //    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["A"].Value = "NAME";
-                                //    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["D"].Value = currentPlantConstructorOwner;
-                                //    //});
-                                //    dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = 0, Value = "NAME" });
-                                //    dataStorage.PartElements.Add(new SpreadsheetElement { Row = partRowCount, Column = , Value = "NAME" });
-                                //    previousPartOwner = currentPartOwner;
-                                //    partRowCount++;
-                                //}
-                                ////remove protection for the next row where the new element will be added
-                                //this.Dispatcher.Invoke(() =>
-                                //{
-                                //    pipeConstructor.ChangeProtectionAndColor(pipeConstructorRowCount, new List<string>() { "C", "D", "E", "F", "G", "H", "I" });
-                                //});
-                                ////add type
-                                ////TODO...
-                            //}
+                            
 
                         }
                         else
@@ -570,38 +488,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //});
                                         dataStorage.PipePartElements.Add(new SpreadsheetElement { Row = pipePartRowCount, Column = listItemIndex, Value = attributeValue });
                                     }
-                                    //if (attributeName == "SPRE") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["C"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "TYPE") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["A"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "NAME") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["D"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "POS") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["E"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "ORI") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["F"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "LSTU") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["G"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "ARRI") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["H"].Value = attributeValue;
-                                    //});
-                                    //else if (attributeName == "LEAV") this.Dispatcher.Invoke(() =>
-                                    //{
-                                    //    workbook.Worksheets[4].Rows[pipeConstructorRowCount]["I"].Value = attributeValue;
-                                    //});
+
 
                                 }
                             }

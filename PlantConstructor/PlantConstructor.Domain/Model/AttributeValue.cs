@@ -7,10 +7,9 @@ namespace PlantConstructor.Domain.Model
 {
     public class AttributeValue :DomainObject
     {
-        public int AttributeGId { get; set; }
-        public AttributeG AttributeG { get; set; }
-        public int ElementId { get; set; }
-        public Element Element { get; set; }
+        public int ProjectAttributeID { get; set; }
+        public ProjectAttribute ProjectAttribute { get; set; }
+        public int Rowindex { get; set; }
         public string Value { get; set; }
     }
 }

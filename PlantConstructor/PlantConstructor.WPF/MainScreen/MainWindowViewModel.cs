@@ -284,28 +284,29 @@ namespace PlantConstructor.WPF.MainScreen
             }
             foreach (string att in AllProjectAttributes.SiteAttributes)
             {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+                //int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
+                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
             }
             foreach (string att in AllProjectAttributes.ZoneAttributes)
             {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x.Id).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
             }
             foreach (string att in AllProjectAttributes.PipeAttributes)
             {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x.Id).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
             }
             foreach (string att in AllProjectAttributes.BranchAttributes)
             {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x.Id).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
             }
             foreach (string att in AllProjectAttributes.PipePartAttributes)
             {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x.Id).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
+                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x).FirstOrDefault();
+                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
             }
 
             var updatedProject = await projectService.Update(SelectedItem.Id, new Project { Name = newProjectName, ProjectGroup = newProjectGroup });
