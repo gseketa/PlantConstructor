@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Editors.Helpers;
 using DevExpress.XtraPrinting.Native;
+using DevExpress.XtraReports.Wizards.Templates;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using PlantConstructor.Domain.Model;
@@ -45,27 +46,53 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private ListsOfAttributes allAvailableAttributes;
+        private List<AttributeG> allAvailableAttributes;
 
-        public ListsOfAttributes AllAvailableAttributes
+        public List<AttributeG> AllAvailableAttributes
         {
             get { return allAvailableAttributes; }
             set { 
                 allAvailableAttributes = value;
-                OnPropertyRaised("AllAvailableAttributes");
+                //OnPropertyRaised("AllAvailableAttributes");
             }
         }
 
-        private ListsOfAttributes allProjectAttributes;
 
-        public ListsOfAttributes AllProjectAttributes
+        private List<ProjectAttribute> allProjectAttributes;
+
+        public List<ProjectAttribute> AllProjectAttributes
         {
             get { return allProjectAttributes; }
             set { 
                 allProjectAttributes = value;
-                OnPropertyRaised("AllProjectAttributes");
+                //OnPropertyRaised("AllProjectAttributes");
             }
         }
+
+        private List<ProjectAttribute> allProjectAttributesToAdd;
+
+        public List<ProjectAttribute> AllProjectAttributesToAdd
+        {
+            get { return allProjectAttributesToAdd; }
+            set
+            {
+                allProjectAttributesToAdd = value;
+                //OnPropertyRaised("AllProjectAttributes");
+            }
+        }
+
+        private List<ProjectAttribute> allProjectAttributesToRemove;
+
+        public List<ProjectAttribute> AllProjectAttributesToRemove
+        {
+            get { return allProjectAttributesToRemove; }
+            set
+            {
+                allProjectAttributesToRemove = value;
+                //OnPropertyRaised("AllProjectAttributes");
+            }
+        }
+
 
         private List<ListBoxAttributes> allAvailableAttributesForDisplay;
 
@@ -275,7 +302,7 @@ namespace PlantConstructor.WPF.MainScreen
      
         }
 
-        public async void SaveProjectToDBAsync (object parameter)
+        public void SaveProjectToDBAsync (object parameter)
         {
             var values = (object[])parameter;
             string newProjectName=(string)values[0];
@@ -283,71 +310,11 @@ namespace PlantConstructor.WPF.MainScreen
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            List<ProjectAttribute> listForProjectAttSave = new List<ProjectAttribute>();
-            
-            foreach (string att in AllProjectAttributes.SiteAttributes)
-            {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x.Id).FirstOrDefault();
-                listForProjectAttSave.Add(new ProjectAttribute {ProjectId=SelectedItem.Id, AttributeGId=attId });
-            }
-            foreach (string att in AllProjectAttributes.ZoneAttributes)
-            {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x.Id).FirstOrDefault();
-                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
-            }
-            foreach (string att in AllProjectAttributes.PipeAttributes)
-            {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x.Id).FirstOrDefault();
-                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
-            }
-            foreach (string att in AllProjectAttributes.BranchAttributes)
-            {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x.Id).FirstOrDefault();
-                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
-            }
-            foreach (string att in AllProjectAttributes.PipePartAttributes)
-            {
-                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x.Id).FirstOrDefault();
-                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
-            }
-
-
-            //foreach (ProjectAttribute projAtt in allProjectAttributesFromDB.Where(x=>x.ProjectId==SelectedItem.Id))
-            //{
-            //    await projectAttributeService.Delete(projAtt.Id);
-            //}
-            //foreach (string att in AllProjectAttributes.SiteAttributes)
-            //{
-            //    //int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
-            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x).FirstOrDefault();
-            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
-            //}
-            //foreach (string att in AllProjectAttributes.ZoneAttributes)
-            //{
-            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x).FirstOrDefault();
-            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
-            //}
-            //foreach (string att in AllProjectAttributes.PipeAttributes)
-            //{
-            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x).FirstOrDefault();
-            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
-            //}
-            //foreach (string att in AllProjectAttributes.BranchAttributes)
-            //{
-            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x).FirstOrDefault();
-            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
-            //}
-            //foreach (string att in AllProjectAttributes.PipePartAttributes)
-            //{
-            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x).FirstOrDefault();
-            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
-            //}
-
             Project updatedProject = new Project { Id = SelectedItem.Id, Name = newProjectName, ProjectGroup = newProjectGroup };
             using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-            {
-                await context.BulkInsertOrUpdateOrDeleteAsync(listForProjectAttSave);
-                context.Set<Project>().Update(updatedProject);
+            {              
+                context.Update(updatedProject);
+                context.SaveChanges();
             }
 
             LoadProjectsFromDatabaseWorker();
@@ -359,157 +326,92 @@ namespace PlantConstructor.WPF.MainScreen
             Mouse.OverrideCursor = null;
         }
 
-        public void MoveAttributeFromLeftToRight (object parameter)
+        public async void MoveAttributeFromLeftToRight (object parameter)
         {
             var listAtt = selectedAttributeFromAvailable;
+            SelectedAttributeFromAvailable = null;
             if (listAtt != null)
             {
-                if (SelectedAttributeGroup == "Site")
-                {
                     foreach (ListBoxAttributes attribute in listAtt)
                     {
-                        AllAvailableAttributes.SiteAttributes.RemoveAt(AllAvailableAttributes.SiteAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.SiteAttributes.Add(attribute.Item);                       
-                    }
-                    SelectedAttributeFromAvailable = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Site");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Site");
-                    SelectedAttributeGroup = "Site";
+                        var attG = allAttributesFromDB.
+                            Where(x => x.Name == attribute.Item && x.Type==SelectedAttributeGroup).
+                            Select(x => x).FirstOrDefault();
+                        AllAvailableAttributes.Remove(AllAvailableAttributes.Single(x => x.Name == attG.Name && x.Type==attG.Type));
+                        AllProjectAttributes.Add(new ProjectAttribute {ProjectId=SelectedItem.Id, AttributeG=attG});
+                        AllAvailableAttributesForDisplay.Remove(AllAvailableAttributesForDisplay.Single(x => x.Item == attribute.Item));
+                        AllProjectAttributesForDisplay.Add(new ListBoxAttributes { Item=attribute.Item });
+                        AllProjectAttributesToAdd.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id });
                 }
-                else if (SelectedAttributeGroup == "Zone")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllAvailableAttributes.ZoneAttributes.RemoveAt(AllAvailableAttributes.ZoneAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.ZoneAttributes.Add(attribute.Item);
-                    }
-                    SelectedAttributeFromAvailable = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Zone");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Zone");
-                }
-                else if (SelectedAttributeGroup == "Pipe")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllAvailableAttributes.PipeAttributes.RemoveAt(AllAvailableAttributes.PipeAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.PipeAttributes.Add(attribute.Item);
-                    }
-                    SelectedAttributeFromAvailable = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Pipe");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Pipe");
-                }
-                else if (SelectedAttributeGroup == "Branch")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllAvailableAttributes.BranchAttributes.RemoveAt(AllAvailableAttributes.BranchAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.BranchAttributes.Add(attribute.Item);
-                        
-                    }
-                    SelectedAttributeFromAvailable = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Branch");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Branch");
-                }
-                else if (SelectedAttributeGroup == "PipePart")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllAvailableAttributes.PipePartAttributes.RemoveAt(AllAvailableAttributes.PipePartAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.PipePartAttributes.Add(attribute.Item);
-                    }
-                    SelectedAttributeFromAvailable = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("PipePart");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("PipePart");
-                }
+
+                
+
+                //SelectedAttributeGroup = SelectedAttributeGroup;
+                var temp1 = AllAvailableAttributesForDisplay;
+                var temp2 = AllProjectAttributesForDisplay;
+
+                AllAvailableAttributesForDisplay = new List<ListBoxAttributes>();
+                AllProjectAttributesForDisplay = new List<ListBoxAttributes>();
+
+                AllAvailableAttributesForDisplay = temp1;
+                AllProjectAttributesForDisplay = temp2;
+
+                await SaveChangesToAttributes();
             }
         }
 
-        public void MoveAttributeFromRightToLeft(object parameter)
+        public async void MoveAttributeFromRightToLeft(object parameter)
         {
             var listAtt = selectedAttributeFromProject;
+            SelectedAttributeFromProject = null;
             if (listAtt != null)
             {
-                if (SelectedAttributeGroup == "Site")
+                foreach (ListBoxAttributes attribute in listAtt)
                 {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllProjectAttributes.SiteAttributes.RemoveAt(AllProjectAttributes.SiteAttributes.IndexOf(attribute.Item));
-                        AllAvailableAttributes.SiteAttributes.Add(attribute.Item);
-                    }
-                    SelectedAttributeFromProject = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Site");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Site");
-                }
-                else if (SelectedAttributeGroup == "Zone")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllProjectAttributes.ZoneAttributes.RemoveAt(AllProjectAttributes.ZoneAttributes.IndexOf(attribute.Item));
-                        AllAvailableAttributes.ZoneAttributes.Add(attribute.Item);
-                        
-                    }
-                    SelectedAttributeFromProject = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Zone");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Zone");
-                }
-                else if (SelectedAttributeGroup == "Pipe")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllProjectAttributes.PipeAttributes.RemoveAt(AllProjectAttributes.PipeAttributes.IndexOf(attribute.Item));
-                        AllAvailableAttributes.PipeAttributes.Add(attribute.Item);
-                       
-                    }
-                    SelectedAttributeFromProject = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Pipe");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Pipe");
-                }
-                else if (SelectedAttributeGroup == "Branch")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllProjectAttributes.BranchAttributes.RemoveAt(AllProjectAttributes.BranchAttributes.IndexOf(attribute.Item));
-                        AllAvailableAttributes.BranchAttributes.Add(attribute.Item);
-                        
-                    }
-                    SelectedAttributeFromProject = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("Branch");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("Branch");
-                }
-                else if (SelectedAttributeGroup == "PipePart")
-                {
-                    foreach (ListBoxAttributes attribute in listAtt)
-                    {
-                        AllAvailableAttributes.PipePartAttributes.RemoveAt(AllProjectAttributes.PipePartAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.PipePartAttributes.Add(attribute.Item);
-                        
-                    }
-                    SelectedAttributeFromProject = null;
-                    AllAvailableAttributesForDisplay = null;
-                    AllProjectAttributesForDisplay = null;
-                    AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox("PipePart");
-                    AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox("PipePart");
+                    var attG = allAttributesFromDB.
+                        Where(x => x.Name == attribute.Item && x.Type == SelectedAttributeGroup).
+                        Select(x => x).FirstOrDefault();
+                    AllAvailableAttributes.Add(new AttributeG {Name=attG.Name, Type=attG.Type });
+                    AllProjectAttributesToRemove.Add(AllProjectAttributes.Where(x => x.AttributeG.Id == attG.Id && x.ProjectId==SelectedItem.Id).Select(x=>x).FirstOrDefault());
+                    AllProjectAttributes.Remove(AllProjectAttributes.Single(x=>x.AttributeG.Id==attG.Id));
+                    AllAvailableAttributesForDisplay.Add(new ListBoxAttributes {Item=attribute.Item });
+                    AllProjectAttributesForDisplay.Remove(AllProjectAttributesForDisplay.Single(x => x.Item == attribute.Item));
+                    
                 }
 
+                
+
+                var temp1 = AllAvailableAttributesForDisplay;
+                var temp2 = AllProjectAttributesForDisplay;
+
+                AllAvailableAttributesForDisplay = new List<ListBoxAttributes>();
+                AllProjectAttributesForDisplay = new List<ListBoxAttributes>();
+
+                AllAvailableAttributesForDisplay = temp1;
+                AllProjectAttributesForDisplay = temp2;
+                //SelectedAttributeGroup = SelectedAttributeGroup;
+
+                await SaveChangesToAttributes();
+
+
             }
+        }
+
+        public async Task SaveChangesToAttributes()
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+
+      
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                await context.BulkDeleteAsync<ProjectAttribute>(AllProjectAttributesToRemove);
+                await context.BulkInsertAsync<ProjectAttribute>(AllProjectAttributesToAdd);
+            }
+
+            AllProjectAttributesToAdd = new List<ProjectAttribute>();
+            AllProjectAttributesToRemove = new List<ProjectAttribute>();
+
+            Mouse.OverrideCursor = null;
         }
 
         public void AddNewProjectToDB (object parameter)
@@ -517,8 +419,10 @@ namespace PlantConstructor.WPF.MainScreen
             var createdProject = new Project { Name = "NewProject", ProjectGroup = "New Project Group" };
             using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
             {
-                var created = context.Set<Project>().Add(createdProject);
-                LoadProjectsFromDatabaseWorker();
+                var created = context.Add<Project>(createdProject);
+                context.SaveChanges();
+
+               LoadProjectsFromDatabaseWorker();
                 SelectedItem = created.Entity;
             }
             
@@ -532,7 +436,8 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
                 {
-                    var created = context.Set<Project>().Remove(SelectedItem);
+                    context.Remove<Project>(SelectedItem);
+                    context.SaveChanges();
 
                 }
                 LoadProjectsFromDatabaseWorker();
@@ -541,62 +446,32 @@ namespace PlantConstructor.WPF.MainScreen
 
         private void DisplayProjectAttributes(string attributeGroup)
         {
-           if (AllAvailableAttributes.GetListsOfAttributes(attributeGroup) != null)
+            AllAvailableAttributesForDisplay = new List<ListBoxAttributes>();
+            AllProjectAttributesForDisplay = new List<ListBoxAttributes>();
+            
+            if (AllAvailableAttributes ==null)
             {
-                AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox(attributeGroup);
-                AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox(attributeGroup);
+                AllProjectAttributes = allProjectAttributesFromDB.ToList();
+                AllAvailableAttributes = allAttributesFromDB.ToList().Except(AllProjectAttributes.Select(x => x.AttributeG)).ToList();   
             }
-           else
+
+            foreach (string attName in AllAvailableAttributes.Where(x => x.Type == attributeGroup).Select(x => x.Name).ToList())
             {
-                List<string> temp_allProjAtt = new List<string>();
-
-
-                AllProjectAttributes.SiteAttributes = (from allA in allAttributesFromDB
-                                                               join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                              where allP.ProjectId == SelectedItem.Id
-                                                               where allA.Type == "Site"
-                                                               select allA.Name)?.ToList();
-                AllAvailableAttributes.SiteAttributes = allAttributesFromDB.Where(x => x.Type == "Site").Select(x => x.Name).ToList().Except(AllProjectAttributes.SiteAttributes).ToList();
-
-                AllProjectAttributes.ZoneAttributes = (from allA in allAttributesFromDB
-                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                       where allP.ProjectId == SelectedItem.Id
-                                                       where allA.Type == "Zone"
-                                                       select allA.Name)?.ToList();
-                AllAvailableAttributes.ZoneAttributes = allAttributesFromDB.Where(x => x.Type == "Zone").Select(x => x.Name).ToList().Except(AllProjectAttributes.ZoneAttributes).ToList();
-
-                AllProjectAttributes.PipeAttributes = (from allA in allAttributesFromDB
-                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                       where allP.ProjectId == SelectedItem.Id
-                                                       where allA.Type == "Pipe"
-                                                       select allA.Name)?.ToList();
-                AllAvailableAttributes.PipeAttributes = allAttributesFromDB.Where(x => x.Type == "Pipe").Select(x => x.Name).ToList().Except(AllProjectAttributes.PipeAttributes).ToList();
-
-                AllProjectAttributes.BranchAttributes = (from allA in allAttributesFromDB
-                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                       where allP.ProjectId == SelectedItem.Id
-                                                       where allA.Type == "Branch"
-                                                       select allA.Name)?.ToList();
-                AllAvailableAttributes.BranchAttributes = allAttributesFromDB.Where(x => x.Type == "Branch").Select(x => x.Name).ToList().Except(AllProjectAttributes.BranchAttributes).ToList();
-
-                AllProjectAttributes.PipePartAttributes = (from allA in allAttributesFromDB
-                                                       join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                       where allP.ProjectId == SelectedItem.Id
-                                                       where allA.Type == "PipePart"
-                                                       select allA.Name)?.ToList();
-                AllAvailableAttributes.PipePartAttributes = allAttributesFromDB.Where(x => x.Type == "PipePart").Select(x => x.Name).ToList().Except(AllProjectAttributes.PipePartAttributes).ToList();
-
-
-                AllAvailableAttributesForDisplay = AllAvailableAttributes.GetAttForListbox(attributeGroup);
-                AllProjectAttributesForDisplay = AllProjectAttributes.GetAttForListbox(attributeGroup);
-                
+                AllAvailableAttributesForDisplay.Add(new ListBoxAttributes { Item = attName });
             }
+            foreach (string attName in AllProjectAttributes.Where(x => x.AttributeG.Type == attributeGroup).Select(x => x.AttributeG.Name).ToList())
+            {
+                AllProjectAttributesForDisplay.Add(new ListBoxAttributes { Item = attName });
+            }
+
         }
 
         private void ResetLocalAttributeStorage()
         {
-            AllProjectAttributes = new ListsOfAttributes();
-            AllAvailableAttributes = new ListsOfAttributes();
+            AllProjectAttributes = null;
+            AllAvailableAttributes = null;
+            AllProjectAttributesToAdd = new List<ProjectAttribute>();
+            AllProjectAttributesToRemove= new List<ProjectAttribute>();
         }
 
         private void ResetAttributeGroupComboBoxSelection ()
