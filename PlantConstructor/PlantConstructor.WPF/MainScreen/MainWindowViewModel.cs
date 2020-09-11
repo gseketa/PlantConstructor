@@ -355,8 +355,10 @@ namespace PlantConstructor.WPF.MainScreen
 
                 AllAvailableAttributesForDisplay = temp1;
                 AllProjectAttributesForDisplay = temp2;
-
+                
+                Mouse.OverrideCursor = Cursors.Wait;
                 await SaveChangesToAttributes();
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -390,18 +392,17 @@ namespace PlantConstructor.WPF.MainScreen
                 AllAvailableAttributesForDisplay = temp1;
                 AllProjectAttributesForDisplay = temp2;
                 //SelectedAttributeGroup = SelectedAttributeGroup;
-
+                Mouse.OverrideCursor = Cursors.Wait;
                 await SaveChangesToAttributes();
-
+                Mouse.OverrideCursor = null;
 
             }
         }
 
         public async Task SaveChangesToAttributes()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
+            //Mouse.OverrideCursor = Cursors.Wait;
 
-      
             using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
             {
                 await context.BulkDeleteAsync<ProjectAttribute>(AllProjectAttributesToRemove);
@@ -411,7 +412,7 @@ namespace PlantConstructor.WPF.MainScreen
             AllProjectAttributesToAdd = new List<ProjectAttribute>();
             AllProjectAttributesToRemove = new List<ProjectAttribute>();
 
-            Mouse.OverrideCursor = null;
+            //Mouse.OverrideCursor = null;
         }
 
         public void AddNewProjectToDB (object parameter)
@@ -463,6 +464,15 @@ namespace PlantConstructor.WPF.MainScreen
             {
                 AllProjectAttributesForDisplay.Add(new ListBoxAttributes { Item = attName });
             }
+
+            var temp1 = AllAvailableAttributesForDisplay;
+            var temp2 = AllProjectAttributesForDisplay;
+
+            AllAvailableAttributesForDisplay = new List<ListBoxAttributes>();
+            AllProjectAttributesForDisplay = new List<ListBoxAttributes>();
+
+            AllAvailableAttributesForDisplay = temp1;
+            AllProjectAttributesForDisplay = temp2;
 
         }
 
