@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="20.1.7" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.All" Version="20.1.7" />
+  </ItemGroup>
+
 </Project>

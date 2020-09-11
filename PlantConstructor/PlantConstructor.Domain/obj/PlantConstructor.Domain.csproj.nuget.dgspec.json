@@ -1,32 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\goran.seketa\\Documents\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj": {}
+    "C:\\Users\\goran.seketa\\Documents\\Development\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\goran.seketa\\Documents\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj": {
+    "C:\\Users\\goran.seketa\\Documents\\Development\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\goran.seketa\\Documents\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\goran.seketa\\Documents\\Development\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj",
         "projectName": "PlantConstructor.Domain",
-        "projectPath": "C:\\Users\\goran.seketa\\Documents\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj",
+        "projectPath": "C:\\Users\\goran.seketa\\Documents\\Development\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\PlantConstructor.Domain.csproj",
         "packagesPath": "C:\\Users\\goran.seketa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\goran.seketa\\Documents\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\obj\\",
+        "outputPath": "C:\\Users\\goran.seketa\\Documents\\Development\\PlantConstructor\\PlantConstructor\\PlantConstructor.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\goran.seketa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 20.1\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
@@ -44,6 +39,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "DevExpress.WindowsDesktop.Wpf": {
+              "target": "Package",
+              "version": "[20.1.7, )"
+            },
+            "DevExpress.WindowsDesktop.Wpf.Themes.All": {
+              "target": "Package",
+              "version": "[20.1.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,5 +1,7 @@
 ﻿using DevExpress.Xpf.Editors.Helpers;
 using DevExpress.XtraPrinting.Native;
+using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
 using PlantConstructor.Domain.Model;
 using PlantConstructor.Domain.Services;
 using PlantConstructor.EntityFramework;
@@ -22,12 +24,15 @@ namespace PlantConstructor.WPF.MainScreen
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<ProjectDepartment> ProjectDepartments { get; set; }
-        IDataService<Project> projectService;
-        IDataService<ProjectAttribute> projectAttributeService;
-        IDataService<AttributeG> attributeGService;
+        
+        //IDataService<Project> projectService;
+        //IDataService<ProjectAttribute> projectAttributeService;
+        //IDataService<AttributeG> attributeGService;
 
         IEnumerable<AttributeG> allAttributesFromDB;
         IEnumerable<ProjectAttribute> allProjectAttributesFromDB;
+
+        private PlantConstructorDbContextFactory _contextFactory;
 
         private List<string> projectAttributeGroupesComboBox;
 
@@ -123,10 +128,6 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-
-
-
-
         private Project selectedItem;
         public Project SelectedItem {
             get
@@ -214,15 +215,16 @@ namespace PlantConstructor.WPF.MainScreen
         public MainWindowViewModel()
         {
             
+            //projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
+            //projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
+            //attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
 
-            projectService = new GenericDataService<Project>(new PlantConstructorDbContextFactory());
-            projectAttributeService = new GenericDataService<ProjectAttribute>(new PlantConstructorDbContextFactory());
-            attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
-            
-            LoadProjectsFromDatabaseAsync();
+            _contextFactory = new PlantConstructorDbContextFactory();
+
+            LoadProjectsFromDatabase();
                                    
             SaveProjectButtonCommand = new RelayCommand(SaveProjectToDBAsync);
-            AddProjectButtonCommand = new RelayCommand(AddNewProjectToDBAsync);
+            AddProjectButtonCommand = new RelayCommand(AddNewProjectToDB);
             DeleteProjectButtonCommand = new RelayCommand(DeleteProjectFromDBAsync);
             EditDataButtonCommand = new RelayCommand(OpenEditDataWindow);
             OpenSettingsWindowCommand = new RelayCommand(OpenSettingsWindow);
@@ -231,8 +233,6 @@ namespace PlantConstructor.WPF.MainScreen
             AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
 
             ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch", "PipePart"};
-
-            
 
         }
 
@@ -245,12 +245,12 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private async void LoadProjectsFromDatabaseAsync()
+        private void LoadProjectsFromDatabase()
         {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
-                await LoadProjectsFromDatabaseWorkerAsync();
+                LoadProjectsFromDatabaseWorker();
                 Mouse.OverrideCursor = null;
             }
             catch
@@ -260,14 +260,19 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private async Task LoadProjectsFromDatabaseWorkerAsync ()
+        private void LoadProjectsFromDatabaseWorker ()
         {
-            
-            var allProjects = await projectService.GetAll();
-            var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
 
-            ProjectDepartments = new ObservableCollection<ProjectDepartment>(projectDepartments.ToArray());
-            OnPropertyRaised("ProjectDepartments");
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                var allProjects = context.Set<Project>().
+                    FromSqlRaw($"SELECT * FROM Projects").
+                    ToList();
+                var projectDepartments = allProjects.GroupBy(x => x.ProjectGroup).Select(x => new ProjectDepartment(x.Key, x.ToArray()));
+                ProjectDepartments = new ObservableCollection<ProjectDepartment>(projectDepartments.ToArray());
+                OnPropertyRaised("ProjectDepartments");
+            }
+     
         }
 
         public async void SaveProjectToDBAsync (object parameter)
@@ -278,42 +283,78 @@ namespace PlantConstructor.WPF.MainScreen
 
             Mouse.OverrideCursor = Cursors.Wait;
 
-            foreach (ProjectAttribute projAtt in allProjectAttributesFromDB.Where(x=>x.ProjectId==SelectedItem.Id))
-            {
-                await projectAttributeService.Delete(projAtt.Id);
-            }
+            List<ProjectAttribute> listForProjectAttSave = new List<ProjectAttribute>();
+            
             foreach (string att in AllProjectAttributes.SiteAttributes)
             {
-                //int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
-                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x.Id).FirstOrDefault();
+                listForProjectAttSave.Add(new ProjectAttribute {ProjectId=SelectedItem.Id, AttributeGId=attId });
             }
             foreach (string att in AllProjectAttributes.ZoneAttributes)
             {
-                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x.Id).FirstOrDefault();
+                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
             }
             foreach (string att in AllProjectAttributes.PipeAttributes)
             {
-                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x.Id).FirstOrDefault();
+                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
             }
             foreach (string att in AllProjectAttributes.BranchAttributes)
             {
-                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x.Id).FirstOrDefault();
+                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
             }
             foreach (string att in AllProjectAttributes.PipePartAttributes)
             {
-                var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x).FirstOrDefault();
-                await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+                int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x.Id).FirstOrDefault();
+                listForProjectAttSave.Add(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attId });
             }
 
-            var updatedProject = await projectService.Update(SelectedItem.Id, new Project { Name = newProjectName, ProjectGroup = newProjectGroup });
 
-            await LoadProjectsFromDatabaseWorkerAsync();
+            //foreach (ProjectAttribute projAtt in allProjectAttributesFromDB.Where(x=>x.ProjectId==SelectedItem.Id))
+            //{
+            //    await projectAttributeService.Delete(projAtt.Id);
+            //}
+            //foreach (string att in AllProjectAttributes.SiteAttributes)
+            //{
+            //    //int attId = allAttributesFromDB.Where(x => x.Name == att && x.Type=="Site").Select(x => x.Id).FirstOrDefault();
+            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Site").Select(x => x).FirstOrDefault();
+            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+            //}
+            //foreach (string att in AllProjectAttributes.ZoneAttributes)
+            //{
+            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Zone").Select(x => x).FirstOrDefault();
+            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+            //}
+            //foreach (string att in AllProjectAttributes.PipeAttributes)
+            //{
+            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Pipe").Select(x => x).FirstOrDefault();
+            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+            //}
+            //foreach (string att in AllProjectAttributes.BranchAttributes)
+            //{
+            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "Branch").Select(x => x).FirstOrDefault();
+            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+            //}
+            //foreach (string att in AllProjectAttributes.PipePartAttributes)
+            //{
+            //    var attG = allAttributesFromDB.Where(x => x.Name == att && x.Type == "PipePart").Select(x => x).FirstOrDefault();
+            //    await projectAttributeService.Create(new ProjectAttribute { ProjectId = SelectedItem.Id, AttributeGId = attG.Id});
+            //}
+
+            Project updatedProject = new Project { Id = SelectedItem.Id, Name = newProjectName, ProjectGroup = newProjectGroup };
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                await context.BulkInsertOrUpdateOrDeleteAsync(listForProjectAttSave);
+                context.Set<Project>().Update(updatedProject);
+            }
+
+            LoadProjectsFromDatabaseWorker();
 
             SelectedItem = updatedProject;
+
+            //var updatedProject = await projectService.Update(SelectedItem.Id, new Project { Name = newProjectName, ProjectGroup = newProjectGroup });
 
             Mouse.OverrideCursor = null;
         }
@@ -328,7 +369,7 @@ namespace PlantConstructor.WPF.MainScreen
                     foreach (ListBoxAttributes attribute in listAtt)
                     {
                         AllAvailableAttributes.SiteAttributes.RemoveAt(AllAvailableAttributes.SiteAttributes.IndexOf(attribute.Item));
-                        AllProjectAttributes.SiteAttributes.Add(attribute.Item);
+                        AllProjectAttributes.SiteAttributes.Add(attribute.Item);                       
                     }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
@@ -369,6 +410,7 @@ namespace PlantConstructor.WPF.MainScreen
                     {
                         AllAvailableAttributes.BranchAttributes.RemoveAt(AllAvailableAttributes.BranchAttributes.IndexOf(attribute.Item));
                         AllProjectAttributes.BranchAttributes.Add(attribute.Item);
+                        
                     }
                     SelectedAttributeFromAvailable = null;
                     AllAvailableAttributesForDisplay = null;
@@ -416,6 +458,7 @@ namespace PlantConstructor.WPF.MainScreen
                     {
                         AllProjectAttributes.ZoneAttributes.RemoveAt(AllProjectAttributes.ZoneAttributes.IndexOf(attribute.Item));
                         AllAvailableAttributes.ZoneAttributes.Add(attribute.Item);
+                        
                     }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
@@ -429,6 +472,7 @@ namespace PlantConstructor.WPF.MainScreen
                     {
                         AllProjectAttributes.PipeAttributes.RemoveAt(AllProjectAttributes.PipeAttributes.IndexOf(attribute.Item));
                         AllAvailableAttributes.PipeAttributes.Add(attribute.Item);
+                       
                     }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
@@ -442,6 +486,7 @@ namespace PlantConstructor.WPF.MainScreen
                     {
                         AllProjectAttributes.BranchAttributes.RemoveAt(AllProjectAttributes.BranchAttributes.IndexOf(attribute.Item));
                         AllAvailableAttributes.BranchAttributes.Add(attribute.Item);
+                        
                     }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
@@ -455,6 +500,7 @@ namespace PlantConstructor.WPF.MainScreen
                     {
                         AllAvailableAttributes.PipePartAttributes.RemoveAt(AllProjectAttributes.PipePartAttributes.IndexOf(attribute.Item));
                         AllProjectAttributes.PipePartAttributes.Add(attribute.Item);
+                        
                     }
                     SelectedAttributeFromProject = null;
                     AllAvailableAttributesForDisplay = null;
@@ -466,22 +512,30 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        public async void AddNewProjectToDBAsync (object parameter)
+        public void AddNewProjectToDB (object parameter)
         {
-            var createdProject = await projectService.Create(new Project { Name = "NewProject", ProjectGroup = "New Project Group" });
+            var createdProject = new Project { Name = "NewProject", ProjectGroup = "New Project Group" };
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                var created = context.Set<Project>().Add(createdProject);
+                LoadProjectsFromDatabaseWorker();
+                SelectedItem = created.Entity;
+            }
+            
 
-            await LoadProjectsFromDatabaseWorkerAsync();
-
-            SelectedItem = createdProject;
 
         }
         
-        public async void DeleteProjectFromDBAsync (object parameter)
+        public void DeleteProjectFromDBAsync (object parameter)
         {
             if (MessageBox.Show("Do you want to Delete the selected Project?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                await projectService.Delete(SelectedItem.Id);
-                await LoadProjectsFromDatabaseWorkerAsync();
+                using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+                {
+                    var created = context.Set<Project>().Remove(SelectedItem);
+
+                }
+                LoadProjectsFromDatabaseWorker();
             }
         }
 
@@ -499,7 +553,7 @@ namespace PlantConstructor.WPF.MainScreen
 
                 AllProjectAttributes.SiteAttributes = (from allA in allAttributesFromDB
                                                                join allP in allProjectAttributesFromDB on allA.Id equals allP.AttributeGId
-                                                               where allP.ProjectId == SelectedItem.Id
+                                                              where allP.ProjectId == SelectedItem.Id
                                                                where allA.Type == "Site"
                                                                select allA.Name)?.ToList();
                 AllAvailableAttributes.SiteAttributes = allAttributesFromDB.Where(x => x.Type == "Site").Select(x => x.Name).ToList().Except(AllProjectAttributes.SiteAttributes).ToList();
@@ -557,13 +611,21 @@ namespace PlantConstructor.WPF.MainScreen
             }
         }
 
-        private async void LoadAttributesForTheProjectFromDB()
+        private void LoadAttributesForTheProjectFromDB()
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
-            allAttributesFromDB = await attributeGService.GetAll();
-            allProjectAttributesFromDB = await projectAttributeService.GetAll();
-            
+            using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+            {
+                allAttributesFromDB = context.Set<AttributeG>().
+                    FromSqlRaw($"SELECT * FROM AttributesG").
+                    ToList();
+                allProjectAttributesFromDB= context.Set<ProjectAttribute>().
+                    FromSqlRaw($"SELECT * FROM ProjectAttributes").
+                    Include(x=>x.AttributeG).
+                    ToList();
+            }
+
             ResetAttributeGroupComboBoxSelection();
             
             Mouse.OverrideCursor = null;

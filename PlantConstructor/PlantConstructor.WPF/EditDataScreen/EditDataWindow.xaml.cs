@@ -275,7 +275,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                 }
                 
                 int rowIndex = 0;
-                List<AttributeValue> toInsert = null;
+                List<AttributeValue> toInsert = new List<AttributeValue>();
                 while (rowIndex<usedRange.RowCount)
                 {
                     toInsert.Add(new AttributeValue {
