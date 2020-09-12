@@ -506,7 +506,7 @@ namespace PlantConstructor.WPF.MainScreen
                     FromSqlRaw($"SELECT * FROM AttributesG").
                     ToList();
                 allProjectAttributesFromDB= context.Set<ProjectAttribute>().
-                    FromSqlRaw($"SELECT * FROM ProjectAttributes").
+                    FromSqlRaw($"SELECT * FROM ProjectAttributes WHERE ProjectId={SelectedItem.Id}").
                     Include(x=>x.AttributeG).
                     ToList();
             }
