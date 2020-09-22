@@ -350,154 +350,162 @@ namespace PlantConstructor.WPF.EditDataScreen
 
             ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { }, PipePartElements = new List<SpreadsheetElement> { } };
 
-            //read line by line
-            for (int a = 0; a < filelines.Length; a++)
+            int a = 0;
+            try
             {
-                if (progress != null)
+                //read line by line
+                for (a = 0; a < filelines.Length; a++)
                 {
-                    progress.Report("Import progress: " + a.ToString() + " / " + filelines.Length.ToString());
-                }
+                    if (progress != null)
+                    {
+                        progress.Report("Import progress: " + a.ToString() + " / " + filelines.Length.ToString());
+                    }
 
-                await Task.Run(() =>
-                {
+                    await Task.Run(() =>
+                    {
 
                     //split the codeline in parts with empty string delimiter; remove empty spaces
                     string[] importCodeLine = filelines[a].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
                     //if the line is not empty or one of the headers, evaluate it
                     if (importCodeLine != null && importCodeLine.Length != 0 && importCodeLine[0] != "\t" && importCodeLine[0] != "END" && importCodeLine[0] != "AVEVA_Attributes_File" && importCodeLine[1] != "Header")
-                    {
+                        {
                         //if the line contains the NEW keyword
                         if (importCodeLine[0] == "NEW")
-                        {
+                            {
                             //split the TYPE codeline and assign the value (if KPCNAME is added to the doc, then the type is on 3rd row not 2nd)
                             string checkTypeLine = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
-                            if (checkTypeLine.Contains("KPCNAME"))
-                            {
-                                currentType = filelines[a + 3].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
-                            }
-                            else
-                            {
-                                currentType = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
-                            }
+                                if (checkTypeLine.Contains("KPCNAME"))
+                                {
+                                    currentType = filelines[a + 3].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                }
+                                else
+                                {
+                                    currentType = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                }
                             //LogText.Text += Environment.NewLine + currentType;
 
                             //move the pointer to the next free line in appropriate sheet
                             if (currentType == "SITE") siteRowCount++;
-                            else if (currentType == "ZONE") zoneRowCount++;
-                            else if (currentType == "PIPE") pipeRowCount++;
-                            else if (currentType == "BRAN") branchRowCount++;
-                            else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
-                            || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
-                            || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU" 
-                            || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
+                                else if (currentType == "ZONE") zoneRowCount++;
+                                else if (currentType == "PIPE") pipeRowCount++;
+                                else if (currentType == "BRAN") branchRowCount++;
+                                else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                                || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
 
-                            
 
-                        }
-                        else
-                        {
-                            if (currentType == "")
-                            {
-                                //LogText.Text += Environment.NewLine + "Error - file not in appropriate format; NEW keyword not found at beginning";
+
                             }
                             else
                             {
+                                if (currentType == "")
+                                {
+                                //LogText.Text += Environment.NewLine + "Error - file not in appropriate format; NEW keyword not found at beginning";
+                            }
+                                else
+                                {
                                 //read the attribute - 0 is the attribute name; 1 is the value
                                 string attributeName = importCodeLine[0].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[0];
-                                string attributeValue = "";
-                                for (int i = 1; i < importCodeLine.Length; i++)
-                                {
-                                    attributeValue = attributeValue + " " + importCodeLine[i];
-                                }
+                                    string attributeValue = "";
+                                    for (int i = 1; i < importCodeLine.Length; i++)
+                                    {
+                                        attributeValue = attributeValue + " " + importCodeLine[i];
+                                    }
 
-                                if (currentType == "SITE")
-                                {
+                                    if (currentType == "SITE")
+                                    {
                                     //find out whether the value exists in the dictionary 
                                     int listItemIndex = siteHeaderAttributes.FindIndex(s => s == attributeName);
-                                    if (listItemIndex >= 0)
-                                    {
+                                        if (listItemIndex >= 0)
+                                        {
                                         //write the attribute value to the appropriate row and column
                                         //this.Dispatcher.Invoke(() =>
                                         //{
                                         //workbook.Worksheets[0].Rows[siteRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.SiteElements.Add(new SpreadsheetElement { Row = siteRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
                                     }
 
-                                }
-
-                                else if (currentType == "ZONE")
-                                {
+                                    else if (currentType == "ZONE")
+                                    {
                                     //find out whether the value exists in the dictionary 
                                     int listItemIndex = zoneHeaderAttributes.FindIndex(s => s == attributeName);
-                                    if (listItemIndex >= 0)
-                                    {
+                                        if (listItemIndex >= 0)
+                                        {
                                         //write the attribute value to the appropriate row and column
                                         //this.Dispatcher.Invoke(() =>
                                         //{
                                         //    workbook.Worksheets[1].Rows[zoneRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.ZoneElements.Add(new SpreadsheetElement { Row = zoneRowCount, Column = listItemIndex, Value = attributeValue });
-                                    }
+                                        }
 
-                                }
+                                    }
 
                                 //write the attribute value to appropriate place
                                 else if (currentType == "PIPE")
-                                {
-                                    int listItemIndex = pipeHeaderAttributes.FindIndex(s => s == attributeName);
-                                    if (listItemIndex >= 0)
                                     {
+                                        int listItemIndex = pipeHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
                                         //write the attribute value to the appropriate row and column
                                         //this.Dispatcher.Invoke(() =>
                                         //{
                                         //    workbook.Worksheets[2].Rows[pipeRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.PipeElements.Add(new SpreadsheetElement { Row = pipeRowCount, Column = listItemIndex, Value = attributeValue });
-                                    }
+                                        }
 
-                                }
-                                else if (currentType == "BRAN")
-                                {
+                                    }
+                                    else if (currentType == "BRAN")
+                                    {
                                     //find out whether the value exists in the dictionary 
                                     int listItemIndex = branchHeaderAttributes.FindIndex(s => s == attributeName);
-                                    if (listItemIndex >= 0)
-                                    {
+                                        if (listItemIndex >= 0)
+                                        {
                                         //write the attribute value to the appropriate row and column
                                         //this.Dispatcher.Invoke(() =>
                                         //{
                                         //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.BranchElements.Add(new SpreadsheetElement { Row = branchRowCount, Column = listItemIndex, Value = attributeValue });
-                                    }
+                                        }
 
-                                }
-                                else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
-                                        || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
-                                        || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                         || currentType == "TEE" || currentType == "CAP" || currentType == "INST")
-                                {
-                                    int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
-                                    if (listItemIndex >= 0)
+                                    }
+                                    else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                            || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                                            || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST")
                                     {
+                                        int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
                                         //write the attribute value to the appropriate row and column
                                         //this.Dispatcher.Invoke(() =>
                                         //{
                                         //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.PipePartElements.Add(new SpreadsheetElement { Row = pipePartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+
                                     }
-
-
                                 }
+
                             }
 
                         }
 
-                    }
-
-                });
+                    });
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error in input file, line: " + a.ToString(), "Input File Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
             return dataStorage;
         }

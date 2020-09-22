@@ -6,12 +6,22 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>powerplanicon_Q8C_icon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="20.1.7" />
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.All" Version="20.1.7" />
-    <PackageReference Include="EFCore.BulkExtensions" Version="3.1.5" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="3.2.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 

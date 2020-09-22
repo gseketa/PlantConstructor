@@ -318,7 +318,6 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\DevExpress.Xpf.TypedStyles.v20.1.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\DevExpress.Xpo.v20.1.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\EFCore.BulkExtensions.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\FastMember.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
