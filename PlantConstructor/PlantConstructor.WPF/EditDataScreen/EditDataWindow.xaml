@@ -22,7 +22,9 @@
                                   CommandBarStyle="Ribbon" 
                                   ShowFormulaBar="True" 
                                   ShowStatusBar="True"
-                                  Grid.Row="0" 
+                                  Grid.Row="0"
+                                  BeforeExport="RemoveProtectionBeforeSave"
+                                  DocumentSaved="AddProtectionAfterSave"
                                   >
             <dxsps:SpreadsheetControl.RibbonActions>
                 <!--Remove the Info group on the File tab-->

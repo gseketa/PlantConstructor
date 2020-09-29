@@ -54,6 +54,9 @@ namespace PlantConstructor.WPF.EditDataScreen
         List<string> pipeHeaderAttributes;
         List<string> branchHeaderAttributes;
         List<string> pipePartHeaderAttributes;
+        List<string> structureHeaderAttributes;
+        List<string> subStructureHeaderAttributes;
+        List<string> structurePartHeaderAttributes;
 
         private IWorkbook workbook;
 
@@ -78,12 +81,14 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
         }
 
+
         public EditDataWindow()
         {
             InitializeComponent();
             this.DataContext = this;
             LoadedWindowCommand = new RelayCommand(InitializeWorkEnvironment);
         }
+
 
         public void InitializeWorkEnvironment(object parameter)
         {
@@ -101,6 +106,8 @@ namespace PlantConstructor.WPF.EditDataScreen
             Mouse.OverrideCursor = null;
         }
 
+
+
         private void CreateWorkbook()
         {
             spreadsheet.BeginUpdate();
@@ -117,6 +124,9 @@ namespace PlantConstructor.WPF.EditDataScreen
                 workbook.Worksheets.Add().Name = "Pipe";
                 workbook.Worksheets.Add().Name = "Branch";
                 workbook.Worksheets.Add().Name = "PipePart";
+                workbook.Worksheets.Add().Name = "Structure";
+                workbook.Worksheets.Add().Name = "SubStructure";
+                workbook.Worksheets.Add().Name = "StructurePart";
 
                 //set Site as active worksheet
                 workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
@@ -143,12 +153,18 @@ namespace PlantConstructor.WPF.EditDataScreen
             pipeHeaderAttributes = new List<string>();
             branchHeaderAttributes = new List<string>();
             pipePartHeaderAttributes = new List<string>();
+            structureHeaderAttributes = new List<string>();
+            subStructureHeaderAttributes = new List<string>();
+            structurePartHeaderAttributes = new List<string>();
 
             LoadTypeValues("Site", workbook.Worksheets[0]);
             LoadTypeValues("Zone", workbook.Worksheets[1]);
             LoadTypeValues("Pipe", workbook.Worksheets[2]);
             LoadTypeValues("Branch", workbook.Worksheets[3]);
             LoadTypeValues("PipePart", workbook.Worksheets[4]);
+            LoadTypeValues("Structure", workbook.Worksheets[5]);
+            LoadTypeValues("SubStructure", workbook.Worksheets[6]);
+            LoadTypeValues("StructurePart", workbook.Worksheets[7]);
 
         }
 
@@ -215,6 +231,15 @@ namespace PlantConstructor.WPF.EditDataScreen
                 case "PipePart":
                     pipePartHeaderAttributes.Add(value);
                     break;
+                case "Structure":
+                    structureHeaderAttributes.Add(value);
+                    break;
+                case "SubStructure":
+                    subStructureHeaderAttributes.Add(value);
+                    break;
+                case "StructurePart":
+                    structurePartHeaderAttributes.Add(value);
+                    break;
 
             }
         }
@@ -251,6 +276,9 @@ namespace PlantConstructor.WPF.EditDataScreen
             await SaveTypeValues("Pipe", workbook.Worksheets[2]);
             await SaveTypeValues("Branch", workbook.Worksheets[3]);
             await SaveTypeValues("PipePart", workbook.Worksheets[4]);
+            await SaveTypeValues("Structure", workbook.Worksheets[5]);
+            await SaveTypeValues("SubStructure", workbook.Worksheets[6]);
+            await SaveTypeValues("StructurePart", workbook.Worksheets[7]);
 
             LogText.Text = "Data saved to DB";
             Mouse.OverrideCursor = null;
@@ -348,7 +376,28 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (pipePartRowCount = 1; workbook.Worksheets[4].Cells[pipePartRowCount, 0].Value.ToString() != ""; pipePartRowCount++) { }
             pipePartRowCount--;
 
-            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { SiteElements = new List<SpreadsheetElement> { }, BranchElements = new List<SpreadsheetElement> { }, PipeElements = new List<SpreadsheetElement> { }, ZoneElements = new List<SpreadsheetElement> { }, PipePartElements = new List<SpreadsheetElement> { } };
+            int structureRowCount;
+            for (structureRowCount = 1; workbook.Worksheets[5].Cells[structureRowCount, 0].Value.ToString() != ""; structureRowCount++) { }
+            structureRowCount--;
+
+            int subStructureRowCount;
+            for (subStructureRowCount = 1; workbook.Worksheets[6].Cells[subStructureRowCount, 0].Value.ToString() != ""; subStructureRowCount++) { }
+            subStructureRowCount--;
+
+            int structurePartRowCount;
+            for (structurePartRowCount = 1; workbook.Worksheets[7].Cells[structurePartRowCount, 0].Value.ToString() != ""; structurePartRowCount++) { }
+            structurePartRowCount--;
+
+            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { 
+                SiteElements = new List<SpreadsheetElement> { }, 
+                BranchElements = new List<SpreadsheetElement> { }, 
+                PipeElements = new List<SpreadsheetElement> { }, 
+                ZoneElements = new List<SpreadsheetElement> { }, 
+                PipePartElements = new List<SpreadsheetElement> { }, 
+                StructureElements=new List<SpreadsheetElement> { },
+                SubStructureElements = new List<SpreadsheetElement> { },
+                StructurePartElements = new List<SpreadsheetElement> { },
+            };
 
             int a = 0;
             try
@@ -379,6 +428,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 {
                                     currentType = filelines[a + 3].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
                                 }
+
                                 else
                                 {
                                     currentType = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
@@ -386,7 +436,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                             //LogText.Text += Environment.NewLine + currentType;
 
                             //move the pointer to the next free line in appropriate sheet
-                            if (currentType == "SITE") siteRowCount++;
+                                if (currentType == "SITE") siteRowCount++;
                                 else if (currentType == "ZONE") zoneRowCount++;
                                 else if (currentType == "PIPE") pipeRowCount++;
                                 else if (currentType == "BRAN") branchRowCount++;
@@ -394,9 +444,20 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
                                 || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
-
-
-
+                                else if (currentType == "STRU") structureRowCount++;
+                                else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
+                                else if (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
+                                || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
+                                || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
+                                || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT" 
+                                || currentType == "PNOD" || currentType == "PJOI" || currentType == "NXTR"
+                                || currentType == "LOOP" || currentType == "VERT" || currentType == "PFIT"
+                                || currentType == "NPYR" || currentType == "CTOR" || currentType == "POHE"
+                                || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
+                                || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
+                                || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
+                                || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE") structurePartRowCount++;
                             }
                             else
                             {
@@ -494,6 +555,62 @@ namespace PlantConstructor.WPF.EditDataScreen
 
 
                                     }
+                                    else if (currentType == "STRU")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = structureHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.StructureElements.Add(new SpreadsheetElement { Row = structureRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "FRMW" || currentType == "SUBS")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = subStructureHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.SubStructureElements.Add(new SpreadsheetElement { Row = subStructureRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                            || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
+                                            || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
+                                            || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
+                                            || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT"
+                                            || currentType == "PNOD" || currentType == "PJOI" || currentType == "NXTR"
+                                            || currentType == "LOOP" || currentType == "VERT" || currentType == "PFIT"
+                                            || currentType == "NPYR" || currentType == "CTOR" || currentType == "POHE"
+                                            || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
+                                            || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
+                                            || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
+                                            || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = structurePartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.StructurePartElements.Add(new SpreadsheetElement { Row = structurePartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
                                 }
 
                             }
@@ -543,6 +660,22 @@ namespace PlantConstructor.WPF.EditDataScreen
                     //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
                     workbook.Worksheets[4].Rows[element.Row][element.Column].Value = element.Value;
                 }
+                foreach (SpreadsheetElement element in dataStorage.StructureElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[5].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.SubStructureElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[6].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.StructurePartElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[7].Rows[element.Row][element.Column].Value = element.Value;
+                }
+
             }
             finally
             {
@@ -550,6 +683,33 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
             //}
             //));
+        }
+
+        private void RemoveHeaderProtection(Worksheet sheet)
+        {
+            if (sheet.IsProtected)
+            {
+                sheet.Unprotect("48800609");
+            }
+        }
+
+        private void RemoveProtectionBeforeSave(object sender, SpreadsheetBeforeExportEventArgs e)
+        {
+            RemoveHeaderProtection(workbook.Worksheets[0]);
+            RemoveHeaderProtection(workbook.Worksheets[1]);
+            RemoveHeaderProtection(workbook.Worksheets[2]);
+            RemoveHeaderProtection(workbook.Worksheets[3]);
+            RemoveHeaderProtection(workbook.Worksheets[4]);
+        }
+
+        private void AddProtectionAfterSave(object sender, EventArgs e)
+        {
+            SetHeaderProtection(workbook.Worksheets[0]);
+            SetHeaderProtection(workbook.Worksheets[1]);
+            SetHeaderProtection(workbook.Worksheets[2]);
+            SetHeaderProtection(workbook.Worksheets[3]);
+            SetHeaderProtection(workbook.Worksheets[4]);
+
         }
     }
 }

@@ -259,7 +259,7 @@ namespace PlantConstructor.WPF.MainScreen
             AllAvailableAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToRight);
             AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
 
-            ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch", "PipePart"};
+            ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch", "PipePart", "Structure", "SubStructure", "StructurePart"};
 
         }
 

@@ -11,6 +11,9 @@ namespace PlantConstructor.WPF.Helper
         public List<SpreadsheetElement> PipeElements { get; set; }
         public List<SpreadsheetElement> BranchElements { get; set; }
         public List<SpreadsheetElement> PipePartElements { get; set; }
+        public List<SpreadsheetElement> StructureElements { get; set; }
+        public List<SpreadsheetElement> SubStructureElements { get; set; }
+        public List<SpreadsheetElement> StructurePartElements { get; set; }
 
     }
 }
