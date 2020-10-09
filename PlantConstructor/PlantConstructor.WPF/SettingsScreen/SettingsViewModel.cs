@@ -101,7 +101,9 @@ namespace PlantConstructor.WPF.SettingsScreen
         public SettingsViewModel()
         {
             attributeGService = new GenericDataService<AttributeG>(new PlantConstructorDbContextFactory());
-            SettingsProjectAttributeGroupesComboBox = new List<string> { "Site", "Zone", "Pipe", "Branch", "PipePart", "Structure", "SubStructure", "StructurePart" };
+            SettingsProjectAttributeGroupesComboBox = new List<string> { "Site", "Zone", "Pipe", 
+                "Branch", "PipePart", "Structure", "SubStructure", "StructurePart",
+                "Equipment", "SubEquipment", "EquipmentPart"};
             AddNewAttributeCommand = new RelayCommand(AddNewAttributeButtonClick);
             DeleteSelectedAttributeCommand = new RelayCommand(DeleteSelectedAttributeButtonClick);
 

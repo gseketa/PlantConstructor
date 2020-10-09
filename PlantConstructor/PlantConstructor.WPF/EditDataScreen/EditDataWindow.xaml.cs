@@ -57,6 +57,9 @@ namespace PlantConstructor.WPF.EditDataScreen
         List<string> structureHeaderAttributes;
         List<string> subStructureHeaderAttributes;
         List<string> structurePartHeaderAttributes;
+        List<string> equipmentHeaderAttributes;
+        List<string> subEquipmentHeaderAttributes;
+        List<string> equipmentPartHeaderAttributes;
 
         private IWorkbook workbook;
 
@@ -127,6 +130,9 @@ namespace PlantConstructor.WPF.EditDataScreen
                 workbook.Worksheets.Add().Name = "Structure";
                 workbook.Worksheets.Add().Name = "SubStructure";
                 workbook.Worksheets.Add().Name = "StructurePart";
+                workbook.Worksheets.Add().Name = "Equipment";
+                workbook.Worksheets.Add().Name = "SubEquipment";
+                workbook.Worksheets.Add().Name = "EquipmentPart";
 
                 //set Site as active worksheet
                 workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
@@ -156,6 +162,9 @@ namespace PlantConstructor.WPF.EditDataScreen
             structureHeaderAttributes = new List<string>();
             subStructureHeaderAttributes = new List<string>();
             structurePartHeaderAttributes = new List<string>();
+            equipmentHeaderAttributes = new List<string>();
+            subEquipmentHeaderAttributes = new List<string>();
+            equipmentPartHeaderAttributes = new List<string>();
 
             LoadTypeValues("Site", workbook.Worksheets[0]);
             LoadTypeValues("Zone", workbook.Worksheets[1]);
@@ -165,6 +174,9 @@ namespace PlantConstructor.WPF.EditDataScreen
             LoadTypeValues("Structure", workbook.Worksheets[5]);
             LoadTypeValues("SubStructure", workbook.Worksheets[6]);
             LoadTypeValues("StructurePart", workbook.Worksheets[7]);
+            LoadTypeValues("Equipment", workbook.Worksheets[8]);
+            LoadTypeValues("SubEquipment", workbook.Worksheets[9]);
+            LoadTypeValues("EquipmentPart", workbook.Worksheets[10]);
 
         }
 
@@ -240,6 +252,15 @@ namespace PlantConstructor.WPF.EditDataScreen
                 case "StructurePart":
                     structurePartHeaderAttributes.Add(value);
                     break;
+                case "Equipment":
+                    equipmentHeaderAttributes.Add(value);
+                    break;
+                case "SubEquipment":
+                    subEquipmentHeaderAttributes.Add(value);
+                    break;
+                case "EquipmentPart":
+                    equipmentPartHeaderAttributes.Add(value);
+                    break;
 
             }
         }
@@ -279,6 +300,9 @@ namespace PlantConstructor.WPF.EditDataScreen
             await SaveTypeValues("Structure", workbook.Worksheets[5]);
             await SaveTypeValues("SubStructure", workbook.Worksheets[6]);
             await SaveTypeValues("StructurePart", workbook.Worksheets[7]);
+            await SaveTypeValues("Equipment", workbook.Worksheets[8]);
+            await SaveTypeValues("SubEquipment", workbook.Worksheets[9]);
+            await SaveTypeValues("EquipmentPart", workbook.Worksheets[10]);
 
             LogText.Text = "Data saved to DB";
             Mouse.OverrideCursor = null;
@@ -354,6 +378,7 @@ namespace PlantConstructor.WPF.EditDataScreen
         private async Task<ListOfSpreadsheetElements> InterpretData(IProgress<string> progress, string[] filelines)
         {
             string currentType = "";
+            string currentCategory = "";
 
             //find out the last empty rows index in each sheet; pointing at the last filled row
             int siteRowCount;
@@ -388,6 +413,18 @@ namespace PlantConstructor.WPF.EditDataScreen
             for (structurePartRowCount = 1; workbook.Worksheets[7].Cells[structurePartRowCount, 0].Value.ToString() != ""; structurePartRowCount++) { }
             structurePartRowCount--;
 
+            int equipmentRowCount;
+            for (equipmentRowCount = 1; workbook.Worksheets[8].Cells[equipmentRowCount, 0].Value.ToString() != ""; equipmentRowCount++) { }
+            equipmentRowCount--;
+
+            int subEquipmentRowCount;
+            for (subEquipmentRowCount = 1; workbook.Worksheets[9].Cells[subEquipmentRowCount, 0].Value.ToString() != ""; subEquipmentRowCount++) { }
+            subEquipmentRowCount--;
+
+            int equipmentPartRowCount;
+            for (equipmentPartRowCount = 1; workbook.Worksheets[10].Cells[equipmentPartRowCount, 0].Value.ToString() != ""; equipmentPartRowCount++) { }
+            equipmentPartRowCount--;
+
             ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements { 
                 SiteElements = new List<SpreadsheetElement> { }, 
                 BranchElements = new List<SpreadsheetElement> { }, 
@@ -397,6 +434,9 @@ namespace PlantConstructor.WPF.EditDataScreen
                 StructureElements=new List<SpreadsheetElement> { },
                 SubStructureElements = new List<SpreadsheetElement> { },
                 StructurePartElements = new List<SpreadsheetElement> { },
+                EquipmentElements = new List<SpreadsheetElement> { },
+                SubEquipmentElements = new List<SpreadsheetElement> { },
+                EquipmentPartElements = new List<SpreadsheetElement> { },
             };
 
             int a = 0;
@@ -433,31 +473,42 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 {
                                     currentType = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
                                 }
-                            //LogText.Text += Environment.NewLine + currentType;
+                                //LogText.Text += Environment.NewLine + currentType;
 
-                            //move the pointer to the next free line in appropriate sheet
+                                //move the pointer to the next free line in appropriate sheet
                                 if (currentType == "SITE") siteRowCount++;
                                 else if (currentType == "ZONE") zoneRowCount++;
-                                else if (currentType == "PIPE") pipeRowCount++;
+                                else if (currentType == "PIPE") { pipeRowCount++; currentCategory = "PIPE"; }
                                 else if (currentType == "BRAN") branchRowCount++;
-                                else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST") pipePartRowCount++;
-                                else if (currentType == "STRU") structureRowCount++;
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST")) pipePartRowCount++;
+                                else if (currentType == "STRU") { structureRowCount++; currentCategory = "STRU"; }
                                 else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
-                                else if (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
                                 || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
                                 || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
                                 || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
-                                || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT" 
+                                || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT"
                                 || currentType == "PNOD" || currentType == "PJOI" || currentType == "NXTR"
                                 || currentType == "LOOP" || currentType == "VERT" || currentType == "PFIT"
                                 || currentType == "NPYR" || currentType == "CTOR" || currentType == "POHE"
                                 || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
                                 || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
                                 || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
-                                || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE") structurePartRowCount++;
+                                || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")) structurePartRowCount++;
+                                else if (currentType == "EQUI") { equipmentRowCount++; currentCategory = "EQUI"; }
+                                else if (currentType == "SUBE") subEquipmentRowCount++;
+                                else if (currentCategory=="EQUI" &&  (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZLE"
+                                || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
+                                || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
+                                || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
+                                || currentType == "DDSE" || currentType == "DDAT" || currentType == "TMPL"
+                                || currentType == "DPSE" || currentType == "DPSP" || currentType == "VVALUE"
+                                || currentType == "DPCA" || currentType == "GENPRI" || currentType == "ARCHIV"
+                                || currentType == "VERT" || currentType == "LOOP" || currentType == "ATTRRL"
+                                || currentType == "SCTN" || currentType == "EXTR" || currentType == "NPYR")) equipmentPartRowCount++;
                             }
                             else
                             {
@@ -537,10 +588,10 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         }
 
                                     }
-                                    else if (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                    else if (currentCategory=="PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                             || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                             || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST")
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST"))
                                     {
                                         int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
                                         if (listItemIndex >= 0)
@@ -585,7 +636,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         }
 
                                     }
-                                    else if (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                    else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
                                             || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
                                             || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
                                             || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
@@ -596,7 +647,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                             || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
                                             || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
                                             || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
-                                            || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")
+                                            || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE"))
                                     {
                                         //find out whether the value exists in the dictionary 
                                         int listItemIndex = structurePartHeaderAttributes.FindIndex(s => s == attributeName);
@@ -608,6 +659,59 @@ namespace PlantConstructor.WPF.EditDataScreen
                                             //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                             //});
                                             dataStorage.StructurePartElements.Add(new SpreadsheetElement { Row = structurePartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "EQUI")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = equipmentHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.EquipmentElements.Add(new SpreadsheetElement { Row = equipmentRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "SUBE")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = subEquipmentHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.SubEquipmentElements.Add(new SpreadsheetElement { Row = subEquipmentRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZLE"
+                                || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
+                                || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
+                                || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
+                                || currentType == "DDSE" || currentType == "DDAT" || currentType == "TMPL"
+                                || currentType == "DPSE" || currentType == "DPSP" || currentType == "VVALUE"
+                                || currentType == "DPCA" || currentType == "GENPRI" || currentType == "ARCHIV"
+                                || currentType == "VERT" || currentType == "LOOP" || currentType == "ATTRRL"
+                                || currentType == "SCTN" || currentType == "EXTR" || currentType == "NPYR"))
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = equipmentPartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.EquipmentPartElements.Add(new SpreadsheetElement { Row = equipmentPartRowCount, Column = listItemIndex, Value = attributeValue });
                                         }
 
                                     }
@@ -674,6 +778,21 @@ namespace PlantConstructor.WPF.EditDataScreen
                 {
                     //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
                     workbook.Worksheets[7].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.EquipmentElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[8].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.SubEquipmentElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[9].Rows[element.Row][element.Column].Value = element.Value;
+                }
+                foreach (SpreadsheetElement element in dataStorage.EquipmentPartElements)
+                {
+                    //this.Dispatcher.Invoke(new Action(() => workbook.Worksheets[3].Rows[element.Row][element.Column].Value = element.Value));
+                    workbook.Worksheets[10].Rows[element.Row][element.Column].Value = element.Value;
                 }
 
             }
