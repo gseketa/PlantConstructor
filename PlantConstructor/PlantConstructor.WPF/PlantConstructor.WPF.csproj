@@ -21,13 +21,23 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="20.1.7" />
     <PackageReference Include="DevExpress.WindowsDesktop.Wpf.Themes.All" Version="20.1.7" />
-    <PackageReference Include="EFCore.BulkExtensions" Version="3.2.2" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="3.2.5" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.0-preview2.20297.7" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PlantConstructor.Domain\PlantConstructor.Domain.csproj" />
     <ProjectReference Include="..\PlantConstructor.EntityFramework\PlantConstructor.EntityFramework.csproj" />
+  </ItemGroup>
+  
+    <ItemGroup>
+    <Content Include="$(UserProfile)\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" Link="runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(UserProfile)\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" Link="runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -156,7 +156,6 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\System.ServiceModel.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\System.ServiceModel.Security.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\sni.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\e_sqlite3.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\Microsoft.CSharp.dll
@@ -676,3 +675,6 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\x86\Release\netcoreapp3.1\win-x86\PlantConstructor.WPF.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\x86\Release\netcoreapp3.1\win-x86\PlantConstructor.WPF.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\x86\Release\netcoreapp3.1\win-x86\PlantConstructor.WPF.genruntimeconfig.cache
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\x86\Release\netcoreapp3.1\win-x86\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\x86\Release\netcoreapp3.1\win-x86\PlantConstructor.WPF_Content.g.cs

@@ -245,7 +245,11 @@
             },
             "EFCore.BulkExtensions": {
               "target": "Package",
-              "version": "[3.2.2, )"
+              "version": "[3.2.5, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[2.1.0-preview2.20297.7, )"
             },
             "Microsoft.Xaml.Behaviors.Wpf": {
               "target": "Package",

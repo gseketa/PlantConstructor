@@ -371,13 +371,9 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
@@ -421,3 +417,4 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.pdb
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.genruntimeconfig.cache
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.csproj.CoreCompileInputs.cache
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF_Content.g.cs
