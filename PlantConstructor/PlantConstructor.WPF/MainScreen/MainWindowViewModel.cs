@@ -228,12 +228,28 @@ namespace PlantConstructor.WPF.MainScreen
             set { allProjectAttributesButtonCommand = value; }
         }
 
+        private ICommand selectAllProjectAttributesButtonCommand;
+
+        public ICommand SelectAllProjectAttributesButtonCommand
+        {
+            get { return selectAllProjectAttributesButtonCommand; }
+            set { selectAllProjectAttributesButtonCommand = value; }
+        }
+
         private ICommand allAvailableAttributesButtonCommand;
 
         public ICommand AllAvailableAttributesButtonCommand
         {
             get { return allAvailableAttributesButtonCommand; }
             set { allAvailableAttributesButtonCommand = value; }
+        }
+
+        private ICommand selectAllAvailableAttributesButtonCommand;
+
+        public ICommand SelectAllAvailableAttributesButtonCommand
+        {
+            get { return selectAllAvailableAttributesButtonCommand; }
+            set { selectAllAvailableAttributesButtonCommand = value; }
         }
 
 
@@ -258,6 +274,9 @@ namespace PlantConstructor.WPF.MainScreen
 
             AllAvailableAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToRight);
             AllProjectAttributesButtonCommand = new RelayCommand(MoveAttributeFromRightToLeft);
+
+            SelectAllAvailableAttributesButtonCommand = new RelayCommand(SelectAllAvailableAttributes);
+            SelectAllProjectAttributesButtonCommand = new RelayCommand(SelectAllProjectAttributes);
 
             ProjectAttributeGroupesComboBox = new List<string> {"Site", "Zone", "Pipe", "Branch",
                 "PipePart", "Structure", "SubStructure", "StructurePart", "Equipment",
@@ -399,6 +418,33 @@ namespace PlantConstructor.WPF.MainScreen
                 Mouse.OverrideCursor = null;
 
             }
+        }
+
+        public void SelectAllAvailableAttributes(object parameter)
+        {
+            if (AllAvailableAttributesForDisplay != null)
+            {
+                foreach(ListBoxAttributes attrib in AllAvailableAttributesForDisplay)
+                {
+                    attrib.IsSelected = true;
+                }
+                selectedAttributeFromAvailable = AllAvailableAttributesForDisplay.Where(x => x.IsSelected).ToList();
+                OnPropertyRaised("SelectedAttributeFromAvailable");
+            }
+        }
+
+        public void SelectAllProjectAttributes(object parameter)
+        {
+            if (AllProjectAttributesForDisplay != null)
+            {
+                foreach (ListBoxAttributes attrib in AllProjectAttributesForDisplay)
+                {
+                    attrib.IsSelected = true;
+                }
+                selectedAttributeFromProject = AllProjectAttributesForDisplay.Where(x => x.IsSelected).ToList();
+                OnPropertyRaised("SelectedAttributeFromProject");
+            }
+
         }
 
         public async Task SaveChangesToAttributes()

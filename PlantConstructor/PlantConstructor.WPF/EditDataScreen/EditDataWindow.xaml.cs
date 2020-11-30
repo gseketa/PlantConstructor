@@ -348,6 +348,7 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
         {
+            MessageBox.Show("Working");
         }
 
 

@@ -40,7 +40,7 @@
                 <!--The group contains a single button displaying information about this example.-->
                 <dxb:InsertAction Index="8" ContainerName="{x:Static dxsps:DefaultBarItemNames.RibbonPage_File}">
                     <dxr:RibbonPageGroup Caption="Action">
-                        <dxb:BarButtonItem Content="Create Code"
+                        <dxb:BarButtonItem Content="Create E3D Code"
                                 LargeGlyph="{dx:DXImage 'Images/Actions/Insert_32x32.png'}" 
                                 ItemClick="CreateCode_ItemClick" />
                         <dxb:BarButtonItem Content="Save to DB"

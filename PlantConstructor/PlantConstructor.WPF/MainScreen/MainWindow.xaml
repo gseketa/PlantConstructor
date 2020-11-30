@@ -60,6 +60,7 @@
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="200" />
                                 <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Column="0" Grid.Row="1">
                                 <dxlc:LayoutItem VerticalAlignment="Stretch">
@@ -83,6 +84,12 @@
                                 </dxlc:LayoutItem>
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="2">
+                                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                                    <Button Height="30" Background="LightGray" Content="Select All" 
+                                            Command="{Binding DataContext.SelectAllAvailableAttributesButtonCommand, ElementName=root}"/>
+                                </dxlc:LayoutItem>
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="3">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
                                     <Button Height="30" Background="LightGray" Content="&gt;&gt;&gt;" 
                                             Command="{Binding DataContext.AllAvailableAttributesButtonCommand, ElementName=root}"/>
@@ -115,6 +122,12 @@
                                 </dxlc:LayoutItem>
                             </Grid>
                             <Grid Grid.Column="1" Grid.Row="2">
+                                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                                    <Button Height="30" Background="LightGray" Content="Select All"
+                                             Command="{Binding DataContext.SelectAllProjectAttributesButtonCommand, ElementName=root}"/>
+                                </dxlc:LayoutItem>
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="3">
                                 <dxlc:LayoutItem VerticalAlignment="Bottom">
                                     <Button Height="30" Background="LightGray" Content="&lt;&lt;&lt;"
                                             Command="{Binding DataContext.AllProjectAttributesButtonCommand, ElementName=root}"/>
