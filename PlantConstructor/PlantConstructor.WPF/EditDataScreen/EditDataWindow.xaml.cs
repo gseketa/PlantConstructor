@@ -484,7 +484,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST")) pipePartRowCount++;
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT")) pipePartRowCount++;
                                 else if (currentType == "STRU") { structureRowCount++; currentCategory = "STRU"; }
                                 else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
                                 else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
@@ -501,7 +501,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")) structurePartRowCount++;
                                 else if (currentType == "EQUI") { equipmentRowCount++; currentCategory = "EQUI"; }
                                 else if (currentType == "SUBE") subEquipmentRowCount++;
-                                else if (currentCategory=="EQUI" &&  (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZLE"
+                                else if (currentCategory=="EQUI" &&  (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
                                 || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
                                 || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
                                 || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
@@ -592,7 +592,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                     else if (currentCategory=="PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                             || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                             || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST"))
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT"))
                                     {
                                         int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
                                         if (listItemIndex >= 0)
@@ -693,7 +693,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         }
 
                                     }
-                                    else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZLE"
+                                    else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
                                 || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
                                 || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
                                 || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
