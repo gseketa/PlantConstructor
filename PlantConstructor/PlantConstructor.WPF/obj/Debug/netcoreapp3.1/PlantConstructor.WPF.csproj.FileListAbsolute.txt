@@ -418,3 +418,5 @@ C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\Pl
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.genruntimeconfig.cache
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF.csproj.CoreCompileInputs.cache
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\PlantConstructor.WPF_Content.g.cs
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\Generate3DCodeScreen\Generate3DCodeWindow.g.cs
+C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\obj\Debug\netcoreapp3.1\Generate3DCodeScreen\Generate3DCodeWindow.baml

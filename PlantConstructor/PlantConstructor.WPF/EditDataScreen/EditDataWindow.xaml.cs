@@ -30,6 +30,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using PlantConstructor.WPF.Generate3DCodeScreen;
+
 
 namespace PlantConstructor.WPF.EditDataScreen
 {
@@ -348,7 +350,50 @@ namespace PlantConstructor.WPF.EditDataScreen
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
         {
-            MessageBox.Show("Working");
+            List<string> attributesToPass = new List<string>();
+            var activeSheetName = workbook.Worksheets.ActiveWorksheet.Name;
+            switch (activeSheetName)
+            {
+                case "Site":
+                    attributesToPass = siteHeaderAttributes;
+                    break;
+                case "Zone":
+                    attributesToPass = zoneHeaderAttributes;
+                    break;
+                case "Pipe":
+                    attributesToPass = pipeHeaderAttributes;
+                    break;
+                case "Branch":
+                    attributesToPass = branchHeaderAttributes;
+                    break;
+                case "PipePart":
+                    attributesToPass = pipePartHeaderAttributes;
+                    break;
+                case "Structure":
+                    attributesToPass = structureHeaderAttributes;
+                    break;
+                case "SubStructure":
+                    attributesToPass = subStructureHeaderAttributes;
+                    break;
+                case "StructurePart":
+                    attributesToPass = structurePartHeaderAttributes;
+                    break;
+                case "Equipment":
+                    attributesToPass = equipmentHeaderAttributes;
+                    break;
+                case "SubEquipment":
+                    attributesToPass = subEquipmentHeaderAttributes;
+                    break;
+                case "EquipmentPart":
+                    attributesToPass = equipmentPartHeaderAttributes;
+                    break;
+            }
+
+            Generate3DCodeWindow objGenerate3DCodeWindow = new Generate3DCodeWindow();
+            objGenerate3DCodeWindow.DataContext = new Generate3DCodeViewModel(workbook.Worksheets.ActiveWorksheet, attributesToPass);
+            objGenerate3DCodeWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            objGenerate3DCodeWindow.ShowDialog();
+
         }
 
 
