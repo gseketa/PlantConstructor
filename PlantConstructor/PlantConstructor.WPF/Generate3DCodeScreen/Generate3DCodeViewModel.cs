@@ -28,7 +28,8 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
         public string SelectedExportType
         {
             get { return selectedExportType; }
-            set { 
+            set
+            {
                 selectedExportType = value;
                 OnPropertyRaised("SelectedExportType");
             }
@@ -164,7 +165,14 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                 OnPropertyRaised("SelectedAttributeFromRight");
             }
         }
-        
+
+        private ICommand startExportButtonCommand;
+
+        public ICommand StartExportButtonCommand
+        {
+            get { return startExportButtonCommand; }
+            set { startExportButtonCommand = value; }
+        }
 
 
         public Generate3DCodeViewModel(Worksheet activeWorksheet, List<string> allAttributes)
@@ -178,6 +186,8 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
             SelectAllLeftAttributesButtonCommand = new RelayCommand(SelectAllLeftAttributes);
             SelectAllCenterAttributesButtonCommand = new RelayCommand(SelectAllCenterAttributes);
             SelectAllRightAttributesButtonCommand = new RelayCommand(SelectAllRightAttributes);
+
+            StartExportButtonCommand = new RelayCommand(StartExport);
 
             ExportTypeComboBox = new List<string> { "New Elements", "Edit Elements" };
             SelectedExportType = "New Elements";
@@ -345,6 +355,11 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                 selectedAttributeFromRight = AllRightAttributesForDisplay.Where(x => x.IsSelected).ToList();
                 OnPropertyRaised("SelectedAttributeFromRight");
             }
+
+        }
+
+        public void StartExport(object parameter)
+        {
 
         }
     }
