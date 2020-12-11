@@ -242,6 +242,10 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
         public void MoveAttributeFromLeftToCenter(object parameter)
         {
             var listAtt = selectedAttributeFromLeft;
+            foreach (ListBoxAttributes item in AllLeftAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromLeft = null;
             if (listAtt != null)
             {
@@ -266,6 +270,10 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
         public void MoveAttributeFromCenterToLeft(object parameter)
         {
             var listAtt = selectedAttributeFromCenter;
+            foreach (ListBoxAttributes item in AllCenterAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromCenter = null;
             if (listAtt != null)
             {
@@ -289,6 +297,10 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
         public void MoveAttributeFromCenterToRight(object parameter)
         {
             var listAtt = selectedAttributeFromCenter;
+            foreach (ListBoxAttributes item in AllCenterAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromCenter = null;
             if (listAtt != null)
             {
@@ -312,6 +324,10 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
         public void MoveAttributeFromRightToCenter(object parameter)
         {
             var listAtt = selectedAttributeFromRight;
+            foreach (ListBoxAttributes item in AllRightAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromRight = null;
             if (listAtt != null)
             {

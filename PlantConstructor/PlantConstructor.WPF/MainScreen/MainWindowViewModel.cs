@@ -350,6 +350,10 @@ namespace PlantConstructor.WPF.MainScreen
         public async void MoveAttributeFromLeftToRight (object parameter)
         {
             var listAtt = selectedAttributeFromAvailable;
+            foreach (ListBoxAttributes item in AllAvailableAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromAvailable = null;
             if (listAtt != null)
             {
@@ -386,6 +390,10 @@ namespace PlantConstructor.WPF.MainScreen
         public async void MoveAttributeFromRightToLeft(object parameter)
         {
             var listAtt = selectedAttributeFromProject;
+            foreach (ListBoxAttributes item in AllProjectAttributesForDisplay)
+            {
+                item.IsSelected = false;
+            }
             SelectedAttributeFromProject = null;
             if (listAtt != null)
             {
