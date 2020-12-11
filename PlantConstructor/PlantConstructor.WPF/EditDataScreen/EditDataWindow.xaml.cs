@@ -390,7 +390,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
 
             Generate3DCodeWindow objGenerate3DCodeWindow = new Generate3DCodeWindow();
-            objGenerate3DCodeWindow.DataContext = new Generate3DCodeViewModel(workbook.Worksheets.ActiveWorksheet, attributesToPass);
+            objGenerate3DCodeWindow.DataContext = new Generate3DCodeViewModel(workbook.Worksheets.ActiveWorksheet, attributesToPass, activeSheetName);
             objGenerate3DCodeWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             objGenerate3DCodeWindow.ShowDialog();
 
@@ -503,7 +503,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                     string[] importCodeLine = filelines[a].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
                     //if the line is not empty or one of the headers, evaluate it
-                    if (importCodeLine != null && importCodeLine.Length != 0 && importCodeLine[0] != "\t" && importCodeLine[0] != "END" && importCodeLine[0] != "AVEVA_Attributes_File" && importCodeLine[1] != "Header")
+                    if (importCodeLine != null && importCodeLine.Length >= 2 && importCodeLine[0] != "\t" && importCodeLine[0] != "END" && importCodeLine[0] != "AVEVA_Attributes_File" && importCodeLine[1] != "Header")
                         {
                         //if the line contains the NEW keyword
                         if (importCodeLine[0] == "NEW")

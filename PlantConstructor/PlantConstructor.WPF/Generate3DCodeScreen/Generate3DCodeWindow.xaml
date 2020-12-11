@@ -166,7 +166,7 @@
         </StackPanel>
         <Border Grid.Row="1" BorderThickness="1" BorderBrush="Black">
             <ScrollViewer >
-                <TextBlock x:Name="LogText">Log:</TextBlock>
+                <TextBlock Text="{Binding LogText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </ScrollViewer>
         </Border>
     </Grid>

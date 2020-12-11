@@ -13,6 +13,17 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
     {
         private List<string> exportTypeComboBox;
 
+        private string logText;
+
+        public string LogText
+        {
+            get { return logText; }
+            set { 
+                logText = value;
+                OnPropertyRaised("LogText");
+            }
+        }
+
         public List<string> ExportTypeComboBox
         {
             get { return exportTypeComboBox; }
@@ -174,10 +185,14 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
             set { startExportButtonCommand = value; }
         }
 
+        private string elementType;
 
-        public Generate3DCodeViewModel(Worksheet activeWorksheet, List<string> allAttributes)
+        public Generate3DCodeViewModel(Worksheet activeWorksheet, List<string> allAttributes, string activeSheetName)
         {
+            LogText = "Log started";
 
+            elementType = activeSheetName;
+            
             AllLeftAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToCenter);
             AllCenterAttributesButtonCommand = new RelayCommand(MoveAttributeFromCenterToLeft);
             AllCenterToRightAttributesButtonCommand = new RelayCommand(MoveAttributeFromCenterToRight);
@@ -360,7 +375,15 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
 
         public void StartExport(object parameter)
         {
+            if (AllCenterAttributesForDisplay.Any(x => x.Item == "NAME") || 
+                AllRightAttributesForDisplay.Any(x => x.Item == "NAME"))
+            {
 
+            }
+            else
+            {
+                LogText = "Error: NAME attribute was not found. Export aborted, task NOT FINISHED!";
+            }
         }
     }
 }
