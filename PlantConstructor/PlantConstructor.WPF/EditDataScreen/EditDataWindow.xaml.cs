@@ -390,7 +390,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
 
             Generate3DCodeWindow objGenerate3DCodeWindow = new Generate3DCodeWindow();
-            objGenerate3DCodeWindow.DataContext = new Generate3DCodeViewModel(workbook.Worksheets.ActiveWorksheet, attributesToPass, activeSheetName);
+            objGenerate3DCodeWindow.DataContext = new Generate3DCodeViewModel(workbook.Worksheets.ActiveWorksheet, attributesToPass);
             objGenerate3DCodeWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             objGenerate3DCodeWindow.ShowDialog();
 
@@ -566,11 +566,12 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 {
                                 //read the attribute - 0 is the attribute name; 1 is the value
                                 string attributeName = importCodeLine[0].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[0];
-                                    string attributeValue = "";
+                                string attributeValue = "";
                                     for (int i = 1; i < importCodeLine.Length; i++)
                                     {
                                         attributeValue = attributeValue + " " + importCodeLine[i];
                                     }
+                                    attributeValue = attributeValue.TrimStart();
 
                                     if (currentType == "SITE")
                                     {

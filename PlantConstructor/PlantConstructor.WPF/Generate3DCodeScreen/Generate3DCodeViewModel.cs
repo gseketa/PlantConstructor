@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using DevExpress.Spreadsheet;
+using Microsoft.Win32;
 using PlantConstructor.WPF.Helper;
 
 namespace PlantConstructor.WPF.Generate3DCodeScreen
@@ -185,13 +187,13 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
             set { startExportButtonCommand = value; }
         }
 
-        private string elementType;
+        private Worksheet localSheet;
 
-        public Generate3DCodeViewModel(Worksheet activeWorksheet, List<string> allAttributes, string activeSheetName)
+        public Generate3DCodeViewModel(Worksheet activeWorksheet, List<string> allAttributes)
         {
             LogText = "Log started";
 
-            elementType = activeSheetName;
+            localSheet = activeWorksheet;
             
             AllLeftAttributesButtonCommand = new RelayCommand(MoveAttributeFromLeftToCenter);
             AllCenterAttributesButtonCommand = new RelayCommand(MoveAttributeFromCenterToLeft);
@@ -391,14 +393,154 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
 
         public void StartExport(object parameter)
         {
-            if (AllCenterAttributesForDisplay.Any(x => x.Item == "NAME") || 
+            if (AllCenterAttributesForDisplay.Any(x => x.Item == "NAME") ||
                 AllRightAttributesForDisplay.Any(x => x.Item == "NAME"))
             {
+                if (SelectedExportType == "New Elements" && (AllCenterAttributesForDisplay.Any(x => x.Item == "TYPE") ||
+                AllRightAttributesForDisplay.Any(x => x.Item == "TYPE")) || SelectedExportType == "Edit Elements")
+                {
 
+                    Mouse.OverrideCursor = Cursors.Wait;
+
+                    string exportCode = "";
+
+                    int columnIndex = 0;
+                    int indexName = -1;
+                    int indexType = -1;
+                    List<int> indexAttribute = new List<int>();
+                    List<int> indexApostropheAttribute = new List<int>();
+                    while (localSheet.Cells[0, columnIndex].Value.ToString() != "")
+                    {
+                        if (localSheet.Cells[0, columnIndex].Value.ToString() == "NAME")
+                        {
+                            indexName = columnIndex;
+                        }
+                        else if (localSheet.Cells[0, columnIndex].Value.ToString() == "TYPE")
+                        {
+                            indexType = columnIndex;
+                        }
+                        else if (AllCenterAttributesForDisplay.Any(
+                            x => x.Item == localSheet.Cells[0, columnIndex].Value.ToString()))
+                        {
+                            indexAttribute.Add(columnIndex);
+                        }
+                        else if (AllRightAttributesForDisplay.Any(
+                            x => x.Item == localSheet.Cells[0, columnIndex].Value.ToString()))
+                        {
+                            indexApostropheAttribute.Add(columnIndex);
+                        }
+                        columnIndex++;
+                    }
+
+                    //if (SelectedExportType == "New Elements" && indexType == -1)
+                    //{
+                    //    LogText = LogText + Environment.NewLine + "Error: " +
+                    //        "TYPE Attribute missing for mode New Element. Export Aborted! ";
+                    //}
+                    //else
+                    //{
+                        LogText = LogText + Environment.NewLine + "Export Started.";
+
+                        CellRange usedRange = localSheet.GetUsedRange();
+                        int rowIndex = 1;
+                        while (rowIndex < usedRange.RowCount)
+                        {
+                            if (localSheet.Cells[rowIndex, indexName].Value.ToString() == "")
+                            {
+                                LogText = LogText + Environment.NewLine +
+                                    "Warning: NAME attribute missing in line: " + rowIndex.ToString() +
+                                    ". Line skipped.";
+                            }
+                            else if (SelectedExportType == "New Elements" &&
+                                localSheet.Cells[rowIndex, indexType].Value.ToString() == "")
+                            {
+                                LogText = LogText + Environment.NewLine +
+                                    "Warning: TYPE attribute missing in line: " + rowIndex.ToString() +
+                                    ". Line skipped.";
+                            }
+                            else
+                            {
+
+                                if (SelectedExportType == "New Elements")
+                                {
+
+                                    exportCode = exportCode + Environment.NewLine + "NEW" + " " +
+                                        localSheet.Cells[rowIndex, indexType].Value.ToString() + " " +
+                                        localSheet.Cells[rowIndex, indexName].Value.ToString();
+                                }
+                                else
+                                {
+                                    exportCode = exportCode + Environment.NewLine +
+                                        localSheet.Cells[rowIndex, indexName].Value.ToString();
+                                }
+                                foreach (int currentAttIndex in indexAttribute)
+                                {
+                                    if (localSheet.Cells[rowIndex, currentAttIndex].Value.ToString() == "")
+                                    {
+                                        LogText = LogText + Environment.NewLine +
+                                    "Warning: Attribute value for attribute: " +
+                                    localSheet.Cells[0, currentAttIndex].Value.ToString() + " missing in line: "
+                                    + rowIndex.ToString() +
+                                    ". Attribute skipped.";
+                                    }
+                                    else
+                                    {
+                                        exportCode = exportCode + " " +
+                                        localSheet.Cells[0, currentAttIndex].Value.ToString() + " " +
+                                        localSheet.Cells[rowIndex, currentAttIndex].Value.ToString();
+                                    }
+                                }
+                                foreach (int currentAttIndex in indexApostropheAttribute)
+                                {
+                                    if (localSheet.Cells[rowIndex, currentAttIndex].Value.ToString() == "")
+                                    {
+                                        LogText = LogText + Environment.NewLine +
+                                    "Warning: Attribute value for attribute: " +
+                                    localSheet.Cells[0, currentAttIndex].Value.ToString() + " missing in line: "
+                                    + rowIndex.ToString() +
+                                    ". Attribute skipped.";
+                                    }
+                                    else
+                                    {
+                                        exportCode = exportCode + " " +
+                                        localSheet.Cells[0, currentAttIndex].Value.ToString() + " '" +
+                                        localSheet.Cells[rowIndex, currentAttIndex].Value.ToString() + "'";
+                                    }
+                                }
+
+                            }
+                            rowIndex++;
+                        }
+
+
+
+                        LogText = LogText + Environment.NewLine + "Export Finished. Saving to file...";
+                        SaveFileDialog dialog = new SaveFileDialog()
+                        {
+                            Filter = "Text Files(*.txt)|*.txt|All(*.*)|*"
+                        };
+
+                        if (dialog.ShowDialog() == true)
+                        {
+                            File.WriteAllText(dialog.FileName, exportCode);
+                        }
+
+                        LogText = LogText + Environment.NewLine + "File Saved";
+                    //}
+
+                    Mouse.OverrideCursor = null;
+
+                }
+                else
+                {
+                    LogText = LogText + Environment.NewLine + "Error: TYPE attribute " +
+                    "was not found. Export aborted, task NOT FINISHED!";
+                }
             }
             else
             {
-                LogText = "Error: NAME attribute was not found. Export aborted, task NOT FINISHED!";
+                LogText = LogText + Environment.NewLine + "Error: NAME attribute " +
+                    "was not found. Export aborted, task NOT FINISHED!";
             }
         }
     }
