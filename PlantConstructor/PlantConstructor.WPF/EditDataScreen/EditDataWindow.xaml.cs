@@ -401,15 +401,27 @@ namespace PlantConstructor.WPF.EditDataScreen
         {
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Open Text File";
-            theDialog.Filter = "ATT files|*.att";
+            theDialog.Filter = "Supported files (*.att, *.datal)|*.att; *.datal";
             theDialog.InitialDirectory = @"C:\";
             if (theDialog.ShowDialog() == true)
             {
                 string filename = theDialog.FileName;
+                string filetype = System.IO.Path.GetExtension(theDialog.FileName);
                 Mouse.OverrideCursor = Cursors.Wait;
                 LogText.Text = "Import started... ";
                 string[] allFileLines = await ReadDataFromFile(filename);
-                WriteDataInSpreadsheet(await InterpretData(new Progress<string>(status => LogText.Text = status), allFileLines));
+                switch (filetype)
+                {
+                    case ".att":
+                        WriteDataInSpreadsheet(await InterpretDataAtt(
+                            new Progress<string>(status => LogText.Text = status), allFileLines));
+                        break;
+                    case ".datal":
+                        WriteDataInSpreadsheet(await InterpretDataDatal(
+                            new Progress<string>(status => LogText.Text = status), allFileLines));
+                        break;
+                }
+               
                 Mouse.OverrideCursor = null;
                 LogText.Text = "Import finished... ";
             }
@@ -421,7 +433,7 @@ namespace PlantConstructor.WPF.EditDataScreen
             return filelines;
         }
 
-        private async Task<ListOfSpreadsheetElements> InterpretData(IProgress<string> progress, string[] filelines)
+        private async Task<ListOfSpreadsheetElements> InterpretDataAtt(IProgress<string> progress, string[] filelines)
         {
             string currentType = "";
             string currentCategory = "";
@@ -649,6 +661,364 @@ namespace PlantConstructor.WPF.EditDataScreen
                                         //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
                                         //});
                                         dataStorage.PipePartElements.Add(new SpreadsheetElement { Row = pipePartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+
+                                    }
+                                    else if (currentType == "STRU")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = structureHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.StructureElements.Add(new SpreadsheetElement { Row = structureRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "FRMW" || currentType == "SUBS")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = subStructureHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.SubStructureElements.Add(new SpreadsheetElement { Row = subStructureRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                            || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
+                                            || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
+                                            || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
+                                            || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT"
+                                            || currentType == "PNOD" || currentType == "PJOI" || currentType == "NXTR"
+                                            || currentType == "LOOP" || currentType == "VERT" || currentType == "PFIT"
+                                            || currentType == "NPYR" || currentType == "CTOR" || currentType == "POHE"
+                                            || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
+                                            || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
+                                            || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
+                                            || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE"))
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = structurePartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.StructurePartElements.Add(new SpreadsheetElement { Row = structurePartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "EQUI")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = equipmentHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.EquipmentElements.Add(new SpreadsheetElement { Row = equipmentRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "SUBE")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = subEquipmentHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.SubEquipmentElements.Add(new SpreadsheetElement { Row = subEquipmentRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
+                                || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
+                                || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
+                                || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
+                                || currentType == "DDSE" || currentType == "DDAT" || currentType == "TMPL"
+                                || currentType == "DPSE" || currentType == "DPSP" || currentType == "VVALUE"
+                                || currentType == "DPCA" || currentType == "GENPRI" || currentType == "ARCHIV"
+                                || currentType == "VERT" || currentType == "LOOP" || currentType == "ATTRRL"
+                                || currentType == "SCTN" || currentType == "EXTR" || currentType == "NPYR"))
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = equipmentPartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.EquipmentPartElements.Add(new SpreadsheetElement { Row = equipmentPartRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    });
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error in input file, line: " + a.ToString(), "Input File Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            }
+            return dataStorage;
+        }
+
+        private async Task<ListOfSpreadsheetElements> InterpretDataDatal(IProgress<string> progress, string[] filelines)
+        {
+            string currentType = "";
+            string currentCategory = "";
+
+            //find out the last empty rows index in each sheet; pointing at the last filled row
+            int siteRowCount;
+            for (siteRowCount = 1; workbook.Worksheets[0].Cells[siteRowCount, 0].Value.ToString() != ""; siteRowCount++) { }
+            siteRowCount--;
+
+            int zoneRowCount;
+            for (zoneRowCount = 1; workbook.Worksheets[1].Cells[zoneRowCount, 0].Value.ToString() != ""; zoneRowCount++) { }
+            zoneRowCount--;
+
+            int pipeRowCount;
+            for (pipeRowCount = 1; workbook.Worksheets[2].Cells[pipeRowCount, 0].Value.ToString() != ""; pipeRowCount++) { }
+            pipeRowCount--;
+
+            int branchRowCount;
+            for (branchRowCount = 1; workbook.Worksheets[3].Cells[branchRowCount, 0].Value.ToString() != ""; branchRowCount++) { }
+            branchRowCount--;
+
+            int pipePartRowCount;
+            for (pipePartRowCount = 1; workbook.Worksheets[4].Cells[pipePartRowCount, 0].Value.ToString() != ""; pipePartRowCount++) { }
+            pipePartRowCount--;
+
+            int structureRowCount;
+            for (structureRowCount = 1; workbook.Worksheets[5].Cells[structureRowCount, 0].Value.ToString() != ""; structureRowCount++) { }
+            structureRowCount--;
+
+            int subStructureRowCount;
+            for (subStructureRowCount = 1; workbook.Worksheets[6].Cells[subStructureRowCount, 0].Value.ToString() != ""; subStructureRowCount++) { }
+            subStructureRowCount--;
+
+            int structurePartRowCount;
+            for (structurePartRowCount = 1; workbook.Worksheets[7].Cells[structurePartRowCount, 0].Value.ToString() != ""; structurePartRowCount++) { }
+            structurePartRowCount--;
+
+            int equipmentRowCount;
+            for (equipmentRowCount = 1; workbook.Worksheets[8].Cells[equipmentRowCount, 0].Value.ToString() != ""; equipmentRowCount++) { }
+            equipmentRowCount--;
+
+            int subEquipmentRowCount;
+            for (subEquipmentRowCount = 1; workbook.Worksheets[9].Cells[subEquipmentRowCount, 0].Value.ToString() != ""; subEquipmentRowCount++) { }
+            subEquipmentRowCount--;
+
+            int equipmentPartRowCount;
+            for (equipmentPartRowCount = 1; workbook.Worksheets[10].Cells[equipmentPartRowCount, 0].Value.ToString() != ""; equipmentPartRowCount++) { }
+            equipmentPartRowCount--;
+
+            ListOfSpreadsheetElements dataStorage = new ListOfSpreadsheetElements
+            {
+                SiteElements = new List<SpreadsheetElement> { },
+                BranchElements = new List<SpreadsheetElement> { },
+                PipeElements = new List<SpreadsheetElement> { },
+                ZoneElements = new List<SpreadsheetElement> { },
+                PipePartElements = new List<SpreadsheetElement> { },
+                StructureElements = new List<SpreadsheetElement> { },
+                SubStructureElements = new List<SpreadsheetElement> { },
+                StructurePartElements = new List<SpreadsheetElement> { },
+                EquipmentElements = new List<SpreadsheetElement> { },
+                SubEquipmentElements = new List<SpreadsheetElement> { },
+                EquipmentPartElements = new List<SpreadsheetElement> { },
+            };
+
+            int a = 0;
+            try
+            {
+                //read line by line
+                for (a = 0; a < filelines.Length; a++)
+                {
+                    if (progress != null)
+                    {
+                        progress.Report("Import progress: " + a.ToString() + " / " + filelines.Length.ToString());
+                    }
+
+                    await Task.Run(() =>
+                    {
+
+                        //split the codeline in parts with empty string delimiter; remove empty spaces
+                        string[] importCodeLine = filelines[a].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+                        //if the line is not empty or one of the headers, evaluate it
+                        if (importCodeLine != null && importCodeLine.Length >= 2 && importCodeLine[0] != "\t" && importCodeLine[0] != "END" && importCodeLine[0] != "AVEVA_Attributes_File" && importCodeLine[1] != "Header")
+                        {
+                            //if the line contains the NEW keyword
+                            if (importCodeLine[0] == "NEW")
+                            {
+                                //split the TYPE codeline and assign the value (if KPCNAME is added to the doc, then the type is on 3rd row not 2nd)
+                                string checkTypeLine = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                if (checkTypeLine.Contains("KPCNAME"))
+                                {
+                                    currentType = filelines[a + 3].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                }
+
+                                else
+                                {
+                                    currentType = filelines[a + 2].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)[1];
+                                }
+                                //LogText.Text += Environment.NewLine + currentType;
+
+                                //move the pointer to the next free line in appropriate sheet
+                                if (currentType == "SITE") siteRowCount++;
+                                else if (currentType == "ZONE") zoneRowCount++;
+                                else if (currentType == "PIPE") { pipeRowCount++; currentCategory = "PIPE"; }
+                                else if (currentType == "BRAN") branchRowCount++;
+                                else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                                || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT")) pipePartRowCount++;
+                                else if (currentType == "STRU") { structureRowCount++; currentCategory = "STRU"; }
+                                else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
+                                else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
+                                || currentType == "SBFR" || currentType == "PANE" || currentType == "PLOO"
+                                || currentType == "PAVE" || currentType == "BOX" || currentType == "CYLI"
+                                || currentType == "RTOR" || currentType == "FLOOR" || currentType == "STWALL"
+                                || currentType == "NBOX" || currentType == "CMPF" || currentType == "FITT"
+                                || currentType == "PNOD" || currentType == "PJOI" || currentType == "NXTR"
+                                || currentType == "LOOP" || currentType == "VERT" || currentType == "PFIT"
+                                || currentType == "NPYR" || currentType == "CTOR" || currentType == "POHE"
+                                || currentType == "POGO" || currentType == "POIN" || currentType == "SLCY"
+                                || currentType == "PYRA" || currentType == "TMPL" || currentType == "NCYL"
+                                || currentType == "NRTO" || currentType == "GENSEC" || currentType == "SPINE"
+                                || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")) structurePartRowCount++;
+                                else if (currentType == "EQUI") { equipmentRowCount++; currentCategory = "EQUI"; }
+                                else if (currentType == "SUBE") subEquipmentRowCount++;
+                                else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
+                                || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
+                                || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
+                                || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"
+                                || currentType == "DDSE" || currentType == "DDAT" || currentType == "TMPL"
+                                || currentType == "DPSE" || currentType == "DPSP" || currentType == "VVALUE"
+                                || currentType == "DPCA" || currentType == "GENPRI" || currentType == "ARCHIV"
+                                || currentType == "VERT" || currentType == "LOOP" || currentType == "ATTRRL"
+                                || currentType == "SCTN" || currentType == "EXTR" || currentType == "NPYR")) equipmentPartRowCount++;
+                            }
+                            else
+                            {
+                                if (currentType == "")
+                                {
+                                    //LogText.Text += Environment.NewLine + "Error - file not in appropriate format; NEW keyword not found at beginning";
+                                }
+                                else
+                                {
+                                    //read the attribute - 0 is the attribute name; 1 is the value
+                                    string attributeName = importCodeLine[0].Split(new string[] { ":=" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                    string attributeValue = "";
+                                    for (int i = 1; i < importCodeLine.Length; i++)
+                                    {
+                                        attributeValue = attributeValue + " " + importCodeLine[i];
+                                    }
+                                    attributeValue = attributeValue.TrimStart();
+
+                                    if (currentType == "SITE")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = siteHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //workbook.Worksheets[0].Rows[siteRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.SiteElements.Add(new SpreadsheetElement { Row = siteRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+
+                                    else if (currentType == "ZONE")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = zoneHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[1].Rows[zoneRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.ZoneElements.Add(new SpreadsheetElement { Row = zoneRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+
+                                    //write the attribute value to appropriate place
+                                    else if (currentType == "PIPE")
+                                    {
+                                        int listItemIndex = pipeHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[2].Rows[pipeRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.PipeElements.Add(new SpreadsheetElement { Row = pipeRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentType == "BRAN")
+                                    {
+                                        //find out whether the value exists in the dictionary 
+                                        int listItemIndex = branchHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.BranchElements.Add(new SpreadsheetElement { Row = branchRowCount, Column = listItemIndex, Value = attributeValue });
+                                        }
+
+                                    }
+                                    else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
+                                            || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
+                                            || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT"))
+                                    {
+                                        int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
+                                        if (listItemIndex >= 0)
+                                        {
+                                            //write the attribute value to the appropriate row and column
+                                            //this.Dispatcher.Invoke(() =>
+                                            //{
+                                            //    workbook.Worksheets[3].Rows[branchRowCount][listItemIndex].Value = attributeValue;
+                                            //});
+                                            dataStorage.PipePartElements.Add(new SpreadsheetElement { Row = pipePartRowCount, Column = listItemIndex, Value = attributeValue });
                                         }
 
 

@@ -396,8 +396,9 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
             if (AllCenterAttributesForDisplay.Any(x => x.Item == "NAME") ||
                 AllRightAttributesForDisplay.Any(x => x.Item == "NAME"))
             {
-                if (SelectedExportType == "New Elements" && (AllCenterAttributesForDisplay.Any(x => x.Item == "TYPE") ||
-                AllRightAttributesForDisplay.Any(x => x.Item == "TYPE")) || SelectedExportType == "Edit Elements")
+                if (SelectedExportType == "New Elements" && (AllCenterAttributesForDisplay.Any(x => x.Item == "TYPE")  ||
+                AllRightAttributesForDisplay.Any(x => x.Item == "TYPE")) && (AllCenterAttributesForDisplay.Any(x => x.Item == "OWNER") ||
+                AllRightAttributesForDisplay.Any(x => x.Item == "OWNER")) || SelectedExportType == "Edit Elements")
                 {
 
                     Mouse.OverrideCursor = Cursors.Wait;
@@ -407,6 +408,7 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                     int columnIndex = 0;
                     int indexName = -1;
                     int indexType = -1;
+                    int indexOwner = -1;
                     List<int> indexAttribute = new List<int>();
                     List<int> indexApostropheAttribute = new List<int>();
                     while (localSheet.Cells[0, columnIndex].Value.ToString() != "")
@@ -418,6 +420,10 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                         else if (localSheet.Cells[0, columnIndex].Value.ToString() == "TYPE")
                         {
                             indexType = columnIndex;
+                        }
+                        else if (localSheet.Cells[0, columnIndex].Value.ToString() == "OWNER")
+                        {
+                            indexOwner = columnIndex;
                         }
                         else if (AllCenterAttributesForDisplay.Any(
                             x => x.Item == localSheet.Cells[0, columnIndex].Value.ToString()))
@@ -458,13 +464,22 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                                     "Warning: TYPE attribute missing in line: " + rowIndex.ToString() +
                                     ". Line skipped.";
                             }
+                            else if (SelectedExportType == "New Elements" &&
+                                localSheet.Cells[rowIndex, indexOwner].Value.ToString() == "")
+                            {
+                                LogText = LogText + Environment.NewLine +
+                                    "Warning: OWNER attribute missing in line: " + rowIndex.ToString() +
+                                    ". Line skipped.";
+                            }
                             else
                             {
 
                                 if (SelectedExportType == "New Elements")
                                 {
 
-                                    exportCode = exportCode + Environment.NewLine + "NEW" + " " +
+                                    exportCode = exportCode + Environment.NewLine + 
+                                        localSheet.Cells[rowIndex, indexOwner].Value.ToString() + " " +
+                                        "NEW" + " " +
                                         localSheet.Cells[rowIndex, indexType].Value.ToString() + " " +
                                         localSheet.Cells[rowIndex, indexName].Value.ToString();
                                 }
@@ -533,7 +548,7 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                 }
                 else
                 {
-                    LogText = LogText + Environment.NewLine + "Error: TYPE attribute " +
+                    LogText = LogText + Environment.NewLine + "Error: TYPE or OWNER attribute " +
                     "was not found. Export aborted, task NOT FINISHED!";
                 }
             }
