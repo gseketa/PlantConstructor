@@ -102,7 +102,7 @@ namespace PlantConstructor.WPF.SettingsScreen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.0.0.0;component/settingsscreen/settingswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.1.0.0;component/settingsscreen/settingswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\SettingsScreen\SettingsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

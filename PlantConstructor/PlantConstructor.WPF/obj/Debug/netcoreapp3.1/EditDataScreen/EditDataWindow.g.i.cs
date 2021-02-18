@@ -110,7 +110,7 @@ namespace PlantConstructor.WPF.EditDataScreen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.0.0.0;component/editdatascreen/editdatawindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.1.0.0;component/editdatascreen/editdatawindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\EditDataScreen\EditDataWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
