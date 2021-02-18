@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlantConstructor.WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.0.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.1.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlantConstructor.WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlantConstructor.WPF")]
