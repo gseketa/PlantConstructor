@@ -508,6 +508,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                         progress.Report("Import progress: " + a.ToString() + " / " + filelines.Length.ToString());
                     }
 
+
+
                     await Task.Run(() =>
                     {
 
@@ -537,7 +539,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 if (currentType == "SITE") siteRowCount++;
                                 else if (currentType == "ZONE") zoneRowCount++;
                                 else if (currentType == "PIPE") { pipeRowCount++; currentCategory = "PIPE"; }
-                                else if (currentType == "BRAN") branchRowCount++;
+                                else if (currentType == "BRAN") { branchRowCount++; currentCategory = "PIPE"; }
                                 else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
@@ -558,7 +560,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 || currentType == "POINSP" || currentType == "CURVE" || currentType == "CONE")) structurePartRowCount++;
                                 else if (currentType == "EQUI") { equipmentRowCount++; currentCategory = "EQUI"; }
                                 else if (currentType == "SUBE") subEquipmentRowCount++;
-                                else if (currentCategory=="EQUI" &&  (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
+                                else if (currentCategory == "EQUI" && (currentType == "DISH" || currentType == "CYLI" || currentType == "NOZZ"
                                 || currentType == "BOX" || currentType == "CONE" || currentType == "CTOR"
                                 || currentType == "NCYL" || currentType == "RTOR" || currentType == "PYRA"
                                 || currentType == "NBOX" || currentType == "SNOU" || currentType == "NRTO"

@@ -1,5 +1,5 @@
 ﻿PlantConstructor.WPF
-
+2.2.0.0
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\goran.seketa\Documents\Development\PlantConstructor\PlantConstructor\PlantConstructor.WPF\App.xaml
-3-541235786
-
-16-731376206
-348-1571425973
-EditDataScreen\EditDataWindow.xaml;MainScreen\MainWindow.xaml;SettingsScreen\SettingsWindow.xaml;
+41663508034
+2-1122576824
+181021537088
+34897787561
+EditDataScreen\EditDataWindow.xaml;Generate3DCodeScreen\Generate3DCodeWindow.xaml;MainScreen\MainWindow.xaml;SettingsScreen\SettingsWindow.xaml;
 
 False
 

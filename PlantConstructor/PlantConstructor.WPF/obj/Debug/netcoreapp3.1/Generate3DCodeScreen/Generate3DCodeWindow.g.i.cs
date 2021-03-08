@@ -104,7 +104,7 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.1.0.0;component/generate3dcodescreen/generate3dcodewindo" +
+            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.2.0.0;component/generate3dcodescreen/generate3dcodewindo" +
                     "w.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Generate3DCodeScreen\Generate3DCodeWindow.xaml"
