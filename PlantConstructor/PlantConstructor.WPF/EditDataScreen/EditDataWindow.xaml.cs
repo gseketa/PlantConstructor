@@ -543,7 +543,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT")) pipePartRowCount++;
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" 
+                                || currentType == "FILT" || currentType == "BEND" || currentType == "TUBE" || currentType == "FTUB")) pipePartRowCount++;
                                 else if (currentType == "STRU") { structureRowCount++; currentCategory = "STRU"; }
                                 else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
                                 else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
@@ -652,7 +653,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                                     else if (currentCategory=="PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                             || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                             || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT"))
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT"
+                                             || currentType == "BEND" || currentType == "TUBE" || currentType == "FTUB"))
                                     {
                                         int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
                                         if (listItemIndex >= 0)
@@ -901,7 +903,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                                 else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                 || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                 || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT")) pipePartRowCount++;
+                                || currentType == "TEE" || currentType == "CAP" || currentType == "INST" 
+                                || currentType == "FILT" || currentType == "BEND" || currentType == "TUBE" || currentType == "FTUB")) pipePartRowCount++;
                                 else if (currentType == "STRU") { structureRowCount++; currentCategory = "STRU"; }
                                 else if (currentType == "FRMW" || currentType == "SUBS") subStructureRowCount++;
                                 else if (currentCategory == "STRU" && (currentType == "SCTN" || currentType == "SNOD" || currentType == "SJOI"
@@ -1010,7 +1013,8 @@ namespace PlantConstructor.WPF.EditDataScreen
                                     else if (currentCategory == "PIPE" && (currentType == "VALV" || currentType == "GASK" || currentType == "PCOM"
                                             || currentType == "FLAN" || currentType == "ELBO" || currentType == "ATTA"
                                             || currentType == "OLET" || currentType == "FBLI" || currentType == "REDU"
-                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" || currentType == "FILT"))
+                                             || currentType == "TEE" || currentType == "CAP" || currentType == "INST" 
+                                             || currentType == "FILT" || currentType == "BEND" || currentType == "TUBE" || currentType == "FTUB"))
                                     {
                                         int listItemIndex = pipePartHeaderAttributes.FindIndex(s => s == attributeName);
                                         if (listItemIndex >= 0)
