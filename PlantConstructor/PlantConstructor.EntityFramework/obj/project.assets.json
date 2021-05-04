@@ -3560,6 +3560,3626 @@
           "bin/placeholder/PlantConstructor.Domain.dll": {}
         }
       }
+    },
+    ".NETCoreApp,Version=v3.1/win-x64": {
+      "DevExpress.WindowsDesktop.Charts/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraCharts.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraCharts.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Charts.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Charts.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Charts.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.CodeParser/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.CodeDom": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.CodeParser.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.CodeParser.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Data/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.5.0",
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.4.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Diagnostics.PerformanceCounter": "4.5.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Data.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Data.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.DataAccess/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.CodeParser": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Xpo": "[20.1.7]",
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "2.0.0",
+          "Microsoft.Extensions.Configuration.Json": "2.0.0",
+          "NETStandard.Library": "2.0.3",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Data.SqlClient": "4.5.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.DataAccess.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.DataAccess.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.DataDesktop/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Data.Desktop.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Data.Desktop.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Diagram.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Diagram.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Diagram.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Dialogs.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Dialogs.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Dialogs.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Gauges.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraGauges.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraGauges.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Images/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Images.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Images.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Map.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Map.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Map.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Mvvm/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Mvvm.DataModel/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.DataModel.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.DataModel.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Mvvm.DataModel.EFCore/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Mvvm.DataModel": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.DataModel.EFCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.DataModel.EFCore.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Mvvm.ViewModel/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm.DataModel": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.ViewModel.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Mvvm.v20.1.ViewModel.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Office.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Office.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Office.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Pdf.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Security.Cryptography.Pkcs": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Pdf.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Pdf.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Pdf.Drawing/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Pdf.v20.1.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Pdf.v20.1.Drawing.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.PivotGrid.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.PivotGrid.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.PivotGrid.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Printing.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Drawing": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.ComponentModel.Annotations": "4.4.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.Security.Cryptography.Pkcs": "4.5.2",
+          "System.ServiceModel.Http": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Printing.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Printing.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Reporting.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.CodeParser": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Gauges.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Drawing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.PivotGrid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Sparkline.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Xpo": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.CodeDom": "4.4.0",
+          "System.Collections.Immutable": "1.5.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Data.Common": "4.3.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.Security.Permissions": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.XtraReports.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.RichEdit.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.RichEdit.Export/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v20.1.Export.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.RichEdit.v20.1.Export.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Scheduler.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Images": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.XtraScheduler.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.XtraScheduler.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Sparkline.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Sparkline.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Sparkline.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.SpellChecker.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.SpellChecker.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.SpellChecker.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Spreadsheet.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Sparkline.Core": "[20.1.7]",
+          "NETStandard.Library": "2.0.3",
+          "System.Drawing.Common": "4.5.0",
+          "System.Security.AccessControl": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Spreadsheet.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Spreadsheet.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.TreeMap.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "NETStandard.Library": "2.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.TreeMap.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.TreeMap.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Mvvm.DataModel.EFCore": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm.ViewModel": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Export": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Carousel": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core.Extensions": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Diagram": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Dialogs": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.ExpressionEditor": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Gantt": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Gauges": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Layout": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Map": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.NavBar": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Navigation": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PdfViewer": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PivotGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PrismAdapters": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PropertyGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.RichEdit": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Scheduler": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Scheduling": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.SpellChecker": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Spreadsheet": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.TreeMap": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.TypedStyles": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Accordion/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Accordion.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Accordion.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Carousel/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Carousel.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Carousel.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Charts/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PropertyGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Charts.Designer.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Charts.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Charts.Designer.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Charts.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Controls/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Controls.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Controls.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019Colorful": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Core.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Core.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Core.Extensions/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Xpo": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Core.v20.1.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Core.v20.1.Extensions.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Diagram/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Diagram.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Images": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PropertyGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Diagram.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Diagram.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Dialogs/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Dialogs.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Dialogs.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Dialogs.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Docking/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Layout.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Docking.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Docking.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.DocumentViewer.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.DocumentViewer.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.ExpressionEditor/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.RichEdit": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.ExpressionEditor.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.ExpressionEditor.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Gantt/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Gantt.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Gantt.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Gauges/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Gauges.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Gauges.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Grid/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf.ExpressionEditor": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Printing": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Grid.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.Core.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.Extensions.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.Core.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.Extensions.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.Grid.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Grid.Printing/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Layout/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Layout.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.LayoutControl": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Layout.Core/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Layout.v20.1.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Layout.v20.1.Core.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.LayoutControl/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.LayoutControl.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.LayoutControl.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Map/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Map.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Map.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Map.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.NavBar/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.NavBar.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.NavBar.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Navigation/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf.Accordion": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Office/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Office.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Office.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.PdfViewer/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Drawing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PdfViewer.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PdfViewer.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.PivotGrid/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.PivotGrid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PivotGrid.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PivotGrid.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Printing/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.LayoutControl": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]",
+          "System.ServiceModel.Http": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Printing.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Printing.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.PrismAdapters/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.NavBar": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PrismAdapters.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PrismAdapters.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.PropertyGrid/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PropertyGrid.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.PropertyGrid.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Reporting/20.1.7-ctp": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.CodeParser": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Diagram.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Gauges.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Images": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.PivotGrid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Reporting.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Sparkline.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Diagram": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.ExpressionEditor": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.LayoutControl": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PivotGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PropertyGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.RichEdit": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Xpo": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.CodeView.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.DataAccess.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.ReportDesigner.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.CodeView.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.DataAccess.v20.1.dll": {},
+          "lib/netcoreapp3.0/DevExpress.Xpf.ReportDesigner.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Ribbon/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Ribbon.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Ribbon.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.RichEdit/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Images": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Layout.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Office": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.RichEdit.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.RichEdit.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Scheduler/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Scheduler.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Scheduler.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Scheduler.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Scheduling/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Scheduler.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.LayoutControl": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Scheduling.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Scheduling.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.SpellChecker/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.SpellChecker.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.SpellChecker.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.SpellChecker.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Spreadsheet/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Images": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Spreadsheet.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.NavBar": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Office": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Spreadsheet.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Spreadsheet.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.All/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf.Themes.DXStyle": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.LightGray": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.MetropolisDark": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.MetropolisLight": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Black": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Blue": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Silver": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Blue": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Silver": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2013": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2013DarkGray": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2013LightGray": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016Black": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016BlackSE": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016Colorful": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016ColorfulSE": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016DarkGraySE": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016White": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2016WhiteSE": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019Black": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019Colorful": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019DarkGray": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019HighContrast": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Office2019White": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.Seven": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.TouchlineDark": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2010": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Blue": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Dark": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Light": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Blue": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Dark": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Light": "[20.1.7]"
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.DXStyle/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.DXStyle.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.DXStyle.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.LightGray/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.LightGray.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.LightGray.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.MetropolisDark/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.MetropolisDark.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.MetropolisDark.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.MetropolisLight/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.MetropolisLight.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.MetropolisLight.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Black/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Black.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Black.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Blue/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Blue.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Blue.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2007Silver/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Silver.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2007Silver.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Black/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Black.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Blue/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Blue.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Blue.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2010Silver/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Silver.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2010Silver.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2013/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2013DarkGray/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013DarkGray.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013DarkGray.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2013LightGray/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013LightGray.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2013LightGray.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016Black/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016Black.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016Black.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016BlackSE/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016BlackSE.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016BlackSE.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016Colorful/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016Colorful.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016Colorful.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016ColorfulSE/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016ColorfulSE.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016ColorfulSE.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016DarkGraySE/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016DarkGraySE.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016DarkGraySE.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016White/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016White.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016White.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2016WhiteSE/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016WhiteSE.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2016WhiteSE.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2019Black/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019Black.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019Black.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2019Colorful/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019Colorful.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019Colorful.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2019DarkGray/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019DarkGray.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019DarkGray.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2019HighContrast/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019HighContrast.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019HighContrast.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Office2019White/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019White.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Office2019White.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.Seven/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Seven.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.Seven.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.TouchlineDark/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.TouchlineDark.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.TouchlineDark.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2010/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2010.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2010.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Blue/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Blue.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Blue.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Dark/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Dark.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Dark.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2017Light/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Light.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2017Light.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Blue/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Blue.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Blue.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Dark/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Dark.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Dark.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.Themes.VS2019Light/20.1.7": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Light.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.Themes.VS2019Light.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.TreeMap/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.TreeMap.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.TreeMap.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.TreeMap.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Wpf.TypedStyles/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Charts.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataAccess": "[20.1.7]",
+          "DevExpress.WindowsDesktop.DataDesktop": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Diagram.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Map.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Mvvm": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Office.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Pdf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.PivotGrid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Printing.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Reporting.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.RichEdit.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Scheduler.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Spreadsheet.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Accordion": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Carousel": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Charts": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Controls": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Diagram": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Docking": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.DocumentViewer.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.ExpressionEditor": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Grid.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Layout.Core": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.LayoutControl": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Map": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.NavBar": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PdfViewer": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PivotGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Printing": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.PropertyGrid": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Reporting": "[20.1.7-ctp]",
+          "DevExpress.WindowsDesktop.Wpf.Ribbon": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.RichEdit": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Scheduling": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.SpellChecker": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.Spreadsheet": "[20.1.7]",
+          "DevExpress.WindowsDesktop.Wpf.TreeMap": "[20.1.7]"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.TypedStyles.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DevExpress.Xpf.TypedStyles.v20.1.dll": {}
+        }
+      },
+      "DevExpress.WindowsDesktop.Xpo/20.1.7": {
+        "type": "package",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Data": "[20.1.7]",
+          "Microsoft.Extensions.DependencyInjection": "2.0.0",
+          "Microsoft.Win32.Registry": "4.5.0",
+          "NETStandard.Library": "2.0.3",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Data.SqlClient": "4.5.0",
+          "System.Drawing.Common": "4.5.0",
+          "System.ServiceModel.Http": "4.5.0",
+          "System.ServiceModel.NetTcp": "4.4.0",
+          "System.ServiceModel.Security": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DevExpress.Xpo.v20.1.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DevExpress.Xpo.v20.1.dll": {}
+        }
+      },
+      "EFCore.BulkExtensions/3.1.5": {
+        "type": "package",
+        "dependencies": {
+          "FastMember": "1.5.0",
+          "Microsoft.Data.SqlClient": "2.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.4",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.4",
+          "Microsoft.EntityFrameworkCore.Sqlite": "3.1.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/EFCore.BulkExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/EFCore.BulkExtensions.dll": {}
+        }
+      },
+      "FastMember/1.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/FastMember.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/FastMember.dll": {}
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
+        }
+      },
+      "Microsoft.Bcl.HashCode/1.1.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {}
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "Microsoft.Data.SqlClient/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.SqlClient.SNI.runtime": "2.0.0",
+          "Microsoft.Identity.Client": "4.14.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "5.6.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.6.0",
+          "Microsoft.Win32.Registry": "4.7.0",
+          "System.Configuration.ConfigurationManager": "4.7.0",
+          "System.Diagnostics.DiagnosticSource": "4.7.0",
+          "System.Runtime.Caching": "4.7.0",
+          "System.Security.Principal.Windows": "4.7.0",
+          "System.Text.Encoding.CodePages": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.1/Microsoft.Data.SqlClient.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll": {}
+        }
+      },
+      "Microsoft.Data.SqlClient.SNI.runtime/2.0.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll": {},
+          "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.pdb": {}
+        }
+      },
+      "Microsoft.Data.Sqlite.Core/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Data.Sqlite.dll": {}
+        }
+      },
+      "Microsoft.DotNet.PlatformAbstractions/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.DotNet.PlatformAbstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.DotNet.PlatformAbstractions.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Microsoft.Bcl.HashCode": "1.1.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "3.1.6",
+          "Microsoft.EntityFrameworkCore.Analyzers": "3.1.6",
+          "Microsoft.Extensions.Caching.Memory": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection": "3.1.6",
+          "Microsoft.Extensions.Logging": "3.1.6",
+          "System.Collections.Immutable": "1.7.1",
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Diagnostics.DiagnosticSource": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Abstractions/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Analyzers/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Design/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {}
+        },
+        "build": {
+          "build/netcoreapp2.0/Microsoft.EntityFrameworkCore.Design.props": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Relational/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Sqlite/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "3.1.4",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "3.1.4",
+          "Microsoft.DotNet.PlatformAbstractions": "3.1.4",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.4",
+          "Microsoft.Extensions.DependencyModel": "3.1.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.SqlServer/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "1.0.19269.1",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Abstractions/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Options": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.FileExtensions/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.FileProviders.Physical": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Json/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "2.0.0",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyModel/3.1.4": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "4.7.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {}
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Physical/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Abstractions": "2.0.0",
+          "Microsoft.Extensions.FileSystemGlobbing": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Physical.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Physical.dll": {}
+        }
+      },
+      "Microsoft.Extensions.FileSystemGlobbing/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Logging/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Binder": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection": "3.1.6",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Options": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Options/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Primitives": "3.1.6"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/3.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
+      "Microsoft.Identity.Client/4.14.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Private.Uri": "4.3.2",
+          "System.Runtime.Serialization.Formatters": "4.3.0",
+          "System.Runtime.Serialization.Json": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Security.SecureString": "4.3.0",
+          "System.Xml.XDocument": "4.3.0"
+        },
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Identity.Client.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.JsonWebTokens/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.6.0",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Logging/5.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Protocols/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Logging": "5.6.0",
+          "Microsoft.IdentityModel.Tokens": "5.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols": "5.6.0",
+          "Newtonsoft.Json": "10.0.1",
+          "System.IdentityModel.Tokens.Jwt": "5.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Tokens/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Logging": "5.6.0",
+          "Newtonsoft.Json": "10.0.1",
+          "System.Security.Cryptography.Cng": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.NETCore.Platforms/3.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Microsoft.NETCore.Targets/1.1.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "Microsoft.Win32.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.win.Microsoft.Win32.Primitives": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        }
+      },
+      "Microsoft.Win32.Registry/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.7.0",
+          "System.Security.Principal.Windows": "4.7.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {}
+        }
+      },
+      "Microsoft.Win32.SystemEvents/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll": {}
+        }
+      },
+      "NETStandard.Library/2.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "build": {
+          "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/10.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.ObjectModel": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Numerics": "4.3.0",
+          "System.Runtime.Serialization.Formatters": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XDocument": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Newtonsoft.Json.dll": {}
+        }
+      },
+      "runtime.any.System.Collections/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.dll": {}
+        }
+      },
+      "runtime.any.System.Diagnostics.Tools/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Diagnostics.Tools.dll": {}
+        }
+      },
+      "runtime.any.System.Diagnostics.Tracing/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Diagnostics.Tracing.dll": {}
+        }
+      },
+      "runtime.any.System.Globalization/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Globalization.dll": {}
+        }
+      },
+      "runtime.any.System.IO/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.IO.dll": {}
+        }
+      },
+      "runtime.any.System.Reflection/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Reflection.dll": {}
+        }
+      },
+      "runtime.any.System.Reflection.Extensions/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Reflection.Extensions.dll": {}
+        }
+      },
+      "runtime.any.System.Reflection.Primitives/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Reflection.Primitives.dll": {}
+        }
+      },
+      "runtime.any.System.Resources.ResourceManager/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Resources.ResourceManager.dll": {}
+        }
+      },
+      "runtime.any.System.Runtime/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Uri": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Runtime.dll": {}
+        }
+      },
+      "runtime.any.System.Runtime.Handles/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Handles.dll": {}
+        }
+      },
+      "runtime.any.System.Runtime.InteropServices/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Runtime.InteropServices.dll": {}
+        }
+      },
+      "runtime.any.System.Text.Encoding/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Text.Encoding.dll": {}
+        }
+      },
+      "runtime.any.System.Text.Encoding.Extensions/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Text.Encoding.Extensions.dll": {}
+        }
+      },
+      "runtime.any.System.Threading.Tasks/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Threading.Tasks.dll": {}
+        }
+      },
+      "runtime.native.System/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x86.runtime.native.System.Data.SqlClient.sni": "4.4.0"
+        }
+      },
+      "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package"
+      },
+      "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win-x64/native/sni.dll": {}
+        }
+      },
+      "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "type": "package"
+      },
+      "runtime.win.Microsoft.Win32.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "runtime.win.System.Diagnostics.Debug/4.3.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Diagnostics.Debug.dll": {}
+        }
+      },
+      "runtime.win.System.IO.FileSystem/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Buffers": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Overlapped": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.IO.FileSystem.dll": {}
+        }
+      },
+      "runtime.win.System.Net.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Net.Primitives.dll": {}
+        }
+      },
+      "runtime.win.System.Runtime.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Uri": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.5/System.Runtime.Extensions.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2",
+          "SQLitePCLRaw.lib.e_sqlite3": "2.0.2",
+          "SQLitePCLRaw.provider.dynamic_cdecl": "2.0.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/SQLitePCLRaw.batteries_v2.dll": {},
+          "lib/netcoreapp3.0/SQLitePCLRaw.nativelibrary.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/SQLitePCLRaw.batteries_v2.dll": {},
+          "lib/netcoreapp3.0/SQLitePCLRaw.nativelibrary.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3/2.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/e_sqlite3.dll": {}
+        }
+      },
+      "SQLitePCLRaw.provider.dynamic_cdecl/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll": {}
+        }
+      },
+      "System.Buffers/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/System.Buffers.dll": {}
+        }
+      },
+      "System.CodeDom/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.CodeDom.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.CodeDom.dll": {}
+        }
+      },
+      "System.Collections/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Collections": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Collections.dll": {}
+        }
+      },
+      "System.Collections.Concurrent/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.Concurrent.dll": {}
+        }
+      },
+      "System.Collections.Immutable/1.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+        }
+      },
+      "System.Collections.NonGeneric/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Collections.NonGeneric.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
+        }
+      },
+      "System.Collections.Specialized/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Globalization.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.Specialized.dll": {}
+        }
+      },
+      "System.ComponentModel/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.ComponentModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.ComponentModel.dll": {}
+        }
+      },
+      "System.ComponentModel.Annotations/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {}
+        }
+      },
+      "System.ComponentModel.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.ComponentModel.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/System.ComponentModel.Primitives.dll": {}
+        }
+      },
+      "System.ComponentModel.TypeConverter/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.ComponentModel.TypeConverter.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.ComponentModel.TypeConverter.dll": {}
+        }
+      },
+      "System.Configuration.ConfigurationManager/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "4.7.0",
+          "System.Security.Permissions": "4.7.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
+      "System.Data.Common/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Data.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
+        }
+      },
+      "System.Data.SqlClient/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0",
+          "System.Text.Encoding.CodePages": "4.5.0",
+          "runtime.native.System.Data.SqlClient.sni": "4.4.0"
+        },
+        "compile": {
+          "ref/netcoreapp2.1/System.Data.SqlClient.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll": {}
+        }
+      },
+      "System.Diagnostics.Debug/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.win.System.Diagnostics.Debug": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Diagnostics.Debug.dll": {}
+        }
+      },
+      "System.Diagnostics.DiagnosticSource/4.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Diagnostics.PerformanceCounter/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "Microsoft.Win32.Registry": "4.5.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Diagnostics.PerformanceCounter.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll": {}
+        }
+      },
+      "System.Diagnostics.Tools/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Diagnostics.Tools": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/_._": {}
+        }
+      },
+      "System.Diagnostics.Tracing/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Diagnostics.Tracing": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/_._": {}
+        }
+      },
+      "System.Drawing.Common/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0",
+          "Microsoft.Win32.SystemEvents": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll": {}
+        }
+      },
+      "System.Dynamic.Runtime/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.ObjectModel": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Dynamic.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Dynamic.Runtime.dll": {}
+        }
+      },
+      "System.Globalization/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Globalization": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Globalization.dll": {}
+        }
+      },
+      "System.Globalization.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Globalization.Extensions.dll": {}
+        }
+      },
+      "System.IdentityModel.Tokens.Jwt/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.JsonWebTokens": "5.6.0",
+          "Microsoft.IdentityModel.Tokens": "5.6.0",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
+        }
+      },
+      "System.IO/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "runtime.any.System.IO": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.IO.dll": {}
+        }
+      },
+      "System.IO.FileSystem/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "runtime.win.System.IO.FileSystem": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        }
+      },
+      "System.IO.FileSystem.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
+        }
+      },
+      "System.Linq/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.6/System.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Linq.dll": {}
+        }
+      },
+      "System.Linq.Expressions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.ObjectModel": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.6/System.Linq.Expressions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Linq.Expressions.dll": {}
+        }
+      },
+      "System.Memory/4.5.3": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "System.Net.NameResolution/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Principal.Windows": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "runtime.native.System": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Net.NameResolution.dll": {}
+        }
+      },
+      "System.Net.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "runtime.win.System.Net.Primitives": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        }
+      },
+      "System.ObjectModel/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.ObjectModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.ObjectModel.dll": {}
+        }
+      },
+      "System.Private.DataContractSerialization/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XDocument": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0",
+          "System.Xml.XmlSerializer": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Private.DataContractSerialization.dll": {}
+        }
+      },
+      "System.Private.ServiceModel/4.5.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0",
+          "System.Reflection.DispatchProxy": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Private.ServiceModel.dll": {}
+        }
+      },
+      "System.Private.Uri/4.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.1",
+          "Microsoft.NETCore.Targets": "1.1.3"
+        },
+        "compile": {
+          "ref/netstandard/_._": {}
+        }
+      },
+      "System.Reflection/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.IO": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Reflection": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Reflection.dll": {}
+        }
+      },
+      "System.Reflection.DispatchProxy/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Reflection.DispatchProxy.dll": {}
+        }
+      },
+      "System.Reflection.Emit/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.1/System.Reflection.Emit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Reflection.Emit.dll": {}
+        }
+      },
+      "System.Reflection.Emit.ILGeneration/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
+        }
+      },
+      "System.Reflection.Emit.Lightweight/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
+        }
+      },
+      "System.Reflection.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Reflection.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Reflection.Extensions.dll": {}
+        }
+      },
+      "System.Reflection.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Reflection.Primitives": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Reflection.Primitives.dll": {}
+        }
+      },
+      "System.Reflection.TypeExtensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Reflection.TypeExtensions.dll": {}
+        }
+      },
+      "System.Resources.ResourceManager/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Globalization": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Resources.ResourceManager": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Resources.ResourceManager.dll": {}
+        }
+      },
+      "System.Runtime/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "runtime.any.System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Runtime.dll": {}
+        }
+      },
+      "System.Runtime.Caching/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "4.7.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll": {}
+        }
+      },
+      "System.Runtime.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.win.System.Runtime.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Runtime.Extensions.dll": {}
+        }
+      },
+      "System.Runtime.Handles/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Runtime.Handles": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        }
+      },
+      "System.Runtime.InteropServices/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "runtime.any.System.Runtime.InteropServices": "4.3.0"
+        },
+        "compile": {
+          "ref/netcoreapp1.1/_._": {}
+        }
+      },
+      "System.Runtime.Numerics/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.1/System.Runtime.Numerics.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Formatters/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Runtime.Serialization.Formatters.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Json/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.3.0",
+          "System.Private.DataContractSerialization": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Json.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Runtime.Serialization.Primitives.dll": {}
+        }
+      },
+      "System.Security.AccessControl/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0",
+          "System.Security.Principal.Windows": "4.7.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Security.AccessControl.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.0/System.Security.AccessControl.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Cng/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Cng.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Pkcs/4.5.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.Cryptography.Cng": "4.5.0"
+        },
+        "compile": {
+          "ref/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Primitives/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Security.Cryptography.Primitives.dll": {}
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
+        }
+      },
+      "System.Security.Permissions/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Security.AccessControl": "4.7.0",
+          "System.Windows.Extensions": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Security.Permissions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Security.Permissions.dll": {}
+        }
+      },
+      "System.Security.Principal.Windows/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp3.0/System.Security.Principal.Windows.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.1/System.Security.Principal.Windows.dll": {}
+        }
+      },
+      "System.Security.SecureString/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Cryptography.Primitives": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Security.SecureString.dll": {}
+        }
+      },
+      "System.ServiceModel.Http/4.5.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Http.dll": {}
+        }
+      },
+      "System.ServiceModel.NetTcp/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.4.0",
+          "System.ServiceModel.Primitives": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.NetTcp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.NetTcp.dll": {}
+        }
+      },
+      "System.ServiceModel.Primitives/4.5.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.Primitives.dll": {},
+          "ref/netstandard2.0/System.ServiceModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Primitives.dll": {},
+          "lib/netstandard2.0/System.ServiceModel.dll": {}
+        }
+      },
+      "System.ServiceModel.Security/4.4.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.ServiceModel": "4.4.0",
+          "System.ServiceModel.Primitives": "4.4.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.ServiceModel.Security.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Security.dll": {}
+        }
+      },
+      "System.Text.Encoding/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Text.Encoding": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Text.Encoding.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "System.Text.Encoding.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "runtime.any.System.Text.Encoding.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Text.Encoding.Extensions.dll": {}
+        }
+      },
+      "System.Text.Json/4.7.2": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        }
+      },
+      "System.Text.RegularExpressions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "ref/netcoreapp1.1/System.Text.RegularExpressions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/System.Text.RegularExpressions.dll": {}
+        }
+      },
+      "System.Threading/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Threading.dll": {}
+        }
+      },
+      "System.Threading.Overlapped/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard1.3/System.Threading.Overlapped.dll": {}
+        }
+      },
+      "System.Threading.Tasks/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "runtime.any.System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Threading.Tasks.dll": {}
+        }
+      },
+      "System.Threading.Tasks.Extensions/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll": {}
+        }
+      },
+      "System.Windows.Extensions/4.7.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Windows.Extensions.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll": {}
+        }
+      },
+      "System.Xml.ReaderWriter/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Tasks.Extensions": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.ReaderWriter.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.ReaderWriter.dll": {}
+        }
+      },
+      "System.Xml.XDocument/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tools": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XDocument.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlDocument/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.3.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Reflection.Emit.ILGeneration": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0",
+          "System.Xml.XmlDocument": "4.3.0"
+        },
+        "compile": {
+          "ref/netstandard1.3/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "PlantConstructor.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DevExpress.WindowsDesktop.Wpf": "20.1.7",
+          "DevExpress.WindowsDesktop.Wpf.Themes.All": "20.1.7"
+        },
+        "compile": {
+          "bin/placeholder/PlantConstructor.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlantConstructor.Domain.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -5754,6 +9374,44 @@
         "runtime.json"
       ]
     },
+    "Microsoft.Win32.Primitives/4.3.0": {
+      "sha512": "9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
+      "type": "package",
+      "path": "microsoft.win32.primitives/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/Microsoft.Win32.Primitives.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "microsoft.win32.primitives.4.3.0.nupkg.sha512",
+        "microsoft.win32.primitives.nuspec",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/Microsoft.Win32.Primitives.dll",
+        "ref/netstandard1.3/Microsoft.Win32.Primitives.dll",
+        "ref/netstandard1.3/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/de/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/es/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/fr/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/it/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/ja/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/ko/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/ru/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/zh-hans/Microsoft.Win32.Primitives.xml",
+        "ref/netstandard1.3/zh-hant/Microsoft.Win32.Primitives.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._"
+      ]
+    },
     "Microsoft.Win32.Registry/4.7.0": {
       "sha512": "KSrRMb5vNi0CWSGG1++id2ZOs/1QhRqROt+qgbEAdQuGjGrFcl4AOl4/exGPUYz2wUnU42nvJqon1T3U0kPXLA==",
       "type": "package",
@@ -5986,6 +9644,405 @@
         "tools/install.ps1"
       ]
     },
+    "runtime.any.System.Collections/4.3.0": {
+      "sha512": "23g6rqftKmovn2cLeGsuHUYm0FD7pdutb0uQMJpZ3qTvq+zHkgmt6J65VtRry4WDGYlmkMa4xDACtaQ94alNag==",
+      "type": "package",
+      "path": "runtime.any.system.collections/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Collections.dll",
+        "lib/netstandard1.3/System.Collections.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.collections.4.3.0.nupkg.sha512",
+        "runtime.any.system.collections.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Diagnostics.Tools/4.3.0": {
+      "sha512": "S/GPBmfPBB48ZghLxdDR7kDAJVAqgAuThyDJho3OLP5OS4tWD2ydyL8LKm8lhiBxce10OKe9X2zZ6DUjAqEbPg==",
+      "type": "package",
+      "path": "runtime.any.system.diagnostics.tools/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Diagnostics.Tools.dll",
+        "lib/netstandard1.3/System.Diagnostics.Tools.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.diagnostics.tools.4.3.0.nupkg.sha512",
+        "runtime.any.system.diagnostics.tools.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Diagnostics.Tracing/4.3.0": {
+      "sha512": "1lpifymjGDzoYIaam6/Hyqf8GhBI3xXYLK2TgEvTtuZMorG3Kb9QnMTIKhLjJYXIiu1JvxjngHvtVFQQlpQ3HQ==",
+      "type": "package",
+      "path": "runtime.any.system.diagnostics.tracing/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Diagnostics.Tracing.dll",
+        "lib/netstandard1.5/System.Diagnostics.Tracing.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.diagnostics.tracing.4.3.0.nupkg.sha512",
+        "runtime.any.system.diagnostics.tracing.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Globalization/4.3.0": {
+      "sha512": "sMDBnad4rp4t7GY442Jux0MCUuKL4otn5BK6Ni0ARTXTSpRNBzZ7hpMfKSvnVSED5kYJm96YOWsqV0JH0d2uuw==",
+      "type": "package",
+      "path": "runtime.any.system.globalization/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Globalization.dll",
+        "lib/netstandard1.3/System.Globalization.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.globalization.4.3.0.nupkg.sha512",
+        "runtime.any.system.globalization.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.IO/4.3.0": {
+      "sha512": "SDZ5AD1DtyRoxYtEcqQ3HDlcrorMYXZeCt7ZhG9US9I5Vva+gpIWDGMkcwa5XiKL0ceQKRZIX2x0XEjLX7PDzQ==",
+      "type": "package",
+      "path": "runtime.any.system.io/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.IO.dll",
+        "lib/netstandard1.5/System.IO.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.io.4.3.0.nupkg.sha512",
+        "runtime.any.system.io.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Reflection/4.3.0": {
+      "sha512": "hLC3A3rI8jipR5d9k7+f0MgRCW6texsAp0MWkN/ci18FMtQ9KH7E2vDn/DH2LkxsszlpJpOn9qy6Z6/69rH6eQ==",
+      "type": "package",
+      "path": "runtime.any.system.reflection/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Reflection.dll",
+        "lib/netstandard1.5/System.Reflection.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.reflection.4.3.0.nupkg.sha512",
+        "runtime.any.system.reflection.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Reflection.Extensions/4.3.0": {
+      "sha512": "cPhT+Vqu52+cQQrDai/V91gubXUnDKNRvlBnH+hOgtGyHdC17aQIU64EaehwAQymd7kJA5rSrVRNfDYrbhnzyA==",
+      "type": "package",
+      "path": "runtime.any.system.reflection.extensions/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Reflection.Extensions.dll",
+        "lib/netstandard1.3/System.Reflection.Extensions.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.reflection.extensions.4.3.0.nupkg.sha512",
+        "runtime.any.system.reflection.extensions.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Reflection.Primitives/4.3.0": {
+      "sha512": "Nrm1p3armp6TTf2xuvaa+jGTTmncALWFq22CpmwRvhDf6dE9ZmH40EbOswD4GnFLrMRS0Ki6Kx5aUPmKK/hZBg==",
+      "type": "package",
+      "path": "runtime.any.system.reflection.primitives/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Reflection.Primitives.dll",
+        "lib/netstandard1.3/System.Reflection.Primitives.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.reflection.primitives.4.3.0.nupkg.sha512",
+        "runtime.any.system.reflection.primitives.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Resources.ResourceManager/4.3.0": {
+      "sha512": "Lxb89SMvf8w9p9+keBLyL6H6x/TEmc6QVsIIA0T36IuyOY3kNvIdyGddA2qt35cRamzxF8K5p0Opq4G4HjNbhQ==",
+      "type": "package",
+      "path": "runtime.any.system.resources.resourcemanager/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Resources.ResourceManager.dll",
+        "lib/netstandard1.3/System.Resources.ResourceManager.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.resources.resourcemanager.4.3.0.nupkg.sha512",
+        "runtime.any.system.resources.resourcemanager.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Runtime/4.3.0": {
+      "sha512": "fRS7zJgaG9NkifaAxGGclDDoRn9HC7hXACl52Or06a/fxdzDajWb5wov3c6a+gVSlekRoexfjwQSK9sh5um5LQ==",
+      "type": "package",
+      "path": "runtime.any.system.runtime/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Runtime.dll",
+        "lib/netstandard1.5/System.Runtime.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.runtime.4.3.0.nupkg.sha512",
+        "runtime.any.system.runtime.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Runtime.Handles/4.3.0": {
+      "sha512": "GG84X6vufoEzqx8PbeBKheE4srOhimv+yLtGb/JkR3Y2FmoqmueLNFU4Xx8Y67plFpltQSdK74x0qlEhIpv/CQ==",
+      "type": "package",
+      "path": "runtime.any.system.runtime.handles/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/_._",
+        "lib/netstandard1.3/System.Runtime.Handles.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.runtime.handles.4.3.0.nupkg.sha512",
+        "runtime.any.system.runtime.handles.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Runtime.InteropServices/4.3.0": {
+      "sha512": "lBoFeQfxe/4eqjPi46E0LU/YaCMdNkQ8B4MZu/mkzdIAZh8RQ1NYZSj0egrQKdgdvlPFtP4STtob40r4o2DBAw==",
+      "type": "package",
+      "path": "runtime.any.system.runtime.interopservices/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Runtime.InteropServices.dll",
+        "lib/netstandard1.5/System.Runtime.InteropServices.dll",
+        "lib/netstandard1.6/System.Runtime.InteropServices.dll",
+        "lib/win8/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.runtime.interopservices.4.3.0.nupkg.sha512",
+        "runtime.any.system.runtime.interopservices.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Text.Encoding/4.3.0": {
+      "sha512": "+ihI5VaXFCMVPJNstG4O4eo1CfbrByLxRrQQTqOTp1ttK0kUKDqOdBSTaCB2IBk/QtjDrs6+x4xuezyMXdm0HQ==",
+      "type": "package",
+      "path": "runtime.any.system.text.encoding/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Text.Encoding.dll",
+        "lib/netstandard1.3/System.Text.Encoding.dll",
+        "lib/win8/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.text.encoding.4.3.0.nupkg.sha512",
+        "runtime.any.system.text.encoding.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Text.Encoding.Extensions/4.3.0": {
+      "sha512": "NLrxmLsfRrOuVqPWG+2lrQZnE53MLVeo+w9c54EV+TUo4c8rILpsDXfY8pPiOy9kHpUHHP07ugKmtsU3vVW5Jg==",
+      "type": "package",
+      "path": "runtime.any.system.text.encoding.extensions/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Text.Encoding.Extensions.dll",
+        "lib/netstandard1.3/System.Text.Encoding.Extensions.dll",
+        "lib/win8/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.text.encoding.extensions.4.3.0.nupkg.sha512",
+        "runtime.any.system.text.encoding.extensions.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.any.System.Threading.Tasks/4.3.0": {
+      "sha512": "OhBAVBQG5kFj1S+hCEQ3TUHBAEtZ3fbEMgZMRNdN8A0Pj4x+5nTELEqL59DU0TjKVE6II3dqKw4Dklb3szT65w==",
+      "type": "package",
+      "path": "runtime.any.system.threading.tasks/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Threading.Tasks.dll",
+        "lib/netstandard1.3/System.Threading.Tasks.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/netstandard/_._",
+        "runtime.any.system.threading.tasks.4.3.0.nupkg.sha512",
+        "runtime.any.system.threading.tasks.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
     "runtime.native.System/4.3.0": {
       "sha512": "c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
       "type": "package",
@@ -6062,6 +10119,98 @@
         "version.txt"
       ]
     },
+    "runtime.win.Microsoft.Win32.Primitives/4.3.0": {
+      "sha512": "NU51SEt/ZaD2MF48sJ17BIqx7rjeNNLXUevfMOjqQIetdndXwYjZfZsT6jD+rSWp/FYxjesdK4xUSl4OTEI0jw==",
+      "type": "package",
+      "path": "runtime.win.microsoft.win32.primitives/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard/_._",
+        "runtime.win.microsoft.win32.primitives.4.3.0.nupkg.sha512",
+        "runtime.win.microsoft.win32.primitives.nuspec",
+        "runtimes/win/lib/net/_._",
+        "runtimes/win/lib/netstandard1.3/Microsoft.Win32.Primitives.dll"
+      ]
+    },
+    "runtime.win.System.Diagnostics.Debug/4.3.0": {
+      "sha512": "hHHP0WCStene2jjeYcuDkETozUYF/3sHVRHAEOgS3L15hlip24ssqCTnJC28Z03Wpo078oMcJd0H4egD2aJI8g==",
+      "type": "package",
+      "path": "runtime.win.system.diagnostics.debug/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard/_._",
+        "runtime.win.system.diagnostics.debug.4.3.0.nupkg.sha512",
+        "runtime.win.system.diagnostics.debug.nuspec",
+        "runtimes/aot/lib/netcore50/System.Diagnostics.Debug.dll",
+        "runtimes/win/lib/net45/_._",
+        "runtimes/win/lib/netcore50/System.Diagnostics.Debug.dll",
+        "runtimes/win/lib/netstandard1.3/System.Diagnostics.Debug.dll",
+        "runtimes/win/lib/win8/_._",
+        "runtimes/win/lib/wp80/_._",
+        "runtimes/win/lib/wpa81/_._"
+      ]
+    },
+    "runtime.win.System.IO.FileSystem/4.3.0": {
+      "sha512": "Z37zcSCpXuGCYtFbqYO0TwOVXxS2d+BXgSoDFZmRg8BC4Cuy54edjyIvhhcfCrDQA9nl+EPFTgHN54dRAK7mNA==",
+      "type": "package",
+      "path": "runtime.win.system.io.filesystem/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard/_._",
+        "runtime.win.system.io.filesystem.4.3.0.nupkg.sha512",
+        "runtime.win.system.io.filesystem.nuspec",
+        "runtimes/win/lib/net/_._",
+        "runtimes/win/lib/netcore50/System.IO.FileSystem.dll",
+        "runtimes/win/lib/netstandard1.3/System.IO.FileSystem.dll",
+        "runtimes/win/lib/win8/_._",
+        "runtimes/win/lib/wp8/_._",
+        "runtimes/win/lib/wpa81/_._"
+      ]
+    },
+    "runtime.win.System.Net.Primitives/4.3.0": {
+      "sha512": "lkXXykakvXUU+Zq2j0pC6EO20lEhijjqMc01XXpp1CJN+DeCwl3nsj4t5Xbpz3kA7yQyTqw6d9SyIzsyLsV3zA==",
+      "type": "package",
+      "path": "runtime.win.system.net.primitives/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard/_._",
+        "runtime.win.system.net.primitives.4.3.0.nupkg.sha512",
+        "runtime.win.system.net.primitives.nuspec",
+        "runtimes/win/lib/net/_._",
+        "runtimes/win/lib/netcore50/System.Net.Primitives.dll",
+        "runtimes/win/lib/netstandard1.3/System.Net.Primitives.dll"
+      ]
+    },
+    "runtime.win.System.Runtime.Extensions/4.3.0": {
+      "sha512": "RkgHVhUPvzZxuUubiZe8yr/6CypRVXj0VBzaR8hsqQ8f+rUo7e4PWrHTLOCjd8fBMGWCrY//fi7Ku3qXD7oHRw==",
+      "type": "package",
+      "path": "runtime.win.system.runtime.extensions/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard/_._",
+        "runtime.win.system.runtime.extensions.4.3.0.nupkg.sha512",
+        "runtime.win.system.runtime.extensions.nuspec",
+        "runtimes/aot/lib/netcore50/System.Runtime.Extensions.dll",
+        "runtimes/win/lib/net/_._",
+        "runtimes/win/lib/netcore50/System.Runtime.Extensions.dll",
+        "runtimes/win/lib/netstandard1.5/System.Runtime.Extensions.dll"
+      ]
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
       "sha512": "OVPI/nh5AqfLCIKhAYqjCa6AHhc7oKApGcGM3UhMRSerFiBx58nSpGwxVFdMgjOCWZR+fA49nzsnKlWp5hFo8w==",
       "type": "package",
@@ -6132,6 +10281,21 @@
         "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll",
         "sqlitepclraw.provider.dynamic_cdecl.2.0.2.nupkg.sha512",
         "sqlitepclraw.provider.dynamic_cdecl.nuspec"
+      ]
+    },
+    "System.Buffers/4.3.0": {
+      "sha512": "ratu44uTIHgeBeI0dE8DWvmXVBSo4u7ozRZZHOMmK/JPpYyo0dAfgSiHlpiObMQ5lEtEyIXA40sKRYg5J6A8uQ==",
+      "type": "package",
+      "path": "system.buffers/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.1/.xml",
+        "lib/netstandard1.1/System.Buffers.dll",
+        "system.buffers.4.3.0.nupkg.sha512",
+        "system.buffers.nuspec"
       ]
     },
     "System.CodeDom/4.4.0": {
@@ -9751,6 +13915,36 @@
         "system.threading.nuspec"
       ]
     },
+    "System.Threading.Overlapped/4.3.0": {
+      "sha512": "m3HQ2dPiX/DSTpf+yJt8B0c+SRvzfqAJKx+QDWi+VLhz8svLT23MVjEOHPF/KiSLeArKU/iHescrbLd3yVgyNg==",
+      "type": "package",
+      "path": "system.threading.overlapped/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/net46/System.Threading.Overlapped.dll",
+        "ref/net46/System.Threading.Overlapped.dll",
+        "ref/netstandard1.3/System.Threading.Overlapped.dll",
+        "ref/netstandard1.3/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/de/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/es/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/fr/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/it/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/ja/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/ko/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/ru/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/zh-hans/System.Threading.Overlapped.xml",
+        "ref/netstandard1.3/zh-hant/System.Threading.Overlapped.xml",
+        "runtimes/unix/lib/netstandard1.3/System.Threading.Overlapped.dll",
+        "runtimes/win/lib/net46/System.Threading.Overlapped.dll",
+        "runtimes/win/lib/netcore50/System.Threading.Overlapped.dll",
+        "runtimes/win/lib/netstandard1.3/System.Threading.Overlapped.dll",
+        "system.threading.overlapped.4.3.0.nupkg.sha512",
+        "system.threading.overlapped.nuspec"
+      ]
+    },
     "System.Threading.Tasks/4.3.0": {
       "sha512": "LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "type": "package",
@@ -10200,12 +14394,31 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[3.1.8, 3.1.8]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[3.1.8, 3.1.8]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[3.1.8, 3.1.8]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }
