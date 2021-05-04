@@ -199,19 +199,19 @@ namespace PlantConstructor.WPF.EditDataScreen
                     
                     AddHeaderValueToList(_type, att.AttributeG.Name);
 
-                    List<AttributeValue> attValueList = null;
-                    using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-                    {
-                        attValueList = context.Set<AttributeValue>().FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={att.Id}").ToList();
-                    }
+                    //List<AttributeValue> attValueList = null;
+                    //using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+                    //{
+                    //    attValueList = context.Set<AttributeValue>().FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={att.Id}").ToList();
+                    //}
 
-                    if (attValueList!=null)
-                    {
-                        foreach (AttributeValue attValue in attValueList)
-                        {
-                            sheet.Rows[attValue.Rowindex][columnIndex].Value = attValue.Value;
-                        }
-                    }
+                    //if (attValueList!=null)
+                    //{
+                    //    foreach (AttributeValue attValue in attValueList)
+                    //    {
+                    //        sheet.Rows[attValue.Rowindex][columnIndex].Value = attValue.Value;
+                    //    }
+                    //}
 
                     columnIndex++;
                 }
@@ -290,62 +290,62 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
 
 
-        private async void SaveToDB_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Wait;
+        //private async void SaveToDB_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        //{
+        //    Mouse.OverrideCursor = Cursors.Wait;
 
-            await SaveTypeValues("Site", workbook.Worksheets[0]);
-            await SaveTypeValues("Zone", workbook.Worksheets[1]);
-            await SaveTypeValues("Pipe", workbook.Worksheets[2]);
-            await SaveTypeValues("Branch", workbook.Worksheets[3]);
-            await SaveTypeValues("PipePart", workbook.Worksheets[4]);
-            await SaveTypeValues("Structure", workbook.Worksheets[5]);
-            await SaveTypeValues("SubStructure", workbook.Worksheets[6]);
-            await SaveTypeValues("StructurePart", workbook.Worksheets[7]);
-            await SaveTypeValues("Equipment", workbook.Worksheets[8]);
-            await SaveTypeValues("SubEquipment", workbook.Worksheets[9]);
-            await SaveTypeValues("EquipmentPart", workbook.Worksheets[10]);
+        //    await SaveTypeValues("Site", workbook.Worksheets[0]);
+        //    await SaveTypeValues("Zone", workbook.Worksheets[1]);
+        //    await SaveTypeValues("Pipe", workbook.Worksheets[2]);
+        //    await SaveTypeValues("Branch", workbook.Worksheets[3]);
+        //    await SaveTypeValues("PipePart", workbook.Worksheets[4]);
+        //    await SaveTypeValues("Structure", workbook.Worksheets[5]);
+        //    await SaveTypeValues("SubStructure", workbook.Worksheets[6]);
+        //    await SaveTypeValues("StructurePart", workbook.Worksheets[7]);
+        //    await SaveTypeValues("Equipment", workbook.Worksheets[8]);
+        //    await SaveTypeValues("SubEquipment", workbook.Worksheets[9]);
+        //    await SaveTypeValues("EquipmentPart", workbook.Worksheets[10]);
 
-            LogText.Text = "Data saved to DB";
-            Mouse.OverrideCursor = null;
-        }
+        //    LogText.Text = "Data saved to DB";
+        //    Mouse.OverrideCursor = null;
+        //}
 
 
-        private async Task SaveTypeValues(string _type, Worksheet sheet)
-        {
-            CellRange usedRange = sheet.GetUsedRange();
+        //private async Task SaveTypeValues(string _type, Worksheet sheet)
+        //{
+        //    CellRange usedRange = sheet.GetUsedRange();
 
-            List<ProjectAttribute> typeProjAtt = allProjectAttributes.Where(x => x.AttributeG.Type == _type).Select(x => x).ToList();
-            int columnIndex = 0;
+        //    List<ProjectAttribute> typeProjAtt = allProjectAttributes.Where(x => x.AttributeG.Type == _type).Select(x => x).ToList();
+        //    int columnIndex = 0;
 
-            while (sheet.Cells[0, columnIndex].Value.ToString() != "")
-            {
-                int temp_attValueId= typeProjAtt.Where(x => x.AttributeG.Name == sheet.Cells[0, columnIndex].Value.ToString()).Select(x => x.Id).FirstOrDefault();
-                using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-                {
-                    var toDelete = context.Set<AttributeValue>().
-                        FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={temp_attValueId}").ToList();
-                    await context.BulkDeleteAsync<AttributeValue>(toDelete);
-                }
+        //    while (sheet.Cells[0, columnIndex].Value.ToString() != "")
+        //    {
+        //        int temp_attValueId= typeProjAtt.Where(x => x.AttributeG.Name == sheet.Cells[0, columnIndex].Value.ToString()).Select(x => x.Id).FirstOrDefault();
+        //        using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+        //        {
+        //            var toDelete = context.Set<AttributeValue>().
+        //                FromSqlRaw($"SELECT * FROM AttributeValues WHERE ProjectAttributeId={temp_attValueId}").ToList();
+        //            await context.BulkDeleteAsync<AttributeValue>(toDelete);
+        //        }
                 
-                int rowIndex = 0;
-                List<AttributeValue> toInsert = new List<AttributeValue>();
-                while (rowIndex<usedRange.RowCount)
-                {
-                    toInsert.Add(new AttributeValue {
-                        ProjectAttributeID=temp_attValueId, 
-                        Rowindex=rowIndex, 
-                        Value= sheet.Cells[rowIndex, columnIndex].Value.ToString() });
-                    rowIndex++;
-                }
-                using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
-                {
-                    await context.BulkInsertAsync<AttributeValue>(toInsert);
-                }
+        //        int rowIndex = 0;
+        //        List<AttributeValue> toInsert = new List<AttributeValue>();
+        //        while (rowIndex<usedRange.RowCount)
+        //        {
+        //            toInsert.Add(new AttributeValue {
+        //                ProjectAttributeID=temp_attValueId, 
+        //                Rowindex=rowIndex, 
+        //                Value= sheet.Cells[rowIndex, columnIndex].Value.ToString() });
+        //            rowIndex++;
+        //        }
+        //        using (PlantConstructorDbContext context = _contextFactory.CreateDbContext())
+        //        {
+        //            await context.BulkInsertAsync<AttributeValue>(toInsert);
+        //        }
 
-                columnIndex++;
-            }
-        }
+        //        columnIndex++;
+        //    }
+        //}
 
 
         private void CreateCode_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)

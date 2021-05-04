@@ -43,9 +43,9 @@
                         <dxb:BarButtonItem Content="Create E3D Code"
                                 LargeGlyph="{dx:DXImage 'Images/Actions/Insert_32x32.png'}" 
                                 ItemClick="CreateCode_ItemClick" />
-                        <dxb:BarButtonItem Content="Save to DB"
+                        <!--<dxb:BarButtonItem Content="Save to DB"
                                 LargeGlyph="{dx:DXImage 'Images/Data/Database_32x32.png'}" 
-                                ItemClick="SaveToDB_ItemClick"/>
+                                ItemClick="SaveToDB_ItemClick"/>-->
                         <dxb:BarButtonItem Content="Import Data"
                                 LargeGlyph="{dx:DXImage 'Images/XAF/Action_ModelDifferences_Import_32x32.png'}" 
                                 ItemClick="ImportData_ItemClick" />
