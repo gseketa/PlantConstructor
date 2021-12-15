@@ -135,6 +135,7 @@ namespace PlantConstructor.WPF.EditDataScreen
                 workbook.Worksheets.Add().Name = "Equipment";
                 workbook.Worksheets.Add().Name = "SubEquipment";
                 workbook.Worksheets.Add().Name = "EquipmentPart";
+                workbook.Worksheets.Add().Name = "HangerElements";
 
                 //set Site as active worksheet
                 workbook.Worksheets.ActiveWorksheet = workbook.Worksheets[0];
@@ -427,7 +428,153 @@ namespace PlantConstructor.WPF.EditDataScreen
             }
         }
 
-        private async Task<string[]> ReadDataFromFile(string filename)
+        private void ExportHangerData_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            //first check if all attributes are present
+            int attaNameItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "NAME");
+            int attaOwnerItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "OWNER");
+            int attaTypeItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "TYPE");
+            int attaStexItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "STEX");
+            int attaDtxrItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "DTXR");
+            int attaIspeItemIndex = pipePartHeaderAttributes.FindIndex(s => s == "ISPE");
+
+            int branchNameItemIndex = branchHeaderAttributes.FindIndex(s => s == "NAME");
+            int branchOwnerItemIndex = branchHeaderAttributes.FindIndex(s => s == "OWNER");
+            int branchTempItemIndex = branchHeaderAttributes.FindIndex(s => s == "TEMP");
+            //int branchHborItemIndex = branchHeaderAttributes.FindIndex(s => s == "HBOR");
+
+            int pipeNameItemIndex = pipeHeaderAttributes.FindIndex(s => s == "NAME");
+            int pipeGaspecItemIndex = pipeHeaderAttributes.FindIndex(s => s == ":GASPEC");
+
+            if (attaNameItemIndex<0 || attaOwnerItemIndex<0 || attaStexItemIndex<0 || branchNameItemIndex<0 || branchOwnerItemIndex<0 || branchTempItemIndex<0 || attaIspeItemIndex<0  || pipeGaspecItemIndex<0 || pipeNameItemIndex<0 || attaDtxrItemIndex<0)
+            {
+                MessageBox.Show("An attribute is missing. Check if NAME, OWNER, TYPE, ISPE, DTXR and STEX are available for PipePart. NAME and :GASPEC are available for Pipe. NAME, OWNER, TEMP and ISPE are available for Branch.");
+            }
+            else
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+                List<HangerElements> listHangerElements = new List<HangerElements> { };
+                
+                int pipeRowCount;
+                for (pipeRowCount = 1; workbook.Worksheets[2].Cells[pipeRowCount, 0].Value.ToString() != ""; pipeRowCount++) { }
+                pipeRowCount--;
+
+                int branchRowCount;
+                for (branchRowCount = 1; workbook.Worksheets[3].Cells[branchRowCount, 0].Value.ToString() != ""; branchRowCount++) { }
+                branchRowCount--;
+
+                int pipePartRowCount;
+                for (pipePartRowCount = 1; workbook.Worksheets[4].Cells[pipePartRowCount, 0].Value.ToString() != ""; pipePartRowCount++) { }
+                pipePartRowCount--;
+
+                int partCounter;
+                int branchCounter;
+                int pipeCounter;
+
+                int hangerCounter = 0; 
+                workbook.Worksheets[11].Cells[hangerCounter, 0].Value = "attaName / Object Code";
+                workbook.Worksheets[11].Cells[hangerCounter, 1].Value = "attaStex / Support Name (HANG)";             
+                workbook.Worksheets[11].Cells[hangerCounter, 2].Value = "branchName";
+                workbook.Worksheets[11].Cells[hangerCounter, 3].Value = "branchTemp / Temp (3D)";
+                workbook.Worksheets[11].Cells[hangerCounter, 4].Value = "attaIspe / Insulation (HANG)";
+                workbook.Worksheets[11].Cells[hangerCounter, 5].Value = "attaDtxrDN / DN (HANG)";
+                workbook.Worksheets[11].Cells[hangerCounter, 6].Value = "pipeName / Owner (3D)";
+                workbook.Worksheets[11].Cells[hangerCounter, 7].Value = "pipeGaspec / Gaspec (3D)";
+                workbook.Worksheets[11].Cells[hangerCounter, 8].Value = "attaDtxr / HangType (HANG)";
+                hangerCounter++;
+
+
+                string attaName = "";
+                string attaOwner = "";
+                string attaStex = "";
+                string attaDtxr = "";
+                string branchName = "";
+                string branchOwner = "";
+                string branchTemp = "";
+                string attaIspe = "";
+                //string branchHbor = "";
+                string pipeName = "";
+                string pipeGaspec = "";
+                string attaDtxrDN = "";
+
+                for (partCounter = 1; partCounter <= pipePartRowCount; partCounter++)
+                {
+                    if (workbook.Worksheets[4].Cells[partCounter, attaTypeItemIndex].Value.ToString() == "ATTA" && workbook.Worksheets[4].Cells[partCounter, attaNameItemIndex].Value.ToString().Contains("BQ"))
+                    {
+                        attaName = workbook.Worksheets[4].Cells[partCounter, attaNameItemIndex].Value.ToString();
+                        if (attaName != "") attaName=attaName.Remove(0, 1);
+                        attaOwner = workbook.Worksheets[4].Cells[partCounter, attaOwnerItemIndex].Value.ToString();
+                        attaStex = workbook.Worksheets[4].Cells[partCounter, attaStexItemIndex].Value.ToString();
+                        attaDtxr = workbook.Worksheets[4].Cells[partCounter, attaDtxrItemIndex].Value.ToString();
+                        attaIspe= workbook.Worksheets[4].Cells[partCounter, attaIspeItemIndex].Value.ToString();
+                        if (attaIspe != "") attaIspe = attaIspe.Remove(0, 1);
+                        if (attaIspe == "0/0") attaIspe = "";
+                        int dnIndex = attaDtxr.IndexOf("DN");
+                        if (dnIndex >= 0)
+                        {
+                            attaDtxrDN = new string (attaDtxr.Substring(dnIndex+2, (attaDtxr.Length)-(dnIndex + 2)).Trim().Where(c => char.IsDigit(c)).ToArray());
+
+                            //string[] array = attaDtxr.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                            //attaDtxr = array[array.Length - 1];
+                        }
+                        else
+                            attaDtxrDN = "";
+
+
+
+                        branchName = "";
+                        branchOwner = "";
+                        branchTemp = "";
+                        //branchIspe = "";
+                        //branchHbor = "";
+                        for (branchCounter = 1; branchCounter <= branchRowCount; branchCounter++)
+                        {
+                            if (workbook.Worksheets[3].Cells[branchCounter, branchNameItemIndex].Value.ToString() == attaOwner)
+                            {
+                                branchName = workbook.Worksheets[3].Cells[branchCounter, branchNameItemIndex].Value.ToString();
+                                branchOwner = workbook.Worksheets[3].Cells[branchCounter, branchOwnerItemIndex].Value.ToString();
+                                branchTemp = workbook.Worksheets[3].Cells[branchCounter, branchTempItemIndex].Value.ToString().Replace("degC","");
+                                if (branchTemp == "-100000") branchTemp = "";
+                                //branchIspe = workbook.Worksheets[3].Cells[branchCounter, branchIspeItemIndex].Value.ToString();
+                                //if (branchIspe != "") branchIspe=branchIspe.Remove(0, 1);
+                                //if (branchIspe == "0/0") branchIspe = "";
+                                //branchHbor = workbook.Worksheets[3].Cells[branchCounter, branchHborItemIndex].Value.ToString().Replace("mm","");
+                            }
+                        }
+                        pipeName = "";
+                        pipeGaspec = "";
+                        if (branchOwner != "")
+                        {
+                            for (pipeCounter = 1; pipeCounter <= pipeRowCount; pipeCounter++)
+                            {
+                                if (workbook.Worksheets[2].Cells[pipeCounter, pipeNameItemIndex].Value.ToString() == branchOwner)
+                                {
+                                    pipeName = workbook.Worksheets[2].Cells[pipeCounter, pipeNameItemIndex].Value.ToString();
+                                    if (pipeName != "") pipeName=pipeName.Remove(0, 1);
+                                    pipeGaspec = workbook.Worksheets[2].Cells[pipeCounter, pipeGaspecItemIndex].Value.ToString();
+                                }
+                            }
+                        }
+                        listHangerElements.Add(new HangerElements{ AttaMyName = attaName, AttaMyStex=attaStex, BranchMyName=branchName, BranchMyTemp=branchTemp, BranchMyIspe=attaIspe, BranchMyHbor=attaDtxrDN, PipeMyName=pipeName, PipeMyGaspec=pipeGaspec });
+                        workbook.Worksheets[11].Cells[hangerCounter, 0].Value=attaName;
+                        workbook.Worksheets[11].Cells[hangerCounter, 1].Value = attaStex;
+                        workbook.Worksheets[11].Cells[hangerCounter, 2].Value = branchName;
+                        workbook.Worksheets[11].Cells[hangerCounter, 3].Value = branchTemp;
+                        workbook.Worksheets[11].Cells[hangerCounter, 4].Value = attaIspe;
+                        workbook.Worksheets[11].Cells[hangerCounter, 5].Value = attaDtxrDN;
+                        workbook.Worksheets[11].Cells[hangerCounter, 6].Value = pipeName;
+                        workbook.Worksheets[11].Cells[hangerCounter, 7].Value = pipeGaspec;
+                        workbook.Worksheets[11].Cells[hangerCounter, 8].Value = attaDtxr;
+                        hangerCounter++;
+                    }
+                }
+                
+            }
+            Mouse.OverrideCursor = null;
+        }
+
+
+            private async Task<string[]> ReadDataFromFile(string filename)
         {
             string[] filelines = await File.ReadAllLinesAsync(filename);
             return filelines;

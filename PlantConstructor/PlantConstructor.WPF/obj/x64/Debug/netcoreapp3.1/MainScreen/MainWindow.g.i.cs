@@ -129,7 +129,7 @@ namespace PlantConstructor.WPF.MainScreen {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V2.4.0.0;component/mainscreen/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PlantConstructor.WPF;V3.0.0.0;component/mainscreen/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MainScreen\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

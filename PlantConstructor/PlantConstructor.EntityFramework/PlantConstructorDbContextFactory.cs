@@ -11,7 +11,7 @@ namespace PlantConstructor.EntityFramework
         public PlantConstructorDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<PlantConstructorDbContext>();
-            options.UseSqlServer("Server=gse-sql.database.windows.net; Database=PlantConstructorDB3;User ID=gse_admin;Password=Gs48800609;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Trusted_Connection=false;", builder =>
+            options.UseSqlServer("Server=innsql01; Database=PlantConstructorDB3;User ID=gse_admin;Password=Gs48800609;MultipleActiveResultSets=False;", builder =>
             {
                 builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
             }

@@ -264,6 +264,7 @@ namespace PlantConstructor.WPF.Generate3DCodeScreen
                 AllLeftAttributesForDisplay = new List<ListBoxAttributes>();
                 AllCenterAttributesForDisplay = new List<ListBoxAttributes>();
 
+
                 AllLeftAttributesForDisplay = temp1;
                 AllCenterAttributesForDisplay = temp2;
             }

@@ -49,6 +49,9 @@
                         <dxb:BarButtonItem Content="Import Data"
                                 LargeGlyph="{dx:DXImage 'Images/XAF/Action_ModelDifferences_Import_32x32.png'}" 
                                 ItemClick="ImportData_ItemClick" />
+                        <dxb:BarButtonItem Content="Export Hanger Data"
+                                LargeGlyph="{dx:DXImage 'Images/XAF/Action_ModelDifferences_Export_32x32.png'}" 
+                                ItemClick="ExportHangerData_ItemClick" />
                     </dxr:RibbonPageGroup>
                 </dxb:InsertAction>
             </dxsps:SpreadsheetControl.RibbonActions>
